@@ -1,0 +1,7 @@
+[
+  {
+    "key": "ctrl+k m",
+    "command": "preview.mermaidChart.preview",
+    "when": "resourceExtname =~ /^\.(mmd|mermaid)$/ || editorLangId =~ /^mermaid/"
+  }
+]
