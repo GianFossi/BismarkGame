@@ -1,0 +1,60 @@
+# === Build outputs ===
+bin/
+obj/
+publish/
+out/
+
+# === VS / VS Code / Rider ===
+.vs/
+.vscode/*.log
+*.user
+*.userosscache
+*.suo
+.idea/
+*.iml
+
+# === F# / Ionide ===
+.ionide/
+*.fsproj.orig
+
+# === Test results ===
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+
+# === NuGet ===
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+.nuget/
+
+# === OS junk ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# === Logs / temp ===
+*.log
+*.tmp
+*.bak
+
+# === Rendered flowchart outputs (keep sources, not generated binaries) ===
+docs/flowcharts/**/*.pdf
+docs/flowcharts/**/*.png
+docs/flowcharts/**/*.svg
+!docs/flowcharts/README.md
+
+# === Secrets (should never exist here, but just in case) ===
+*.pfx
+*.key
+appsettings.*.local.json
+.env
+.env.*
+
+.fake

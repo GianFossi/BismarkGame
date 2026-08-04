@@ -1,0 +1,34 @@
+%% 01-phases/07-air-attack.mmd
+%% Rule 4.7/9.1x. Update.fs command: LaunchAirAttack.
+flowchart TD
+    Enter(["Enter Air Attack Phase"]) --> Cmd["LaunchAirAttack (airUnitId, targetShipId)"]
+    Cmd --> Found{"Air unit and target ship found?"}
+    Found -->|No| Err1(["Error: unknown unit"])
+    Found -->|Yes| PhaseCheck{"Phase equals AirAttack?"}
+    PhaseCheck -->|No| Err2(["Error: wrong phase"])
+    PhaseCheck -->|Yes| CanAttack{"au.CanAttack?<br/>TorpedoBomber or LevelBomber<br/>in BomberAttack mode; LR Recon never"}
+    CanAttack -->|No| Err3(["Error: cannot attack, rule 2.434/6.31"])
+    CanAttack -->|Yes| SameZone{"Air unit and target<br/>in the same zone?"}
+    SameZone -->|No| Err4(["Error: rule 6.31"])
+    SameZone -->|Yes| PickTable{"attackerNat, au.UnitType"}
+    PickTable -->|British, TorpedoBomber| T1["BomberTables.britishTorpedoBomber"]
+    PickTable -->|British, LevelBomber| T2["BomberTables.resolveBritishDiveLevelBomber<br/>isBattleshipOrBattlecruiser"]
+    PickTable -->|German, any| T3["BomberTables.germanBomber<br/>covers both German bomber sub-types"]
+    T1 --> Roll["roll 2d6 -&gt; list of BomberHitEffect"]
+    T2 --> Roll
+    T3 --> Roll
+    Roll --> Apply["Fold effects onto target ShipCounter:<br/>BMidships -&gt; MidshipsHits, temp/permanent<br/>evasion loss, fill-the-track sink check<br/>BSecondary / BSection -&gt; no-op, no Search-<br/>Board-side field for these yet"]
+    Apply --> Ok(["Target ShipCounter updated"])
+
+    Err1 --> Next
+    Err2 --> Next
+    Err3 --> Next
+    Err4 --> Next
+    Ok --> Next
+    Next(["AdvancePhase leads to Naval Combat Phase"])
+
+    Note["NOTE: rule 9.16 attack-frequency limits<br/>British=2/day, German=1/day, none at night<br/>are NOT enforced, see README TODO."]
+    style Note fill:#ffd
+
+    style Enter fill:#cde
+    style Next fill:#cde

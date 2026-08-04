@@ -1,0 +1,20 @@
+%% 01-phases/06-search.mmd
+%% Rule 4.6/6.0/7.2x/7.27. Update.fs command: SearchZone.
+%% Detailed function-level view: ../02-detailed-functions/02-searchzone-detail.mmd
+flowchart TD
+    Enter(["Enter Search Phase"]) --> Cmd["SearchZone (searcher, zone)<br/>BOTH sides call this, rule 7.22"]
+    Cmd --> Capacity["Compute capacity:<br/>max of own ships' and air units' search<br/>strength in the zone, Day or Night column<br/>from Turn.IsNightTurn, plus coastal bonus<br/>rule 7.27, friendly Port zone proxy"]
+    Capacity --> Compare{"capacity greater or equal<br/>current VisibilityLevel?"}
+    Compare -->|No| NoOp(["Ok, unchanged, no reveal, not an error"])
+    Compare -->|Yes| Reveal["For every enemy ship in the zone:<br/>add or replace a LocationMarker<br/>Zone, ShipClass, Owner = opponent"]
+    Reveal --> Track{"opponent equals German and<br/>GermanLocatedTurn was None?"}
+    Track -->|Yes| SetTurn["GermanLocatedTurn = Some currentTurn<br/>gates Mobilize's release conditions"]
+    Track -->|No| Done
+    SetTurn --> Done(["Ok, LocationMarkers updated"])
+
+    NoOp --> Next
+    Done --> Next
+    Next(["AdvancePhase leads to Air Attack Phase"])
+
+    style Enter fill:#cde
+    style Next fill:#cde

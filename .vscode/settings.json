@@ -1,0 +1,75 @@
+{
+    "FSharp.dotNetRoot": "",
+    "FSharp.useSdkScripts": true,
+    "FSharp.enableAnalyzers": true,
+    "FSharp.enableReferenceCodeLens": true,
+    "FSharp.inlayHints.enabled": true,
+    "FSharp.inlayHints.typeAnnotations": true,
+    "FSharp.inlayHints.parameterNames": true,
+    "FSharp.formatting.formatOnSave": false,
+    "FSharp.fsac.netCoreDllPath": "",
+
+    "editor.formatOnSave": false,
+    "editor.rulers": [100],
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.trimAutoWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/*.user": true
+    },
+    "search.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/publish": true
+    },
+    "files.watcherExclude": {
+        "**/bin/**": true,
+        "**/obj/**": true,
+        "**/publish/**": true
+    },
+
+    "[fsharp]": {
+        "editor.defaultFormatter": "Ionide.Ionide-fsharp",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 100
+    },
+    "[json]": {
+        "editor.tabSize": 2
+    },
+
+    "cSpell.language": "en",
+    "cSpell.customDictionaries": {
+        "bismarck-project": {
+            "name": "bismarck-project",
+            "path": "${workspaceFolder}/.vscode/cspell-words.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    },
+    "cSpell.enabledFileTypes": {
+        "fsharp": true,
+        "csharp": true,
+        "markdown": true,
+        "json": true
+    },
+
+    "dotnet.defaultSolution": "BismarckGame.sln",
+
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.enableRoslynAnalyzers": true
+}

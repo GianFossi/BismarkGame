@@ -1,0 +1,24 @@
+%% 01-phases/02-visibility.mmd
+%% Rule 4.2. Update.fs command: RollVisibilityChange, SetShipMode,
+%% FormTaskForce/BreakTaskForce (mode and task-force changes must happen
+%% before ships move — rule 5.32/5.41/5.44).
+flowchart TD
+    Enter(["Enter Visibility Phase"]) --> Skip{"Turn Number = 4?<br/>(the real first turn of play)"}
+    Skip -->|Yes| SkipMsg["RollVisibilityChange is a no-op<br/>Sequence of Play card: Skip 2A on the first turn<br/>Visibility stays at its scenario-initial value 4"]
+    Skip -->|No| Roll["RollVisibilityChange:<br/>roll 2d6, look up<br/>Tables.TimeAndVisibility.visibilityChangeTable"]
+    Roll --> Shift["applyVisibilityShift: move the<br/>VisibilityLevel by the table's Shift,<br/>clamped to the 1..9 track"]
+    Shift --> FogNote["Note: shift.TriggersFog is NOT yet<br/>consumed anywhere (see README TODO)"]
+
+    SkipMsg --> ModeChanges
+    FogNote --> ModeChanges
+
+    ModeChanges["Both players may issue:<br/>SetShipMode (Movement/Patrol)<br/>FormTaskForce / BreakTaskForce"]
+    ModeChanges --> ModeCheck{"For SetShipMode:<br/>CanPatrol? Not IsRestrictedToPatrolUntilContact<br/>if switching to Movement?"}
+    ModeCheck -->|violated| ModeErr(["Error"])
+    ModeCheck -->|ok| ModeOk(["Ship.Mode updated"])
+
+    ModeOk --> Next(["AdvancePhase leads to Shadow Determination Phase"])
+    ModeErr --> Next
+
+    style Enter fill:#cde
+    style Next fill:#cde

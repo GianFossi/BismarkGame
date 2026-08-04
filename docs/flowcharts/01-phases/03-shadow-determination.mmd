@@ -1,0 +1,28 @@
+%% 01-phases/03-shadow-determination.mmd
+%% Rule 4.3/8.1. Update.fs command: DeclareShadow.
+flowchart TD
+    Enter(["Enter Shadow Determination Phase"]) --> Cmd["DeclareShadow (shadower, target)"]
+    Cmd --> FindBoth{"Both shadower and target<br/>ships found in state?"}
+    FindBoth -->|No| Err1(["Error: ship not found"])
+    FindBoth -->|Yes| EvasionCheck{"shadower.EvasionRating<br/>greater or equal target.EvasionRating?"}
+    EvasionCheck -->|No| Err2(["Error: rule 4.3 evasion requirement"])
+    EvasionCheck -->|Yes| HasZone{"shadower has a CurrentZone?"}
+    HasZone -->|No| Err3(["Error: no position"])
+    HasZone -->|Yes| OnList{"shadower.Name in<br/>ShadowTable.categoryOf?"}
+    OnList -->|No| Err4(["Error: not a valid shadowing unit<br/>only named British ships or LR Recon<br/>can shadow in the Basic Game"])
+    OnList -->|Yes| Modifier["targetMoved2Zones equals<br/>target.ZonesMovedThisTurn greater or equal 2"]
+    Modifier --> Resolve["tables.ResolveShadow name, visibility,<br/>targetMoved2Zones, roll<br/>calls ShadowTable.resolve category roll vis mod"]
+    Resolve --> Result{"HoldContact or LoseContact?"}
+    Result -->|HoldContact| Marker["Add a ShadowMarker at shadower's zone"]
+    Result -->|LoseContact| NoOp["No marker added — not an error, rule 8.1"]
+
+    Err1 --> Next
+    Err2 --> Next
+    Err3 --> Next
+    Err4 --> Next
+    Marker --> Next
+    NoOp --> Next
+    Next(["AdvancePhase leads to Air Movement Phase"])
+
+    style Enter fill:#cde
+    style Next fill:#cde

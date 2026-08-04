@@ -1,0 +1,36 @@
+%% 01-phases/09-chance.mmd
+%% Rule 4.9/10.0. Update.fs command: RollChanceForShip.
+flowchart TD
+    Enter(["Enter Chance Phase"]) --> Cmd["RollChanceForShip (germanShipId)<br/>once for Bismarck, once for Prinz Eugen"]
+    Cmd --> Found{"Ship found and is German?"}
+    Found -->|No / British| Err1(["Error"])
+    Found -->|Yes| Zone{"Ship has a CurrentZone?"}
+    Zone -->|No| Err2(["Error: no position"])
+    Zone -->|Yes| Column["Compute Chance Table column:<br/>SearchBoard.nearWhiteDotBelowRowD -&gt; Column A<br/>SearchBoard.nearBritishOrIrishCoast -&gt; Column C<br/>otherwise -&gt; Column B<br/>(both are generic functions over any SearchBoardMap)"]
+    Column --> Roll["roll 2d6 -&gt; ChanceTable.resolve diceSum column"]
+    Roll --> Result{"Result?"}
+
+    Result -->|HuffDuff| HD["Reveal the ship's EXACT zone<br/>(simplification: rule 10.22 lets the German<br/>player choose the zone or any adjacent one;<br/>not modeled — see README TODO)"]
+    Result -->|GeneralSearchThreshold t| GS{"current VisibilityLevel<br/>less or equal t?"}
+    GS -->|Yes| GSyes["Reveal the ship's zone"]
+    GS -->|No| GSno(["Ok, unchanged"])
+    Result -->|NoSearchPossible| NS(["Ok, unchanged"])
+    Result -->|ConvoyLocated...| Convoy["Structural no-op — convoys have<br/>no board position of their own yet"]
+
+    HD --> SetMarker["Add/replace LocationMarker<br/>Zone, ShipClass, Owner=German"]
+    GSyes --> SetMarker
+    SetMarker --> Track{"GermanLocatedTurn was None?"}
+    Track -->|Yes| SetTurn["GermanLocatedTurn = Some currentTurn"]
+    Track -->|No| Done
+    SetTurn --> Done(["Ok"])
+
+    Err1 --> Next
+    Err2 --> Next
+    Done --> Next
+    GSno --> Next
+    NS --> Next
+    Convoy --> Next
+    Next(["AdvancePhase: turn ends —<br/>see 00-overview/00-turn-cycle.mmd<br/>for the end-of-turn bookkeeping"])
+
+    style Enter fill:#cde
+    style Next fill:#cde

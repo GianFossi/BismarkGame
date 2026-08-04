@@ -1,0 +1,78 @@
+%% 02-detailed-functions/01-moveship-and-fuelcost-detail.mmd
+%% Function-level detail of Update.fs's MoveShip handler and the private
+%% fuelCost function it calls. This is the single most rule-dense
+%% function in the engine (rules 5.1-5.29, 9.729).
+flowchart TD
+    Start(["MoveShip (shipId, dest)<br/>called with tables, roll, state"]) --> F1{"tryFindShip shipId"}
+    F1 -->|None| E1(["Error: Unknown ship"])
+    F1 -->|"Some (nat, ship)"| F2{"Phase = ShipMovement<br/>OR ShadowDetermination?"}
+    F2 -->|No| E2(["Error: rule 4.3/4.5"])
+    F2 -->|Yes| F3{"ship.Mode = Patrol?"}
+    F3 -->|Yes| E3(["Error: rule 5.33"])
+    F3 -->|No| F4{"ship.IsLockedInPort?"}
+    F4 -->|Yes| E4(["Error: see Mobilize"])
+    F4 -->|No| F5{"ship.CurrentZone?"}
+    F5 -->|None| E5(["Error: not placed yet"])
+    F5 -->|Some current| F6{"isAdjacent current dest?<br/>(SearchBoard.neighbors)"}
+    F6 -->|No| E6(["Error: rule 5.18"])
+    F6 -->|Yes| F7{"canEnterZone nat dest?<br/>(Irish Sea / British port<br/>blocked for German ships)"}
+    F7 -->|No| E7(["Error: rule 5.18"])
+    F7 -->|Yes| F8["isBreakoutBonusShip =<br/>Turn.Number=4 AND nat=German AND<br/>Name in Bismarck, Prinz Eugen"]
+    F8 --> F9{"isBreakoutBonusShip?"}
+    F9 -->|Yes| F10a["allowedThisTurn = 5"]
+    F9 -->|No| F10b["match EvasionEffects.searchBoardMaxSpeed<br/>ship.EvasionRating:<br/>Speed0 -&gt; 0<br/>EmergencyMovementOnly -&gt; 1 if IsEmergencyMovementTurn else 0<br/>Speed1 -&gt; 1<br/>Speed2 -&gt; 2"]
+    F10a --> F11
+    F10b --> F11{"ship.ZonesMovedThisTurn<br/>greater or equal allowedThisTurn?"}
+    F11 -->|Yes| E8(["Error: no movement left"])
+    F11 -->|No| Fuel
+
+    subgraph FuelCost["fuelCost ship isCTurn isBreakoutBonusShip (rules 5.21-5.29)"]
+        Fuel{"ship.Fuel?"}
+        Fuel -->|None, cruiser| FC1(["Ok None — free, rule 5.21"])
+        Fuel -->|Some fuel| FC2{"isBreakoutBonusShip?"}
+        FC2 -->|Yes| FC3{"zoneIndex less than 3?<br/>zoneIndex = ZonesMovedThisTurn"}
+        FC3 -->|Yes| FC4(["Ok (Some 0) — zones 1-3 free, rule 5.28"])
+        FC3 -->|No| FC5{"FactorsRemaining greater than 0?"}
+        FC5 -->|Yes| FC6(["Ok (Some 1) — 4th/5th zone costs 1"])
+        FC5 -->|No| FC7(["Error: no fuel for 4th/5th zone"])
+        FC2 -->|No| FC8{"MaxSpeedZones = 2?"}
+        FC8 -->|Yes| FC9{"zoneIndex = 0 first zone this turn?"}
+        FC9 -->|Yes| FC10{"FactorsRemaining greater than 0<br/>OR isCTurn?"}
+        FC10 -->|Yes| FC11(["Ok (Some 0) — free, rule 5.22/5.23"])
+        FC10 -->|No| FC12(["Error: needs a C turn, rule 5.23/5.24"])
+        FC9 -->|No, 2nd zone| FC13{"FactorsRemaining greater than 0?"}
+        FC13 -->|Yes| FC14(["Ok (Some 1) — 2nd zone costs 1, rule 5.21"])
+        FC13 -->|No| FC15(["Error: no fuel for 2nd zone"])
+        FC8 -->|No, MaxSpeedZones=1<br/>Rodney/Nelson/Ramillies/Revenge| FC16{"isCTurn?"}
+        FC16 -->|Yes| FC17(["Ok (Some 0) — free as emergency movement"])
+        FC16 -->|No| FC18{"FactorsRemaining greater than 0?"}
+        FC18 -->|Yes| FC19(["Ok (Some 1) — rule 5.25"])
+        FC18 -->|No| FC20(["Error: needs a C turn, rule 5.25"])
+    end
+
+    FC1 --> Apply
+    FC4 --> Apply
+    FC6 --> Apply
+    FC11 --> Apply
+    FC14 --> Apply
+    FC17 --> Apply
+    FC19 --> Apply
+    FC7 --> E9(["Error propagated"])
+    FC12 --> E9
+    FC15 --> E9
+    FC20 --> E9
+
+    Apply["Apply move:<br/>CurrentZone = dest<br/>ZonesMovedThisTurn += 1<br/>Fuel.FactorsRemaining -= cost<br/>InEmergencyMovement = (remaining = 0)"]
+    Apply --> Ok(["Ok updated GameState"])
+
+    style Start fill:#cde
+    style Ok fill:#cfc
+    style E1 fill:#fcc
+    style E2 fill:#fcc
+    style E3 fill:#fcc
+    style E4 fill:#fcc
+    style E5 fill:#fcc
+    style E6 fill:#fcc
+    style E7 fill:#fcc
+    style E8 fill:#fcc
+    style E9 fill:#fcc

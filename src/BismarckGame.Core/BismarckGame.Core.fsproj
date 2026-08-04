@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>BismarckGame.Core</RootNamespace>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <InformationalVersion>v1.0.0</InformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Compile order matters in F#: dependencies first -->
+    <Compile Include="Common.fs" />
+    <Compile Include="Dice.fs" />
+
+    <!-- Counter type taxonomy (class hierarchy, map/scenario-agnostic) -->
+    <Compile Include="Counters\Counter.fs" />
+    <Compile Include="Counters\Ships\ShipCounter.fs" />
+    <Compile Include="Counters\Ships\Battleship.fs" />
+    <Compile Include="Counters\Ships\Battlecruiser.fs" />
+    <Compile Include="Counters\Ships\PocketBattleship.fs" />
+    <Compile Include="Counters\Ships\HeavyCruiser.fs" />
+    <Compile Include="Counters\Ships\LightCruiser.fs" />
+    <Compile Include="Counters\Ships\AircraftCarrier.fs" />
+    <Compile Include="Counters\Ships\Destroyer.fs" />
+    <Compile Include="Counters\Ships\Submarine.fs" />
+    <Compile Include="Counters\AirUnits\AirUnitCounter.fs" />
+    <Compile Include="Counters\AirUnits\LongRangeReconCounter.fs" />
+    <Compile Include="Counters\AirUnits\TorpedoBomberCounter.fs" />
+    <Compile Include="Counters\AirUnits\LevelBomberCounter.fs" />
+    <Compile Include="Counters\AirUnits\DiveBomberCounter.fs" />
+    <Compile Include="Counters\AirUnits\FighterCounter.fs" />
+    <Compile Include="Counters\Markers\MarkerCounter.fs" />
+    <Compile Include="Counters\Markers\TaskForceMarker.fs" />
+    <Compile Include="Counters\Markers\ConvoyMarker.fs" />
+    <Compile Include="Counters\Markers\ShadowMarker.fs" />
+    <Compile Include="Counters\Markers\LocationMarker.fs" />
+
+    <!-- Search Board domain (per-scenario map data lives in Scenarios\) -->
+    <Compile Include="SearchBoard.fs" />
+    <Compile Include="Units.fs" />
+    <Compile Include="Markers.fs" />
+    <Compile Include="BattleBoard.fs" />
+    <Compile Include="VictoryConditions.fs" />
+    <Compile Include="GameState.fs" />
+
+    <!-- Data tables that the engine (Update.fs) and scenario data both
+         depend on — must compile before both. -->
+    <Compile Include="Tables\ShipStats.fs" />
+    <Compile Include="Tables\AirUnitStats.fs" />
+    <Compile Include="Tables\EvasionEffects.fs" />
+    <Compile Include="Tables\ShadowTable.fs" />
+    <Compile Include="Tables\ChanceTable.fs" />
+    <Compile Include="Tables\BomberTables.fs" />
+    <Compile Include="Tables\TimeAndVisibility.fs" />
+
+    <Compile Include="Scenario.fs" />
+    <Compile Include="Scenarios\BismarckBasicGame.fs" />
+    <Compile Include="Update.fs" />
+
+    <!-- Data tables only needed by RulesTablesImpl. -->
+    <Compile Include="Tables\NavalFireTables.fs" />
+    <Compile Include="Tables\RulesTablesImpl.fs" />
+
+    <Compile Include="Validation.fs" />
+    <Compile Include="PlayerView.fs" />
+  </ItemGroup>
+
+</Project>

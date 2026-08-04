@@ -1,0 +1,24 @@
+%% 01-phases/04-air-movement.mmd
+%% Rule 4.4/6.1/6.2. Update.fs command: MoveAirUnit.
+flowchart TD
+    Enter(["Enter Air Movement Phase"]) --> Cmd["MoveAirUnit (unitId, destZone)"]
+    Cmd --> Found{"Air unit found?"}
+    Found -->|No| Err1(["Error: unknown air unit"])
+    Found -->|Yes| PhaseCheck{"Phase equals AirMovement?"}
+    PhaseCheck -->|No| Err2(["Error: wrong phase"])
+    PhaseCheck -->|Yes| Move["Set CurrentZone = destZone<br/>TurnsAirborne += 1<br/>IsAtBase = false"]
+    Move --> Endurance{"TurnsAirborne greater than<br/>EnduranceRating?"}
+    Endurance -->|Yes| Err3(["Error: exceeded endurance,<br/>rule 6.2x, must return to base"])
+    Endurance -->|No| Ok(["Air unit moved"])
+
+    Err1 --> Next
+    Err2 --> Next
+    Err3 --> Next
+    Ok --> Next
+    Next(["AdvancePhase leads to Ship Movement Phase"])
+
+    Note["NOTE: rule 6.12, no German air unit through two<br/>consecutive Great Britain zones, is NOT enforced here,<br/>see README TODO backlog."]
+    style Note fill:#ffd
+
+    style Enter fill:#cde
+    style Next fill:#cde

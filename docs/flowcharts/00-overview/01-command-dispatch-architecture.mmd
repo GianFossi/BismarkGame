@@ -1,0 +1,29 @@
+%% 00-overview/01-command-dispatch-architecture.mmd
+%% Macro level: how one player action becomes a new GameState.
+%% This is the software architecture, not the game rules — see
+%% 00-turn-cycle.mmd for the rules-level view.
+flowchart LR
+    subgraph Caller["Caller (Console harness / future UI)"]
+        UserAction["Player chooses an action"]
+    end
+
+    UserAction --> Cmd["Command value<br/>(GameState.fs's Command DU:<br/>MoveShip, SearchZone, FireInBattle, ...)"]
+
+    Cmd --> Update["Update.update tables roll cmd state"]
+
+    subgraph UpdateFs["Update.fs"]
+        Update --> Match{"match cmd with ..."}
+        Match --> Rules["Rule checks:<br/>phase correct? adjacency legal?<br/>fuel available? ship locked? ..."]
+        Rules -->|violated| ErrOut(["Error: string<br/>(names the rule that blocked it)"])
+        Rules -->|ok| Tables["Consult BismarckGame.Core.Tables.*<br/>via IRulesTables / direct calls<br/>(NavalFireTables, ShadowTable,<br/>ChanceTable, BomberTables,<br/>EvasionEffects, ShipStats)"]
+        Tables --> Dice["roll: unit -> int<br/>(Dice.fs — real or Dice.ofSequence for tests)"]
+        Dice --> NewState["Compute new GameState<br/>(immutable update via 'with')"]
+        NewState --> OkOut(["Ok GameState"])
+    end
+
+    ErrOut --> CallerHandles["Caller shows the error message"]
+    OkOut --> Project["PlayerView.project state viewer"]
+    Project --> Render["Redacted view rendered to each player<br/>(own units in full, enemy only where<br/>a LocationMarker/shadow has revealed them)"]
+
+    style ErrOut fill:#fcc
+    style OkOut fill:#cfc

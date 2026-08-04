@@ -1,0 +1,33 @@
+%% 02-detailed-functions/03-navalcombat-placement-detail.mmd
+%% Function-level detail of Update.fs's InitiateNavalCombat handler
+%% (rule 9.28's defender-center / attacker-edge placement) and its
+%% helper functions edgeHexes / placeTwoPerHex / edgeFromRoll.
+flowchart TD
+    Start(["InitiateNavalCombat (zone, attacker)"]) --> F1{"Phase = NavalCombat?"}
+    F1 -->|No| E1(["Error: rule 4.8"])
+    F1 -->|Yes| F2["shipsInZone = all ships<br/>with CurrentZone = zone"]
+    F2 --> F3{"At least 2 distinct<br/>nationalities present?"}
+    F3 -->|No| E2(["Error: rule 4.8 — need both sides"])
+    F3 -->|Yes| F4{"attacker is one of<br/>the sides present?"}
+    F4 -->|No| E3(["Error: attacker has no ships here"])
+    F4 -->|Yes| F5["Partition: attackerShips, defenderShips"]
+    F5 --> F6["edge = edgeFromRoll (roll())<br/>uniform 1..6 -&gt; Edge1..Edge6"]
+    F6 --> F7["defenderHexes = HexCoord.Zero<br/>plus its 6 orthogonal neighbors<br/>(rule 9.281: overflow to adjacent hexes)"]
+    F7 --> F8["attackerHexes = edgeHexes edge<br/>= far point in edge direction,<br/>spread along the perpendicular<br/>direction for -3..3<br/>(BattleBoard.approximateBoardRadius —<br/>NOT a transcribed hex count, see README)"]
+    F8 --> F9["placeTwoPerHex for each side:<br/>cycle 2 ships per hex through<br/>the hex list (rule 9.281 cap)"]
+    F9 --> F10["defenderFacing = edge.ToHexSide()<br/>attackerFacing = that side's Opposite<br/>(rule 9.282: bow must point at a hex<br/>side, never a corner — always true<br/>here since HexSide only has 6 values)"]
+    F10 --> F11["For each ship in shipsInZone:<br/>look up Tables.ShipStats.shipStats by Name<br/>-&gt; freshGunSections (or [] if not found)<br/>build BattleShipState carrying over<br/>existing MidshipsHits / PermanentEvasionLoss<br/>from the Search Board ShipCounter"]
+    F11 --> F12["newId = 1 + max existing<br/>ActiveBattles Id (or 1 if none)"]
+    F12 --> Ok(["Ok: new BattleBoardState<br/>added to ActiveBattles"])
+
+    E1 --> Done
+    E2 --> Done
+    E3 --> Done
+    Ok --> Done
+    Done(["end"])
+
+    style Start fill:#cde
+    style Ok fill:#cfc
+    style E1 fill:#fcc
+    style E2 fill:#fcc
+    style E3 fill:#fcc

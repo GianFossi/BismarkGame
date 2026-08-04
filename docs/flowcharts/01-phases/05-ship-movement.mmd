@@ -1,0 +1,23 @@
+%% 01-phases/05-ship-movement.mmd
+%% Rule 4.5/5.1-5.29. Update.fs command: MoveShip.
+%% Detailed function-level view: ../02-detailed-functions/01-moveship-and-fuelcost-detail.mmd
+flowchart TD
+    Enter(["Enter Ship Movement Phase"]) --> Cmd["MoveShip (shipId, destZone)"]
+    Cmd --> Checks["Legality checks: phase correct,<br/>not in Patrol mode, not IsLockedInPort,<br/>destination adjacent and enterable"]
+    Checks -->|any fails| Err(["Error"])
+    Checks -->|ok| SpeedCap["Compute allowed zones this turn:<br/>breakout bonus, turn 4, Bismarck or Prinz Eugen, equals 5<br/>otherwise Tables.EvasionEffects.searchBoardMaxSpeed<br/>applied to CURRENT possibly damaged EvasionRating"]
+    SpeedCap --> UsedUp{"ZonesMovedThisTurn<br/>greater or equal allowance?"}
+    UsedUp -->|Yes| Err2(["Error: no movement left"])
+    UsedUp -->|No| Fuel["fuelCost ship isCTurn isBreakoutBonusShip<br/>rules 5.21-5.29, see detailed flowchart"]
+    Fuel -->|Error| Err3(["Error: no fuel for this move"])
+    Fuel -->|Ok cost| Apply["CurrentZone = dest<br/>ZonesMovedThisTurn += 1<br/>Fuel.FactorsRemaining -= cost if tracked"]
+    Apply --> Ok(["Ship moved"])
+
+    Err --> Next
+    Err2 --> Next
+    Err3 --> Next
+    Ok --> Next
+    Next(["Repeat MoveShip per zone,<br/>then AdvancePhase runs Evasion Repair<br/>rule 9.728, only if ZonesMovedThisTurn less or equal 1<br/>and leads to Search Phase"])
+
+    style Enter fill:#cde
+    style Next fill:#cde

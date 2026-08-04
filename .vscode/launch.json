@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: Console harness",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/BismarckGame.Console/bin/Debug/net10.0/BismarckGame.Console.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/BismarckGame.Console",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug: Console harness (external terminal)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/BismarckGame.Console/bin/Debug/net10.0/BismarckGame.Console.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/BismarckGame.Console",
+            "console": "externalTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug: Tests (attach to VSTest host)",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        },
+        {
+            "name": "Debug: Published Console executable",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "publish: console",
+            "program": "${workspaceFolder}/publish/BismarckGame.Console/BismarckGame.Console.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/publish/BismarckGame.Console",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }
+    ],
+    "compounds": []
+}

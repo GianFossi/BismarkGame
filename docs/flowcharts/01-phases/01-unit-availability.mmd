@@ -1,0 +1,20 @@
+%% 01-phases/01-unit-availability.mmd
+%% Rule 4.1. Handled inside Update.fs's AdvancePhase (Chance -> UnitAvailability
+%% transition does the actual work automatically); this phase itself has
+%% no additional player-issued Command in the Basic Game beyond what
+%% AdvancePhase already performed when entering it.
+flowchart TD
+    Enter([Enter Unit Availability Phase]) --> A["Reinforcement ships due this turn<br/>are already placed<br/>(done automatically by AdvancePhase<br/>using Scenario.PendingReinforcements)"]
+    A --> B["Air units resting at base already had<br/>TurnsAirborne reset to 0<br/>(done automatically by AdvancePhase)"]
+    B --> C{Mobilize command issued<br/>for a locked/restricted ship?}
+    C -->|Yes| D["Check the specific restriction:<br/>IsLockedInPort notes 7/8/10 /<br/>IsConvoyEscort notes 9/12 /<br/>IsRestrictedToPatrolUntilContact note 11"]
+    D --> E{Condition met?<br/>GermanLocatedTurn set and enough<br/>turns passed / German ship<br/>within 10 zones}
+    E -->|Yes| F[Clear the restriction flag<br/>Note 9/12: award German plus 1 VP]
+    E -->|No| G[Error: not yet released]
+    C -->|No| Next
+    F --> Next
+    G --> Next
+    Next([AdvancePhase leads to Visibility Phase])
+
+    style Enter fill:#cde
+    style Next fill:#cde

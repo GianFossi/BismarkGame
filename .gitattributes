@@ -1,0 +1,16 @@
+# Normalize line endings for everyone, regardless of OS.
+* text=auto eol=lf
+
+*.fs text eol=lf
+*.fsi text eol=lf
+*.fsproj text eol=lf
+*.csproj text eol=lf
+*.sln text eol=crlf
+*.md text eol=lf
+*.json text eol=lf
+*.mmd text eol=lf
+
+# Binary-ish / generated — don't diff.
+*.pdf binary
+*.png binary
+*.svg -text

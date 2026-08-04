@@ -1,0 +1,36 @@
+%% 02-detailed-functions/02-searchzone-detail.mmd
+%% Function-level detail of Update.fs's SearchZone handler (rules 6.0,
+%% 7.21-7.27). This same function handles BOTH sides' deterministic
+%% search (rule 7.22) — a single implementation, `searcher` parameter
+%% picks which side is doing the searching.
+flowchart TD
+    Start(["SearchZone (searcher, zone)"]) --> F1{"Phase = Search?"}
+    F1 -->|No| E1(["Error: rule 4.6"])
+    F1 -->|Yes| F2{"Players.TryFind searcher"}
+    F2 -->|None| E2(["Error: no such player"])
+    F2 -->|Some p| F3["useNight = Turn.IsNightTurn"]
+    F3 --> F4["shipsHere = p.Ships where CurrentZone = zone<br/>airHere = p.AirUnits where CurrentZone = zone"]
+    F4 --> F5["coastalBonus:<br/>SearchBoard.TryFind zone -&gt; Terrain<br/>Port owner where owner = searcher -&gt;<br/>4 (day) or 3 (night), rule 7.27<br/>else 0"]
+    F5 --> F6["capacity = max of:<br/>max ship SearchStrength (Day/Night)<br/>max air unit SearchStrength (Day/Night)<br/>coastalBonus"]
+    F6 --> F7{"capacity greater or equal<br/>current VisibilityLevel?"}
+    F7 -->|No| NoOp(["Ok state unchanged<br/>rule 6.0 — insufficient strength,<br/>not an error"])
+    F7 -->|Yes| F8["opponent = British if searcher=German<br/>else German"]
+    F8 --> F9["enemyShipsHere = opponent's ships<br/>where CurrentZone = zone"]
+    F9 --> F10["newMarkers = one LocationMarker per<br/>enemy ship: Zone, Some ship.Class, Owner=opponent"]
+    F10 --> F11["keepExisting = state.LocationMarkers<br/>filtered to drop any existing marker<br/>for (zone, opponent) — replaced, not duplicated"]
+    F11 --> F12{"opponent = German AND<br/>newMarkers non-empty AND<br/>GermanLocatedTurn = None?"}
+    F12 -->|Yes| F13["GermanLocatedTurn = Some Turn.Number"]
+    F12 -->|No| F14
+    F13 --> F14["LocationMarkers = keepExisting @ newMarkers"]
+    F14 --> Ok(["Ok updated GameState"])
+
+    E1 --> Done
+    E2 --> Done
+    NoOp --> Done
+    Ok --> Done
+    Done(["end"])
+
+    style Start fill:#cde
+    style Ok fill:#cfc
+    style E1 fill:#fcc
+    style E2 fill:#fcc

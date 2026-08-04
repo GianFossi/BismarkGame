@@ -1,0 +1,26 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "dictionaryDefinitions": [
+        {
+            "name": "bismarck-project",
+            "path": "./.vscode/cspell-words.txt",
+            "addWords": true
+        }
+    ],
+    "dictionaries": ["bismarck-project"],
+    "ignorePaths": [
+        "**/bin/**",
+        "**/obj/**",
+        "**/publish/**",
+        "**/*.fsproj",
+        "**/*.csproj",
+        "**/*.sln",
+        "**/node_modules/**"
+    ],
+    "ignoreRegExpList": [
+        "/\\bGER-[A-Z-]+\\b/g",
+        "/\\bGBR-[A-Z-]+\\b/g",
+        "/[A-Z][0-9]{1,2}\\b/g"
+    ]
+}
