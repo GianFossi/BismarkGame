@@ -1,6 +1,6 @@
 [
   {
-    "key": "ctrl+k m",
+    "key": "ctrl+shift+alt+m",
     "command": "preview.mermaidChart.preview",
     "when": "resourceExtname =~ /^\.(mmd|mermaid)$/ || editorLangId =~ /^mermaid/"
   }
