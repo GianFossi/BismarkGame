@@ -128,6 +128,16 @@
                 "publish: console"
             ],
             "problemMatcher": []
+        },
+        {
+            "label": "preview: mermaid",
+            "type": "shell",
+            "command": "code",
+            "args": [
+                "--reuse-window",
+                "${file}"
+            ],
+            "problemMatcher": []
         }
     ]
 }

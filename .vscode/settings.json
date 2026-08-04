@@ -33,6 +33,10 @@
         "**/obj/**": true,
         "**/publish/**": true
     },
+    "files.associations": {
+        "*.mmd": "mermaid",
+        "*.mermaid": "mermaid"
+    },
 
     "[fsharp]": {
         "editor.defaultFormatter": "Ionide.Ionide-fsharp",
@@ -45,6 +49,10 @@
         "editor.insertSpaces": true
     },
     "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 100
+    },
+    "[mermaid]": {
         "editor.wordWrap": "bounded",
         "editor.wordWrapColumn": 100
     },
