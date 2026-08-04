@@ -1,0 +1,45 @@
+%% 02-detailed-functions/05-mobilize-detail.mmd
+%% Function-level detail of Update.fs's Mobilize handler — the release
+%% conditions from the British Order of Battle notes 7/8/9/10/11/12.
+flowchart TD
+    Start(["Mobilize shipId"]) --> F1{"ship found?"}
+    F1 -->|No| E1(["Error: unknown ship"])
+    F1 -->|Yes| F2{"ship.IsLockedInPort?"}
+
+    F2 -->|Yes| L1["isForceH = Name in<br/>Sheffield, Ark Royal, Renown"]
+    L1 --> L2{"GermanLocatedTurn?"}
+    L2 -->|None| E2(["Error: no German ship located yet<br/>notes 7/8/10"])
+    L2 -->|Some locatedTurn| L3["releaseTurn = locatedTurn + 4 if isForceH<br/>else locatedTurn + 1<br/>notes 7/8 = +1 turn, note 10 Force H = +4 turns"]
+    L3 --> L4{"Turn.Number greater or<br/>equal releaseTurn?"}
+    L4 -->|Yes| L5(["IsLockedInPort = false"])
+    L4 -->|No| E3(["Error: not released yet"])
+
+    F2 -->|No| F3{"ship.IsConvoyEscort?"}
+    F3 -->|Yes| C1{"GermanLocatedTurn?"}
+    C1 -->|None| E4(["Error: no German ship located yet<br/>notes 9/12"])
+    C1 -->|Some _| C2["IsConvoyEscort = false<br/>German player Score += 1 point<br/>notes 9/12: German gets 1 VP if mobilized"]
+    C2 --> C3(["Ship released, German +1 VP"])
+
+    F3 -->|No| F4{"ship.IsRestrictedToPatrolUntilContact?<br/>Edinburgh, note 11"}
+    F4 -->|Yes| P1{"ship.CurrentZone?"}
+    P1 -->|None| E5(["Error: no position"])
+    P1 -->|Some zone| P2["germanNear = any German<br/>LocationMarker within 10 zones<br/>SearchBoard.distanceWithin BFS"]
+    P2 --> P3{"germanNear?"}
+    P3 -->|Yes| P4(["IsRestrictedToPatrolUntilContact = false"])
+    P3 -->|No| E6(["Error: no German ship within<br/>10 zones yet, note 11"])
+
+    F4 -->|No| NoOp(["Ok, no active restriction<br/>on this ship — no-op, not an error"])
+
+    E1 --> Done
+    E2 --> Done
+    E3 --> Done
+    E4 --> Done
+    E5 --> Done
+    E6 --> Done
+    L5 --> Done
+    C3 --> Done
+    P4 --> Done
+    NoOp --> Done
+    Done(["end"])
+
+    style Start fill:#cde

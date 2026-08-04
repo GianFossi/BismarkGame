@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "Ionide.Ionide-fsharp",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "streetsidesoftware.code-spell-checker",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "bierner.markdown-mermaid",
+        "yzhang.markdown-all-in-one",
+        "eamodio.gitlens"
+    ]
+}

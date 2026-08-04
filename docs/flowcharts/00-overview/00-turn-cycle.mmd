@@ -1,0 +1,31 @@
+%% 00-overview/00-turn-cycle.mmd
+%% Macro level: the Basic Game turn cycle (rule 4.0, Sequence of Play).
+%% Source: BismarckGame.Core/Update.fs's `phaseOrder` and the AdvancePhase
+%% command handler. Each box here has its own detailed flowchart in
+%% ../01-phases/.
+flowchart TD
+    Start([Game starts:<br/>Scenario.initializeGame<br/>Turn 4, Phase = UnitAvailability]) --> P1
+
+    P1[["1. Unit Availability Phase<br/>(see 01-unit-availability.mmd)"]] --> P2
+    P2[["2. Visibility Phase<br/>(see 02-visibility.mmd)"]] --> P3
+    P3[["3. Shadow Determination Phase<br/>(see 03-shadow-determination.mmd)"]] --> P4
+    P4[["4. Air Movement Phase<br/>(see 04-air-movement.mmd)"]] --> P5
+    P5[["5. Ship Movement Phase<br/>(see 05-ship-movement.mmd)"]] --> P6
+    P6[["6. Search Phase<br/>(see 06-search.mmd)"]] --> P7
+    P7[["7. Air Attack Phase<br/>(see 07-air-attack.mmd)"]] --> P8
+    P8[["8. Naval Combat Phase<br/>(see 08-naval-combat.mmd)"]] --> P9
+    P9[["9. Chance Phase<br/>(see 09-chance.mmd)"]] --> EndTurn
+
+    EndTurn{AdvancePhase<br/>called from Chance}
+    EndTurn --> Reset[/"Reset ZonesMovedThisTurn=0 for every ship<br/>Reset TurnsAirborne=0 for air units at base<br/>Look up new turn's IsNightTurn / IsEmergencyMovementTurn<br/>from Tables/TimeAndVisibility.timeRecordTrack"/]
+    Reset --> Reinforce{Any PendingReinforcements<br/>due this turn?}
+    Reinforce -->|Yes| Place[/"Place reinforcement ship at its zone<br/>Remove from PendingReinforcements"/]
+    Reinforce -->|No| CheckEnd
+    Place --> CheckEnd
+
+    CheckEnd{"VictoryConditions.checkGameEnd:<br/>Bismarck sunk? In a German port?<br/>Turn >= 34 (Finish)?"}
+    CheckEnd -->|One is true| GameOver([GameEnded = Some ...<br/>Game over — score via<br/>VictoryConditions.evaluate])
+    CheckEnd -->|None true| P1
+
+    style Start fill:#cde,stroke:#333
+    style GameOver fill:#fcc,stroke:#333

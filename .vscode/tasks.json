@@ -1,0 +1,133 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/BismarckGame.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/BismarckGame.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "restore",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "restore",
+                "${workspaceFolder}/BismarckGame.sln"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "test: run all",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/src/BismarckGame.Tests/BismarckGame.Tests.fsproj",
+                "--logger",
+                "console;verbosity=normal"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "test: watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "test",
+                "--project",
+                "${workspaceFolder}/src/BismarckGame.Tests/BismarckGame.Tests.fsproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "isBackground": true
+        },
+        {
+            "label": "run: console harness",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/src/BismarckGame.Console/BismarckGame.Console.fsproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "build"
+        },
+        {
+            "label": "run: console harness executable (after publish)",
+            "command": "${workspaceFolder}/publish/BismarckGame.Console/BismarckGame.Console",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}\\publish\\BismarckGame.Console\\BismarckGame.Console.exe"
+            },
+            "problemMatcher": [],
+            "dependsOn": "publish: console"
+        },
+        {
+            "label": "publish: console",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/src/BismarckGame.Console/BismarckGame.Console.fsproj",
+                "--configuration",
+                "Release",
+                "--output",
+                "${workspaceFolder}/publish/BismarckGame.Console"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "publish: core (as library)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/src/BismarckGame.Core/BismarckGame.Core.fsproj",
+                "--configuration",
+                "Release",
+                "--output",
+                "${workspaceFolder}/publish/BismarckGame.Core"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish: all",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "publish: core (as library)",
+                "publish: console"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

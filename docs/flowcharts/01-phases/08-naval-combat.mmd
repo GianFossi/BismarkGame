@@ -1,0 +1,38 @@
+%% 01-phases/08-naval-combat.mmd
+%% Rule 4.8/9.2x/9.3x/9.6x/9.9x. Update.fs commands: InitiateNavalCombat,
+%% MoveShipInBattle, FireInBattle, WithdrawFromBattle, EndNavalCombat.
+%% Detailed function-level views:
+%%   ../02-detailed-functions/03-navalcombat-placement-detail.mmd
+%%   ../02-detailed-functions/04-navalfire-resolution-detail.mmd
+flowchart TD
+    Enter(["Enter Naval Combat Phase"]) --> Init["InitiateNavalCombat (zone, attacker)"]
+    Init --> BothSides{"Both sides have ships<br/>in the zone, and attacker<br/>is one of them?"}
+    BothSides -->|No| Err1(["Error"])
+    BothSides -->|Yes| Place["Placement, rule 9.28<br/>see detailed flowchart:<br/>defender at/around center hex,<br/>attacker rolls 1d6 for entry edge"]
+    Place --> NewBattle["New BattleBoardState added to<br/>state.ActiveBattles (Id, Ships, Round=1)"]
+
+    NewBattle --> Loop{"Combat round loop"}
+    Loop --> Move["MoveShipInBattle per ship:<br/>validate (hexesMoved, directionChanges)<br/>against Tables.EvasionEffects.<br/>battleBoardMovementOptions"]
+    Move --> Fire["FireInBattle per FireOrder:<br/>see detailed flowchart for<br/>NavalFireTables.resolve"]
+    Fire --> Damage["Apply FireResult to target<br/>BattleShipState: Miss / HitSecondary /<br/>HitSection / HitMidships / Sunk"]
+    Damage --> SinkCheck{"MidshipsHits reached<br/>MaxMidshipsHits, rule 9.714?"}
+    SinkCheck -->|Yes| MarkSunk["IsSunk = true"]
+    SinkCheck -->|No| Continue
+    MarkSunk --> Continue
+    Continue --> Withdraw{"WithdrawFromBattle issued?"}
+    Withdraw -->|Yes| Remove["Remove ship from battle<br/>(simplified: immediate,<br/>not the real multi-round<br/>bonus-move procedure, rule 9.9x)"]
+    Withdraw -->|No| RoundEnd
+    Remove --> RoundEnd{"One side has no<br/>ships left in the battle?"}
+    RoundEnd -->|No| Loop
+    RoundEnd -->|Yes| End["EndNavalCombat (battleId)"]
+
+    End --> Sync["Sync each surviving ship's<br/>EvasionRating, MidshipsHits,<br/>PermanentEvasionLoss, IsSunk<br/>back to its Search Board ShipCounter"]
+    Sync --> Cleanup["Remove battle from ActiveBattles"]
+    Cleanup --> Ok(["Battle resolved"])
+
+    Err1 --> Next
+    Ok --> Next
+    Next(["AdvancePhase leads to Chance Phase"])
+
+    style Enter fill:#cde
+    style Next fill:#cde

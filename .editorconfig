@@ -1,0 +1,82 @@
+# EditorConfig — coding style rules for this project (F# and C#).
+# See https://editorconfig.org and https://fsprojects.github.io/fantomas/
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 100
+
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.{json,yml,yaml}]
+indent_size = 2
+
+# --- F# ---------------------------------------------------------------
+# These mirror Fantomas defaults so `dotnet fantomas` and the editor agree.
+# Install: dotnet tool install -g fantomas ; format with: dotnet fantomas .
+[*.fs]
+indent_size = 4
+fsharp_space_before_parameter = true
+fsharp_space_before_lowercase_invocation = true
+fsharp_space_before_uppercase_invocation = false
+fsharp_space_before_class_constructor = false
+fsharp_space_before_member = false
+fsharp_space_before_colon = false
+fsharp_space_after_comma = true
+fsharp_space_before_semicolon = false
+fsharp_space_after_semicolon = true
+fsharp_indent_on_try_with = false
+fsharp_space_around_delimiter = true
+fsharp_max_line_length = 100
+fsharp_max_array_or_list_width = 80
+fsharp_max_value_binding_width = 80
+fsharp_max_function_binding_width = 80
+fsharp_max_dot_get_expression_width = 80
+fsharp_multiline_block_brackets_on_same_column = true
+fsharp_newline_between_type_definition_and_members = true
+fsharp_keep_max_number_of_blank_lines = 2
+fsharp_blank_lines_around_nested_multiline_expressions = false
+fsharp_bar_before_discriminated_union_declaration = true
+fsharp_align_function_signature_to_indentation = false
+
+# Project conventions layered on top of Fantomas' own formatting:
+#  - Every public type/module/function gets a /// <summary> doc comment
+#    in English (see README.md and .ai/copilot-instructions.md).
+#  - Prefer Result<'T, string> over exceptions for anything Update.fs
+#    calls — exceptions are reserved for genuine "this should never
+#    happen" invariant violations (see Tests/TestHelpers.fs's
+#    unusedTables for the pattern).
+#  - Record/DU field names use PascalCase; function/let-binding names
+#    use camelCase; module-private helpers are marked `private`.
+#  - No `System.Random` constructed ad hoc — always go through Dice.fs.
+
+# --- C# (for the future Blazor/UI layer) -------------------------------
+[*.cs]
+indent_size = 4
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_prefer_braces = true
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_namespace_declarations = file_scoped:suggestion
+dotnet_sort_system_directives_first = true
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+dotnet_style_require_accessibility_modifiers = always:warning

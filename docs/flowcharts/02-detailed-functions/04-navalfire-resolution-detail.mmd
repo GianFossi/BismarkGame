@@ -1,0 +1,65 @@
+%% 02-detailed-functions/04-navalfire-resolution-detail.mmd
+%% Function-level detail of Update.fs's FireInBattle handler and
+%% Tables/NavalFireTables.fs's resolve function (rules 9.6x, Special
+%% Damage Table).
+flowchart TD
+    Start(["FireInBattle order<br/>Firer, Target, Section, SalvoesFired,<br/>Range, Aspect"]) --> F1{"battle containing<br/>order.Firer found?"}
+    F1 -->|No| E1(["Error: no active battle"])
+    F1 -->|Yes| F2{"order.Target in<br/>that battle?"}
+    F2 -->|No| E2(["Error: target not in battle"])
+    F2 -->|Yes| Resolve
+
+    subgraph NavalFireTablesResolve["NavalFireTables.resolve heavyArmored order rollTwoDice"]
+        Resolve["mainTable = rangeBTable or rangeATable<br/>by order.Range"]
+        Resolve --> Roll1["sum1 = rollTwoDice() — 2d6"]
+        Roll1 --> Lookup1{"mainTable.TryFind (Aspect, sum1)"}
+        Lookup1 -->|MMiss| RMiss(["Miss"])
+        Lookup1 -->|MSecondary| RSec(["HitSecondary"])
+        Lookup1 -->|MSection s| RSect(["HitSection s"])
+        Lookup1 -->|MMidships n| RMid(["HitMidships (n, None)"])
+        Lookup1 -->|MConsultSpecial| Roll2["sum2 = rollTwoDice() — 2d6 again"]
+        Roll2 --> Lookup2{"specialDamageTable.TryFind<br/>(order.Range, sum2)"}
+        Lookup2 -->|found| Heavy{"heavyArmored.Contains<br/>order.Target?<br/>(Bismarck / KGV / Prince of Wales)"}
+        Heavy -->|Yes| UseOverride["outcome = entry.HeavyArmoredOverride<br/>or entry.Normal if none — softened result"]
+        Heavy -->|No| UseNormal["outcome = entry.Normal"]
+        UseOverride --> Outcome
+        UseNormal --> Outcome{"outcome"}
+        Outcome -->|SpecialMidships n, red| RMid2(["HitMidships (n, red)"])
+        Outcome -->|SpecialSunk| RSunk(["Sunk"])
+    end
+
+    RMiss --> Apply
+    RSec --> Apply
+    RSect --> Apply
+    RMid --> Apply
+    RMid2 --> Apply
+    RSunk --> Apply
+
+    Apply{"FireResult"}
+    Apply -->|Miss| A1["targetShip unchanged"]
+    Apply -->|Sunk| A2["IsSunk = true"]
+    Apply -->|HitSecondary| A3["SecondaryHits += 1"]
+    Apply -->|HitSection s| A4["that GunSection.SalvoRemaining -= 1<br/>floored at 0"]
+    Apply -->|HitMidships n, permReduction| A5["temporaryLoss = n times<br/>ShipStats.temporaryEvasionLossPerMidshipsHit<br/>Bismarck=1, other BB/CV=2,<br/>Prinz Eugen=3, cruisers=5<br/>rules 9.723-9.726"]
+    A5 --> A6["MidshipsHits += n<br/>PermanentEvasionLoss += permReduction or 0<br/>EvasionRating -= temporaryLoss + permReduction,<br/>floored at 0"]
+    A6 --> A7{"MidshipsHits greater or equal<br/>MaxMidshipsHits? rule 9.714"}
+    A7 -->|Yes| A8["IsSunk = true"]
+    A7 -->|No| A9
+
+    A1 --> Ok
+    A2 --> Ok
+    A3 --> Ok
+    A4 --> Ok
+    A8 --> Ok
+    A9["no sink yet"] --> Ok
+    Ok(["Ok: battle's Ships map updated"])
+
+    E1 --> Done
+    E2 --> Done
+    Ok --> Done
+    Done(["end"])
+
+    style Start fill:#cde
+    style Ok fill:#cfc
+    style E1 fill:#fcc
+    style E2 fill:#fcc
