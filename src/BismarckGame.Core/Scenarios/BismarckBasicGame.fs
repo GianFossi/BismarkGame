@@ -178,6 +178,7 @@ let private air id name nat utype home startZone =
       SearchStrength = { Day = stats.SearchStrengthDay; Night = stats.SearchStrengthNight }
       EnduranceRating = stats.EnduranceRating
       TurnsAirborne = 0
+      AirAttacksLaunchedThisTurn = 0
       MaxSpeedZones = stats.MaxSpeedZones
       HomeBase = home
       CurrentZone = Some startZone

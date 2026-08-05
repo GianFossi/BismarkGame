@@ -66,6 +66,14 @@ let private tryFindAirUnit (state: GameState) (id: AirUnitId) =
     |> Map.toSeq
     |> Seq.tryPick (fun (_, p) -> p.AirUnits.TryFind id |> Option.map (fun a -> p.Nationality, a))
 
+let private tryFindUnit (state: GameState) (UnitId id) =
+    match tryFindShip state (ShipId id) with
+    | Some (nat, ship) -> Some(nat, Choice1Of2 ship)
+    | None ->
+        match tryFindAirUnit state (AirUnitId id) with
+        | Some (nat, air) -> Some(nat, Choice2Of2 air)
+        | None -> None
+
 let private updatePlayer (state: GameState) (nat: Nationality) (f: PlayerState -> PlayerState) =
     { state with Players = state.Players.Add(nat, f state.Players.[nat]) }
 
@@ -92,8 +100,12 @@ let private canEnterZone (map: SearchBoardMap) (nat: Nationality) (dest: GridCoo
         | Some _ ->
             match nat, zone.Terrain with
             | German, IrishSea -> false
-            | German, Port British -> false
+            | German, Port owner when owner <> German -> false
             | _ -> true
+
+let private isFogTurn (turn: GameTurn) =
+    let (VisibilityLevel vis) = turn.Visibility
+    vis >= 9
 
 let private isAdjacent (map: SearchBoardMap) (from_: GridCoordinate) (dest: GridCoordinate) =
     neighbors map from_ |> List.contains dest
@@ -171,6 +183,12 @@ let private fuelCost (ship: ShipCounter) (isCTurn: bool) (isBreakoutBonusShip: b
             elif fuel.FactorsRemaining > 0 then Ok(Some 1)
             else Error $"{ship.Name} has no fuel left — it may only move on 'C' turns until refueled (rule 5.25)"
 
+let private searchStrengthFor (useNight: bool) (s: ShipCounter) =
+    if useNight then s.SearchStrength.Night else s.SearchStrength.Day
+
+let private airSearchStrengthFor (useNight: bool) (a: AirUnitCounter) =
+    if useNight then a.SearchStrength.Night else a.SearchStrength.Day
+
 // --- the reducer ---------------------------------------------------------
 
 /// <summary>
@@ -185,6 +203,8 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
     | SearchZone (searcher, zone) ->
         if state.Phase <> Search then
             Error "Search is performed in the Search phase (rule 4.6)"
+        elif isFogTurn state.Turn then
+            Error "Search is blocked in fog ('X' visibility, rule 7.3x)"
         else
             match state.Players.TryFind searcher with
             | None -> Error $"No {searcher} player in this scenario"
@@ -214,8 +234,24 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                         | _ -> 0
                     | None -> 0
                 let capacity =
-                    let shipMax = shipsHere |> List.map (fun s -> if useNight then s.SearchStrength.Night else s.SearchStrength.Day) |> (fun xs -> if xs.IsEmpty then 0 else List.max xs)
-                    let airMax = airHere |> List.map (fun a -> if useNight then a.SearchStrength.Night else a.SearchStrength.Day) |> (fun xs -> if xs.IsEmpty then 0 else List.max xs)
+                    let taskForceMax =
+                        p.TaskForces
+                        |> Map.toList
+                        |> List.map snd
+                        |> List.filter (fun tf -> tf.Zone = zone && tf.Mode = Patrol)
+                        |> List.map (fun tf ->
+                            tf.Ships
+                            |> List.choose p.Ships.TryFind
+                            |> List.map (searchStrengthFor useNight)
+                            |> (fun xs -> if xs.IsEmpty then 0 else List.max xs))
+                        |> (fun xs -> if xs.IsEmpty then 0 else List.max xs)
+                    let independentShipMax =
+                        shipsHere
+                        |> List.filter (fun s -> s.TaskForce.IsNone)
+                        |> List.map (searchStrengthFor useNight)
+                        |> (fun xs -> if xs.IsEmpty then 0 else List.max xs)
+                    let shipMax = max taskForceMax independentShipMax
+                    let airMax = airHere |> List.map (airSearchStrengthFor useNight) |> (fun xs -> if xs.IsEmpty then 0 else List.max xs)
                     List.max [ shipMax; airMax; coastalBonus ]
                 let (VisibilityLevel visLevel) = state.Turn.Visibility
                 if capacity < visLevel then
@@ -304,7 +340,11 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                 |> Map.map (fun _ p ->
                     { p with
                         Ships = p.Ships |> Map.map (fun _ s -> { s with ZonesMovedThisTurn = 0 })
-                        AirUnits = p.AirUnits |> Map.map (fun _ a -> if a.IsAtBase then { a with TurnsAirborne = 0 } else a) })
+                        AirUnits =
+                            p.AirUnits
+                            |> Map.map (fun _ a ->
+                                let a' = if a.IsAtBase then { a with TurnsAirborne = 0 } else a
+                                { a' with AirAttacksLaunchedThisTurn = 0 }) })
             // Reinforcements due this turn (rule: Order of Battle
             // "Reinforcements — Starting Location").
             let due, notYetDue = state.PendingReinforcements |> List.partition (fun (t, _, _) -> t = newTurnNumber)
@@ -520,34 +560,45 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                     Ok(updatePlayer state nat (fun _ -> { player with Ships = ships'; TaskForces = taskForces' }))
 
     | DeclareShadow (UnitId shadowerId, UnitId targetId) ->
-        // NOTE: only ship-shadows-ship is resolved here. The rule text
-        // allows an air unit to shadow too (e.g. "Br. LR Recon—Y" is on
-        // the printed reference list) — extending this to look up
-        // air units by name as well as ships is a straightforward
-        // follow-up, not done here.
-        if state.Phase <> ShadowDetermination then
-            Error "Shadowing is declared in the Shadow Determination phase (rule 4.3)"
+        if state.Phase <> ShadowDetermination && state.Phase <> ShipMovement then
+            Error "Shadowing is declared in Shadow Determination, or as high-speed shadow during Ship Movement (rules 4.3/8.2)"
         else
-            match tryFindShip state (ShipId shadowerId), tryFindShip state (ShipId targetId) with
+            match tryFindUnit state (UnitId shadowerId), tryFindShip state (ShipId targetId) with
             | Some (_, shadower), Some (_, target) ->
-                if shadower.EvasionRating < target.EvasionRating then
-                    Error "The shadowing ship's evasion rating must be equal to or greater than the target's (rule 4.3)"
+                if state.Phase = ShipMovement && target.ZonesMovedThisTurn < 1 then
+                    Error "High-speed shadow may only be attempted after the target's first move (rule 8.2)"
                 else
-                    match shadower.CurrentZone with
-                    | None -> Error "Shadowing ship has no position"
-                    | Some zone ->
-                        match BismarckGame.Core.Tables.ShadowTable.categoryOf.TryFind shadower.Name with
-                        | None -> Error $"{shadower.Name} is not on the printed Shadow Table reference list and cannot shadow"
-                        | Some _ ->
-                            let (VisibilityLevel visLevel) = state.Turn.Visibility
-                            let targetMoved2Zones = target.ZonesMovedThisTurn >= 2
-                            let succeeded = tables.ResolveShadow(shadower.Name, visLevel, targetMoved2Zones, roll ())
-                            if succeeded then
-                                let marker = { Zone = zone; ShadowingUnit = UnitId shadowerId; ShadowedUnit = UnitId targetId }
-                                Ok { state with ShadowMarkers = marker :: state.ShadowMarkers }
-                            else
-                                Ok state   // failed attempt — no marker, no error (rule 8.1)
-            | _ -> Error "Could not find shadowing ship and/or target ship"
+                    let shadowerZone, shadowerNameForTable, evasionCheckResult =
+                        match shadower with
+                        | Choice1Of2 ship ->
+                            ship.CurrentZone, ship.Name,
+                            (if ship.EvasionRating < target.EvasionRating then
+                                 Error "The shadowing ship's evasion rating must be equal to or greater than the target's (rule 4.3)"
+                             else Ok ())
+                        | Choice2Of2 air ->
+                            match air.UnitType, air.CurrentZone with
+                            | LongRangeRecon, z -> z, "Br. LR Recon", Ok ()
+                            | _, _ -> None, air.Name, Error "Only LR Recon air units may shadow (rule 8.13)"
+                    match evasionCheckResult with
+                    | Error msg -> Error msg
+                    | Ok () ->
+                        match shadowerZone, target.CurrentZone with
+                        | Some shadowerPos, Some targetPos when shadowerPos = targetPos ->
+                            match BismarckGame.Core.Tables.ShadowTable.categoryOf.TryFind shadowerNameForTable with
+                            | None -> Error $"{shadowerNameForTable} is not on the printed Shadow Table reference list and cannot shadow"
+                            | Some _ ->
+                                let (VisibilityLevel visLevel) = state.Turn.Visibility
+                                let targetMoved2Zones = target.ZonesMovedThisTurn >= 2
+                                let succeeded = tables.ResolveShadow(shadowerNameForTable, visLevel, targetMoved2Zones, roll ())
+                                if succeeded then
+                                    let marker = { Zone = shadowerPos; ShadowingUnit = UnitId shadowerId; ShadowedUnit = UnitId targetId }
+                                    Ok { state with ShadowMarkers = marker :: state.ShadowMarkers }
+                                else
+                                    Ok state   // failed attempt — no marker, no error (rule 8.1)
+                        | Some _, Some _ -> Error "Shadower and target must occupy the same zone to declare shadow (rule 8.1)"
+                        | None, _ -> Error "Shadowing unit has no position"
+                        | _, None -> Error "Target ship has no position"
+            | _ -> Error "Could not find shadowing unit and/or target ship"
 
     | RollVisibilityChange ->
         if state.Phase <> Visibility then
@@ -665,43 +716,54 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
         | Some (attackerNat, au), Some (targetNat, ship) ->
             if state.Phase <> AirAttack then
                 Error "Air attacks are launched in the Air Attack phase (rule 4.7)"
+            elif isFogTurn state.Turn then
+                Error "Air attacks are blocked in fog ('X' visibility, rule 7.3x)"
+            elif state.Turn.IsNightTurn then
+                Error "Air attacks are not allowed at night (rule 9.16)"
             elif not au.CanAttack then
                 Error "This air unit cannot attack — wrong type or not in attack mode (rule 2.434/6.31)"
             elif au.CurrentZone <> ship.CurrentZone then
                 Error "The air unit must be in the same zone as the target (rule 6.31)"
             else
-                let isBattleshipOrBattlecruiser = (ship.Class = Battleship || ship.Class = Battlecruiser)
-                let effects =
-                    match attackerNat, au.UnitType with
-                    | British, TorpedoBomber ->
-                        BismarckGame.Core.Tables.BomberTables.britishTorpedoBomber.TryFind(roll () + roll ())
-                        |> Option.defaultValue [ BismarckGame.Core.Tables.BomberTables.BMiss ]
-                    | British, LevelBomber ->
-                        BismarckGame.Core.Tables.BomberTables.resolveBritishDiveLevelBomber isBattleshipOrBattlecruiser (fun () -> roll () + roll ())
-                    | German, _ ->
-                        BismarckGame.Core.Tables.BomberTables.germanBomber.TryFind(roll () + roll ())
-                        |> Option.defaultValue [ BismarckGame.Core.Tables.BomberTables.BMiss ]
-                    | _ -> [ BismarckGame.Core.Tables.BomberTables.BMiss ]
-                let applyEffect (s: ShipCounter) effect =
-                    match effect with
-                    | BismarckGame.Core.Tables.BomberTables.BMiss -> s
-                    | BismarckGame.Core.Tables.BomberTables.BMidships (count, permanentReduction) ->
-                        let temporaryLoss = count * BismarckGame.Core.Tables.ShipStats.temporaryEvasionLossPerMidshipsHit s.Name s.Class
-                        let permanentLoss = permanentReduction |> Option.defaultValue 0
-                        let midshipsHits' = s.MidshipsHits + count
-                        { s with
-                            MidshipsHits = midshipsHits'
-                            PermanentEvasionLoss = s.PermanentEvasionLoss + permanentLoss
-                            EvasionRating = max 0 (s.EvasionRating - temporaryLoss - permanentLoss)
-                            IsSunk = s.IsSunk || (s.MaxMidshipsHits > 0 && midshipsHits' >= s.MaxMidshipsHits) }
-                    | BismarckGame.Core.Tables.BomberTables.BSecondary _ -> s   // no Search-Board-side field for this yet, see FireInBattle's same note
-                    | BismarckGame.Core.Tables.BomberTables.BSection _ -> s     // Search Board ships don't carry GunSection state — only Battle Board ones do
-                let ship' = effects |> List.fold applyEffect ship
-                Ok(updateShip state targetNat targetShip (fun _ -> ship'))
+                let maxAttacksThisTurn = if attackerNat = British then 2 else 1
+                if au.AirAttacksLaunchedThisTurn >= maxAttacksThisTurn then
+                    Error $"This unit has already launched {maxAttacksThisTurn} air attack(s) this day turn (rule 9.16)"
+                else
+                    let isBattleshipOrBattlecruiser = (ship.Class = Battleship || ship.Class = Battlecruiser)
+                    let effects =
+                        match attackerNat, au.UnitType with
+                        | British, TorpedoBomber ->
+                            BismarckGame.Core.Tables.BomberTables.britishTorpedoBomber.TryFind(roll () + roll ())
+                            |> Option.defaultValue [ BismarckGame.Core.Tables.BomberTables.BMiss ]
+                        | British, LevelBomber ->
+                            BismarckGame.Core.Tables.BomberTables.resolveBritishDiveLevelBomber isBattleshipOrBattlecruiser (fun () -> roll () + roll ())
+                        | German, _ ->
+                            BismarckGame.Core.Tables.BomberTables.germanBomber.TryFind(roll () + roll ())
+                            |> Option.defaultValue [ BismarckGame.Core.Tables.BomberTables.BMiss ]
+                        | _ -> [ BismarckGame.Core.Tables.BomberTables.BMiss ]
+                    let applyEffect (s: ShipCounter) effect =
+                        match effect with
+                        | BismarckGame.Core.Tables.BomberTables.BMiss -> s
+                        | BismarckGame.Core.Tables.BomberTables.BMidships (count, permanentReduction) ->
+                            let temporaryLoss = count * BismarckGame.Core.Tables.ShipStats.temporaryEvasionLossPerMidshipsHit s.Name s.Class
+                            let permanentLoss = permanentReduction |> Option.defaultValue 0
+                            let midshipsHits' = s.MidshipsHits + count
+                            { s with
+                                MidshipsHits = midshipsHits'
+                                PermanentEvasionLoss = s.PermanentEvasionLoss + permanentLoss
+                                EvasionRating = max 0 (s.EvasionRating - temporaryLoss - permanentLoss)
+                                IsSunk = s.IsSunk || (s.MaxMidshipsHits > 0 && midshipsHits' >= s.MaxMidshipsHits) }
+                        | BismarckGame.Core.Tables.BomberTables.BSecondary _ -> s   // no Search-Board-side field for this yet, see FireInBattle's same note
+                        | BismarckGame.Core.Tables.BomberTables.BSection _ -> s     // Search Board ships don't carry GunSection state — only Battle Board ones do
+                    let ship' = effects |> List.fold applyEffect ship
+                    let state' = updateShip state targetNat targetShip (fun _ -> ship')
+                    Ok(updateAirUnit state' attackerNat unitId (fun a -> { a with AirAttacksLaunchedThisTurn = a.AirAttacksLaunchedThisTurn + 1 }))
 
     | InitiateNavalCombat (zone, attacker) ->
         if state.Phase <> NavalCombat then
             Error "Naval combat may only be initiated in the Naval Combat phase (rule 4.8)"
+        elif isFogTurn state.Turn then
+            Error "Naval combat is blocked in fog ('X' visibility, rule 7.3x)"
         else
             let shipsInZone =
                 state.Players
@@ -717,48 +779,73 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                 // Rule 9.28: defender's ships go in/around the center hex;
                 // the attacker rolls one die for which edge to enter from.
                 let attackerShips, defenderShips = shipsInZone |> List.partition (fun s -> s.Nationality = attacker)
-                let edge = edgeFromRoll (roll ())
-                let defenderHexes = HexCoord.Zero :: (List.map (fun (h: HexSide) -> hexNeighbor HexCoord.Zero h) [ HexN; HexNE; HexSE; HexS; HexSW; HexNW ])
-                let attackerHexes = edgeHexes edge
-                let defenderPlacement = placeTwoPerHex defenderHexes (defenderShips |> List.map (fun s -> s.Id))
-                let attackerPlacement = placeTwoPerHex attackerHexes (attackerShips |> List.map (fun s -> s.Id))
-                // Rule 9.282: bow must point toward a hex side, not a
-                // corner — both sides face a cardinal HexSide. Defender
-                // faces outward toward the attacker's edge; attacker faces
-                // back toward center. Approximate but always legal (never
-                // a corner) since HexSide only has the six valid values.
-                let defenderFacing = edge.ToHexSide()
-                let attackerFacing = edge.ToHexSide().Opposite
-                let battleShips =
-                    shipsInZone
-                    |> List.map (fun s ->
-                        let stats = BismarckGame.Core.Tables.ShipStats.shipStats.TryFind s.Name
-                        let gunSections =
-                            match stats with
-                            | Some st -> BismarckGame.Core.Tables.ShipStats.freshGunSections st
-                            | None -> []
-                        let isDefender = s.Nationality <> attacker
-                        let position =
-                            (if isDefender then defenderPlacement else attackerPlacement)
-                            |> Map.tryFind s.Id
-                            |> Option.defaultValue HexCoord.Zero
-                        s.Id,
-                        { ShipId = s.Id
-                          Name = s.Name
-                          Class = s.Class
-                          Position = position
-                          Facing = (if isDefender then defenderFacing else attackerFacing)
-                          GunSections = gunSections
-                          SecondaryHits = 0
-                          EvasionRating = s.EvasionRating
-                          MidshipsHits = s.MidshipsHits
-                          MaxMidshipsHits = s.MaxMidshipsHits
-                          PermanentEvasionLoss = s.PermanentEvasionLoss
-                          IsWithdrawing = false
-                          IsSunk = false })
-                    |> Map.ofList
-                let newId = if state.ActiveBattles.IsEmpty then 1 else (state.ActiveBattles |> List.map (fun b -> b.Id) |> List.max) + 1
-                Ok { state with ActiveBattles = { Id = newId; Ships = battleShips; Round = 1 } :: state.ActiveBattles }
+                let attackerCanInitiate = attackerShips |> List.exists (fun s -> s.Class <> AircraftCarrier)
+                if not attackerCanInitiate then
+                    Error "Aircraft carriers cannot initiate naval combat attacks (rule 9.221)"
+                else
+                    let attackerMaxEvasion = attackerShips |> List.map (fun s -> s.EvasionRating) |> List.max
+                    let defenderMaxEvasion = defenderShips |> List.map (fun s -> s.EvasionRating) |> List.max
+                    if attackerMaxEvasion < defenderMaxEvasion then
+                        Error "A slower attacker cannot force combat against a faster target unless the defender accepts (rule 9.223)"
+                    else
+                        let attackerShipIds = attackerShips |> List.map (fun s -> s.Id) |> Set.ofList
+                        let defenderShipIds = defenderShips |> List.map (fun s -> s.Id) |> Set.ofList
+                        let attackerShadowTargets =
+                            state.ShadowMarkers
+                            |> List.choose (fun m ->
+                                let (UnitId shadowerId) = m.ShadowingUnit
+                                let sid = ShipId shadowerId
+                                if attackerShipIds.Contains sid then
+                                    let (UnitId targetUnitId) = m.ShadowedUnit
+                                    Some(ShipId targetUnitId)
+                                else
+                                    None)
+                            |> Set.ofList
+                        if not attackerShadowTargets.IsEmpty && attackerShadowTargets <> defenderShipIds then
+                            Error "A shadowing ship may only attack the ship it is shadowing (rule 9.224)"
+                        else
+                            let edge = edgeFromRoll (roll ())
+                            let defenderHexes = HexCoord.Zero :: (List.map (fun (h: HexSide) -> hexNeighbor HexCoord.Zero h) [ HexN; HexNE; HexSE; HexS; HexSW; HexNW ])
+                            let attackerHexes = edgeHexes edge
+                            let defenderPlacement = placeTwoPerHex defenderHexes (defenderShips |> List.map (fun s -> s.Id))
+                            let attackerPlacement = placeTwoPerHex attackerHexes (attackerShips |> List.map (fun s -> s.Id))
+                            // Rule 9.282: bow must point toward a hex side, not a
+                            // corner — both sides face a cardinal HexSide. Defender
+                            // faces outward toward the attacker's edge; attacker faces
+                            // back toward center. Approximate but always legal (never
+                            // a corner) since HexSide only has the six valid values.
+                            let defenderFacing = edge.ToHexSide()
+                            let attackerFacing = edge.ToHexSide().Opposite
+                            let battleShips =
+                                shipsInZone
+                                |> List.map (fun s ->
+                                    let stats = BismarckGame.Core.Tables.ShipStats.shipStats.TryFind s.Name
+                                    let gunSections =
+                                        match stats with
+                                        | Some st -> BismarckGame.Core.Tables.ShipStats.freshGunSections st
+                                        | None -> []
+                                    let isDefender = s.Nationality <> attacker
+                                    let position =
+                                        (if isDefender then defenderPlacement else attackerPlacement)
+                                        |> Map.tryFind s.Id
+                                        |> Option.defaultValue HexCoord.Zero
+                                    s.Id,
+                                    { ShipId = s.Id
+                                      Name = s.Name
+                                      Class = s.Class
+                                      Position = position
+                                      Facing = (if isDefender then defenderFacing else attackerFacing)
+                                      GunSections = gunSections
+                                      SecondaryHits = 0
+                                      EvasionRating = s.EvasionRating
+                                      MidshipsHits = s.MidshipsHits
+                                      MaxMidshipsHits = s.MaxMidshipsHits
+                                      PermanentEvasionLoss = s.PermanentEvasionLoss
+                                      IsWithdrawing = false
+                                      IsSunk = false })
+                                |> Map.ofList
+                            let newId = if state.ActiveBattles.IsEmpty then 1 else (state.ActiveBattles |> List.map (fun b -> b.Id) |> List.max) + 1
+                            Ok { state with ActiveBattles = { Id = newId; Ships = battleShips; Round = 1 } :: state.ActiveBattles }
 
     | FireInBattle order ->
         match state.ActiveBattles |> List.tryFind (fun b -> b.Ships.ContainsKey order.Firer) with

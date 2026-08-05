@@ -3,6 +3,8 @@ module BismarckGame.Tests.EngineTests
 open Xunit
 open BismarckGame.Core.Common
 open BismarckGame.Core.Units
+open BismarckGame.Core.Markers
+open BismarckGame.Core.BattleBoard
 open BismarckGame.Core.GameState
 open BismarckGame.Core.Update
 open BismarckGame.Tests.TestHelpers
@@ -184,3 +186,172 @@ let ``AdvancePhase from Chance increments the turn number using real card number
     match update unusedTables (constantRoll 3) AdvancePhase state with
     | Ok state' -> Assert.Equal(state.Turn.Number + 1, state'.Turn.Number)
     | Error msg -> Assert.Fail msg
+
+// --- rules previously listed as not implemented ----------------------------
+
+let private alwaysShadowSuccess : IRulesTables =
+    { new IRulesTables with
+        member _.ResolveShadow(_, _, _, _) = true
+        member _.ResolveNavalFire(_, _) = Miss }
+
+[<Fact>]
+let ``SearchZone is blocked when visibility is fog X`` () =
+    let state = { (testState ()) with Phase = Search; Turn = { (testState ()).Turn with Visibility = BismarckGame.Core.SearchBoard.VisibilityLevel 9 } }
+    let result = update unusedTables (constantRoll 3) (SearchZone(British, coord 'C' 3)) state
+    Assert.True(isError result)
+
+[<Fact>]
+let ``InitiateNavalCombat is blocked in fog`` () =
+    let state = testState ()
+    let germanAtC3 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3) }
+    let state' =
+        { state with
+            Phase = NavalCombat
+            Turn = { state.Turn with Visibility = BismarckGame.Core.SearchBoard.VisibilityLevel 9 }
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAtC3.Id, germanAtC3) } }
+    let result = update unusedTables (constantRoll 3) (InitiateNavalCombat(coord 'C' 3, German)) state'
+    Assert.True(isError result)
+
+[<Fact>]
+let ``LaunchAirAttack is blocked in fog`` () =
+    let state = testState ()
+    let germanAtC3 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3) }
+    let bomber = { (testAirUnit "AIR-BR-TB" "TestTB" British TorpedoBomber (coord 'C' 3)) with Mode = BomberAttack; IsAtBase = false }
+    let state' =
+        { state with
+            Phase = AirAttack
+            Turn = { state.Turn with Visibility = BismarckGame.Core.SearchBoard.VisibilityLevel 9; IsNightTurn = false }
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAtC3.Id, germanAtC3) }
+                |> Map.add British { state.Players.[British] with AirUnits = state.Players.[British].AirUnits.Add(bomber.Id, bomber) } }
+    let result = update unusedTables (constantRoll 3) (LaunchAirAttack(bomber.Id, germanAtC3.Id)) state'
+    Assert.True(isError result)
+
+[<Fact>]
+let ``British bombers can launch at most two attacks per day turn`` () =
+    let state = testState ()
+    let germanAtC3 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3) }
+    let bomber = { (testAirUnit "AIR-BR-TB2" "TestTB2" British TorpedoBomber (coord 'C' 3)) with Mode = BomberAttack; IsAtBase = false }
+    let state' =
+        { state with
+            Phase = AirAttack
+            Turn = { state.Turn with IsNightTurn = false; Visibility = BismarckGame.Core.SearchBoard.VisibilityLevel 4 }
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAtC3.Id, germanAtC3) }
+                |> Map.add British { state.Players.[British] with AirUnits = state.Players.[British].AirUnits.Add(bomber.Id, bomber) } }
+    let r1 = update unusedTables (constantRoll 3) (LaunchAirAttack(bomber.Id, germanAtC3.Id)) state'
+    let r2 = r1 |> Result.bind (update unusedTables (constantRoll 3) (LaunchAirAttack(bomber.Id, germanAtC3.Id)))
+    let r3 = r2 |> Result.bind (update unusedTables (constantRoll 3) (LaunchAirAttack(bomber.Id, germanAtC3.Id)))
+    Assert.True(isError r3)
+
+[<Fact>]
+let ``DeclareShadow accepts British LR Recon as shadower`` () =
+    let state = testState ()
+    let germanAtC3 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3) }
+    let recon = { (testAirUnit "AIR-BR-LR" "LR Recon" British LongRangeRecon (coord 'C' 3)) with Mode = ReconPatrol; IsAtBase = false }
+    let state' =
+        { state with
+            Phase = ShadowDetermination
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAtC3.Id, germanAtC3) }
+                |> Map.add British { state.Players.[British] with AirUnits = state.Players.[British].AirUnits.Add(recon.Id, recon) } }
+    match update alwaysShadowSuccess (constantRoll 3) (DeclareShadow(UnitId "AIR-BR-LR", UnitId "GER-1")) state' with
+    | Ok next -> Assert.Equal(1, next.ShadowMarkers.Length)
+    | Error msg -> Assert.Fail msg
+
+[<Fact>]
+let ``High-speed shadow can be declared during Ship Movement after first move`` () =
+    let state = testState ()
+    let britishAtC3 = { state.Players.[British].Ships.[ShipId "GBR-1"] with Name = "Hood"; CurrentZone = Some(coord 'C' 3); EvasionRating = 30 }
+    let germanAtC3 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3); ZonesMovedThisTurn = 1; EvasionRating = 29 }
+    let state' =
+        { state with
+            Phase = ShipMovement
+            Players =
+                state.Players
+                |> Map.add British { state.Players.[British] with Ships = state.Players.[British].Ships.Add(britishAtC3.Id, britishAtC3) }
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAtC3.Id, germanAtC3) } }
+    match update alwaysShadowSuccess (constantRoll 3) (DeclareShadow(UnitId "GBR-1", UnitId "GER-1")) state' with
+    | Ok next -> Assert.Equal(1, next.ShadowMarkers.Length)
+    | Error msg -> Assert.Fail msg
+
+[<Fact>]
+let ``Task-force ships in movement mode do not contribute individual patrol search strength`` () =
+    let state = testState ()
+    let tfId = TaskForceId 1
+    let s1 = { state.Players.[British].Ships.[ShipId "GBR-1"] with CurrentZone = Some(coord 'C' 2); TaskForce = Some tfId; SearchStrength = { Day = 4; Night = 4 } }
+    let s2 = { (testShip "GBR-2" "TestCruiser2" British LightCruiser (coord 'C' 2)) with TaskForce = Some tfId; SearchStrength = { Day = 4; Night = 4 } }
+    let target = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 2) }
+    let tf : TaskForce =
+        { Id = tfId
+          Nationality = British
+          Ships = [ s1.Id; s2.Id ]
+          Zone = coord 'C' 2
+          Mode = Movement }
+    let britishPlayer =
+        { state.Players.[British] with
+            Ships = state.Players.[British].Ships.Add(s1.Id, s1).Add(s2.Id, s2)
+            TaskForces = Map.ofList [ tf.Id, tf ] }
+    let state' =
+        { state with
+            Phase = Search
+            Turn = { state.Turn with IsNightTurn = false; Visibility = BismarckGame.Core.SearchBoard.VisibilityLevel 1 }
+            Players =
+                state.Players
+                |> Map.add British britishPlayer
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(target.Id, target) } }
+    match update unusedTables (constantRoll 3) (SearchZone(British, coord 'C' 2)) state' with
+    | Ok next -> Assert.Equal(0, next.LocationMarkers.Length)
+    | Error msg -> Assert.Fail msg
+
+[<Fact>]
+let ``Carrier-only force cannot initiate naval combat`` () =
+    let state = testState ()
+    let carrier = { (testShip "GBR-CV-1" "Carrier" British AircraftCarrier (coord 'C' 3)) with EvasionRating = 32; MaxEvasionRating = 32; CanPatrol = false }
+    let germanAtC3 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3) }
+    let state' =
+        { state with
+            Phase = NavalCombat
+            Players =
+                state.Players
+                |> Map.add British { state.Players.[British] with Ships = Map.ofList [ carrier.Id, carrier ] }
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAtC3.Id, germanAtC3) } }
+    let result = update unusedTables (constantRoll 3) (InitiateNavalCombat(coord 'C' 3, British)) state'
+    Assert.True(isError result)
+
+[<Fact>]
+let ``Slower attacker cannot force naval combat against faster defender`` () =
+    let state = testState ()
+    let slow = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3); EvasionRating = 20; MaxEvasionRating = 20 }
+    let fast = { state.Players.[British].Ships.[ShipId "GBR-1"] with CurrentZone = Some(coord 'C' 3); EvasionRating = 30; MaxEvasionRating = 30 }
+    let state' =
+        { state with
+            Phase = NavalCombat
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(slow.Id, slow) }
+                |> Map.add British { state.Players.[British] with Ships = state.Players.[British].Ships.Add(fast.Id, fast) } }
+    let result = update unusedTables (constantRoll 3) (InitiateNavalCombat(coord 'C' 3, German)) state'
+    Assert.True(isError result)
+
+[<Fact>]
+let ``Shadowing attacker cannot initiate combat against unshadowed enemy ships`` () =
+    let state = testState ()
+    let attacker = { state.Players.[British].Ships.[ShipId "GBR-1"] with CurrentZone = Some(coord 'C' 3); EvasionRating = 35; MaxEvasionRating = 35 }
+    let g1 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3); EvasionRating = 30; MaxEvasionRating = 30 }
+    let g2 = testShip "GER-2" "Target2" German HeavyCruiser (coord 'C' 3)
+    let state' =
+        { state with
+            Phase = NavalCombat
+            Players =
+                state.Players
+                |> Map.add British { state.Players.[British] with Ships = state.Players.[British].Ships.Add(attacker.Id, attacker) }
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(g1.Id, g1).Add(g2.Id, g2) }
+            ShadowMarkers = [ { Zone = coord 'C' 3; ShadowingUnit = UnitId "GBR-1"; ShadowedUnit = UnitId "GER-1" } ] }
+    let result = update unusedTables (constantRoll 3) (InitiateNavalCombat(coord 'C' 3, British)) state'
+    Assert.True(isError result)
