@@ -193,6 +193,14 @@ reference. Every game-data value in this codebase traces back to one of:
     still gets proper doc comments, since the mechanical pass only ran
     once.
 
+  12. **Correction note** — the earlier note in `Update.fs`'s module
+    summary that Search Table / Chance Table / Air Attack were not yet
+    wired is stale. The current reducer already handles `SearchZone`,
+    `RollChanceForShip`, and `LaunchAirAttack`; the flowcharts in
+    `docs/flowcharts/` are the canonical read-through for those
+    branches. Keep future doc updates aligned with the actual reducer,
+    not the pre-flowchart summary text.
+
 ## 3. Deliberate simplifications (not bugs)
 
 See README.md for the full, actively-maintained list. A few WHYs that

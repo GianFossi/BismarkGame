@@ -5,11 +5,12 @@
 ///
 /// SCOPE: movement legality (now including the evasion-derived speed
 /// limit from Tables/EvasionEffects.fs), phase sequencing, task force
-/// composition, and battle-board setup are fully implemented from the
-/// rules text. Shadow and Naval Fire resolution are wired to real
-/// transcribed data via IRulesTables (see Tables/RulesTablesImpl.fs).
-/// Search Table / Chance Table resolution and Air Combat Table
-/// application are not yet wired into this reducer.
+/// composition, battle-board setup, Search, Chance, and Air Attack are
+/// all implemented from the rules text and wired to the transcribed
+/// tables. Shadow and Naval Fire resolution are routed through
+/// IRulesTables (see Tables/RulesTablesImpl.fs). The remaining gaps are
+/// the specific rule exceptions called out in README.md, not the phase
+/// handlers themselves.
 /// </summary>
 module BismarckGame.Core.Update
 

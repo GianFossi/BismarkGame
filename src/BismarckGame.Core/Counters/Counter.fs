@@ -11,11 +11,22 @@ open BismarckGame.Core.Common
 /// something is and the rules-fixed properties that follow from that —
 /// which is exactly the part that stays valid no matter which Search
 /// Board / order of battle a future scenario loads (see Scenario.fs).
+/// It also exposes a stable reference for the counter's graphical
+/// representation (printed face or future sprite key) so a UI can map a
+/// specific piece type to its artwork without adding board-state data
+/// here.
 [<AbstractClass>]
 type Counter(id: string, name: string, nationality: Nationality) =
     member _.Id = id
     member _.Name = name
     member _.Nationality = nationality
+
+    /// <summary>
+    /// Stable reference for the counter's graphical representation.
+    /// Defaults to the counter id because the project does not yet have
+    /// a separate art-asset catalog.
+    /// </summary>
+    member _.GraphicReference = id
 
     /// <summary>
     /// False for counter types the rules mark as absent from the Basic

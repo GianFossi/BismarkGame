@@ -50,11 +50,12 @@ dotnet run --project BismarckGame.Console   # two-turn play harness
 - `Common.fs`, `Dice.fs` — shared primitives and the dice-rolling
   abstraction (real + deterministic-for-tests).
 - `Counters/` — a class hierarchy (`Counter` → `ShipCounter` /
-  `AirUnitCounter` / `MarkerCounter` → concrete leaf types like
-  `Battleship`, `AircraftCarrier`, `LongRangeReconCounter`) describing
-  what KIND of piece something is and the rules-fixed properties that
-  follow from that. Deliberately holds no board position — see the note
-  in `Counters/Counter.fs`.
+      `AirUnitCounter` / `MarkerCounter` → concrete leaf types like
+      `Battleship`, `AircraftCarrier`, `LongRangeReconCounter`) describing
+      what KIND of piece something is, the rules-fixed properties that
+      follow from that, and a stable `GraphicReference` for the printed
+      counter face or future sprite mapping. Deliberately holds no board
+      position — see the note in `Counters/Counter.fs`.
 - `SearchBoard.fs`, `BattleBoard.fs`, `Units.fs`, `Markers.fs`,
   `VictoryConditions.fs`, `GameState.fs` — the core domain model: zones,
   hexes, ship/air-unit state, markers, scoring, and the `Command` type.
