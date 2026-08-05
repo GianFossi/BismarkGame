@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="..\..\ico\icon.ico">
+      <LogicalName>BismarckGame.Icon.ico</LogicalName>
+    </EmbeddedResource>
+
     <!-- Compile order matters in F#: dependencies first -->
     <Compile Include="Common.fs" />
     <Compile Include="Dice.fs" />
