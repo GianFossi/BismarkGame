@@ -2,6 +2,7 @@ module BismarckGame.Tests.TestHelpers
 
 open BismarckGame.Core.Common
 open BismarckGame.Core.SearchBoard
+open BismarckGame.Core.Markers
 open BismarckGame.Core.Units
 open BismarckGame.Core.GameState
 open BismarckGame.Core.Dice
@@ -84,6 +85,12 @@ let testState () : GameState =
     { Turn = { Number = 4; IsNightTurn = false; IsEmergencyMovementTurn = true; Visibility = VisibilityLevel 4 }
       Phase = ShipMovement
       SearchBoard = board
+      ConvoyRouteZones = Set.ofList [ coord 'C' 3 ]
+      ConvoyRoutePath = [ coord 'A' 1; coord 'A' 2; coord 'A' 3; coord 'B' 3; coord 'C' 3 ]
+      ConvoyUnits = [ { Id = 1; Zone = coord 'C' 3; RouteIndex = 4; Direction = East; IsSunk = false } ]
+      ConvoyContacts = []
+      ConvoysAvailable = 5
+      ConvoysSunkByGerman = 0
       Players =
         [ German,
           { Nationality = German

@@ -98,6 +98,131 @@ let private canEnterZone (map: SearchBoardMap) (nat: Nationality) (dest: GridCoo
 let private isAdjacent (map: SearchBoardMap) (from_: GridCoordinate) (dest: GridCoordinate) =
     neighbors map from_ |> List.contains dest
 
+let private nearestConvoyRouteZoneWithin
+    (map: SearchBoardMap)
+    (routeZones: Set<GridCoordinate>)
+    (maxDistance: int)
+    (origin: GridCoordinate)
+    : GridCoordinate option =
+    routeZones
+    |> Seq.choose (fun rz ->
+        distanceWithin map maxDistance origin rz
+        |> Option.map (fun d -> d, rz))
+    |> Seq.sortBy (fun (d, rz) -> d, rz.Letter, rz.Number)
+    |> Seq.tryHead
+    |> Option.map snd
+
+let private nearestLiveConvoyWithin
+    (map: SearchBoardMap)
+    (maxDistance: int)
+    (origin: GridCoordinate)
+    (convoys: ConvoyUnit list)
+    : ConvoyUnit option =
+    convoys
+    |> List.filter (fun c -> not c.IsSunk)
+    |> List.choose (fun c ->
+        distanceWithin map maxDistance origin c.Zone
+        |> Option.map (fun d -> d, c))
+    |> List.sortBy (fun (d, c) -> d, c.RouteIndex, c.Id)
+    |> List.tryHead
+    |> Option.map snd
+
+let private addOrReplaceConvoyContact
+    (state: GameState)
+    (convoyId: int)
+    (zone: GridCoordinate)
+    (discoverer: Nationality)
+    (source: ConvoyContactSource)
+    : GameState =
+    let keepExisting =
+        state.ConvoyContacts
+        |> List.filter (fun c -> not (c.ConvoyId = Some convoyId && c.Discoverer = discoverer))
+    { state with
+        ConvoyContacts =
+            { Zone = zone
+              ConvoyId = Some convoyId
+              Discoverer = discoverer
+              Source = source
+              TurnLocated = state.Turn.Number }
+            :: keepExisting }
+
+let private headingFromTo (a: GridCoordinate) (b: GridCoordinate) : Heading =
+    let dy = int b.Letter - int a.Letter
+    let dx = b.Number - a.Number
+    let sy = if dy = 0 then 0 elif dy > 0 then 1 else -1
+    let sx = if dx = 0 then 0 elif dx > 0 then 1 else -1
+    match sy, sx with
+    | -1, 0 -> North
+    | -1, 1 -> NorthEast
+    | 0, 1 -> East
+    | 1, 1 -> SouthEast
+    | 1, 0 -> South
+    | 1, -1 -> SouthWest
+    | 0, -1 -> West
+    | -1, -1 -> NorthWest
+    | _ -> East
+
+let private moveConvoysAlongRoute (state: GameState) : GameState =
+    let route = state.ConvoyRoutePath |> List.toArray
+    if route.Length = 0 then
+        state
+    else
+        let movedConvoys, movedPairs, movedZonePairs =
+            state.ConvoyUnits
+            |> List.map (fun c ->
+                if c.IsSunk || c.RouteIndex >= route.Length - 1 then
+                    c, None, None
+                else
+                    let nextIndex = c.RouteIndex + 1
+                    let nextZone = route.[nextIndex]
+                    let moved =
+                        { c with
+                            RouteIndex = nextIndex
+                            Zone = nextZone
+                            Direction = headingFromTo c.Zone nextZone }
+                    moved, Some(c.Id, nextZone), Some(c.Zone, nextZone))
+            |> List.fold (fun (cs, ids, zones) (c, idMove, zoneMove) -> c :: cs, idMove :: ids, zoneMove :: zones) ([], [], [])
+
+        let movedConvoys = List.rev movedConvoys
+        let movedPairs = List.rev movedPairs
+        let movedZonePairs = List.rev movedZonePairs
+
+        let movedById =
+            movedPairs
+            |> List.choose id
+            |> Map.ofList
+
+        let movedByZone =
+            movedZonePairs
+            |> List.choose id
+            |> Map.ofList
+
+        let movedContacts =
+            state.ConvoyContacts
+            |> List.map (fun contact ->
+                match contact.ConvoyId with
+                | Some convoyId ->
+                    match movedById.TryFind convoyId with
+                    | Some newZone -> { contact with Zone = newZone }
+                    | None -> contact
+                | None ->
+                    match movedByZone.TryFind contact.Zone with
+                    | Some newZone -> { contact with Zone = newZone }
+                    | None -> contact)
+
+        { state with
+            ConvoyUnits = movedConvoys
+            ConvoyContacts = movedContacts }
+
+let private convoySinkingPoints (convoyNumber: int) : int =
+    // Rule 12.44 convoy VP schedule (1st..5th): 6/6/8/10/12.
+    // For any out-of-range value, clamp to the nearest listed band.
+    match convoyNumber with
+    | n when n <= 1 -> 6
+    | 2 -> 6
+    | 3 -> 8
+    | 4 -> 10
+    | _ -> 12
 // --- battle board placement (rule 9.28) -----------------------------------
 
 /// <summary>
@@ -277,14 +402,87 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                         else
                             Ok state
                     | BismarckGame.Core.Tables.ChanceTable.NoSearchPossible -> Ok state
-                    | BismarckGame.Core.Tables.ChanceTable.ConvoyLocatedOnRoute
-                    | BismarckGame.Core.Tables.ChanceTable.ConvoyLocatedNearRoute
+                    | BismarckGame.Core.Tables.ChanceTable.ConvoyLocatedOnRoute ->
+                        match state.ConvoyUnits |> List.tryFind (fun c -> not c.IsSunk && c.Zone = zone) with
+                        | Some convoy -> Ok(addOrReplaceConvoyContact state convoy.Id convoy.Zone German ChanceOnRoute)
+                        | None -> Ok state
+                    | BismarckGame.Core.Tables.ChanceTable.ConvoyLocatedNearRoute ->
+                        // Card text: "on patrol, within 2 zones of a
+                        // convoy route".
+                        if ship.Mode <> Patrol then
+                            Ok state
+                        else
+                            match nearestLiveConvoyWithin state.SearchBoard 2 zone state.ConvoyUnits with
+                            | Some convoy -> Ok(addOrReplaceConvoyContact state convoy.Id convoy.Zone German ChanceNearRoute)
+                            | None -> Ok state
                     | BismarckGame.Core.Tables.ChanceTable.ConvoyLocatedAdjacentToRoute ->
-                        // Convoys aren't tracked as locatable objects yet
-                        // (no convoy position/state beyond ConvoyMarker's
-                        // escort-ship link) — structural no-op pending that.
-                        Ok state
+                        // Card text: "one zone away from route".
+                        match nearestLiveConvoyWithin state.SearchBoard 1 zone state.ConvoyUnits with
+                        | Some convoy -> Ok(addOrReplaceConvoyContact state convoy.Id convoy.Zone German ChanceAdjacentToRoute)
+                        | None -> Ok state
             | Some (British, _) -> Error "Only German ships are rolled on the Chance Table in the Basic Game (rule 4.9)"
+
+    | AttackConvoy (attacker, zone) ->
+        if state.Phase <> NavalCombat then
+            Error "Convoy attacks are resolved in the Naval Combat phase (rule 4.8 / 12.44)"
+        else
+            match tryFindShip state attacker with
+            | None -> Error $"Unknown ship {attacker}"
+            | Some (nat, ship) when nat <> German -> Error "Only German ships can sink convoys for rule 12.44 scoring"
+            | Some (_, ship) when ship.IsSunk -> Error "Sunk ships cannot attack convoys"
+            | Some (_, ship) ->
+                match ship.CurrentZone with
+                | None -> Error "Attacking ship is off-board"
+                | Some shipZone when shipZone <> zone -> Error "Attacking ship must be in the convoy-contact zone"
+                | Some _ ->
+                    let contact =
+                        state.ConvoyContacts
+                        |> List.tryFind (fun c -> c.Zone = zone && c.Discoverer = German)
+                    let liveConvoyAtZone =
+                        match contact with
+                        | Some c ->
+                            match c.ConvoyId with
+                            | Some convoyId -> state.ConvoyUnits |> List.tryFind (fun cu -> cu.Id = convoyId && not cu.IsSunk && cu.Zone = zone)
+                            | None -> state.ConvoyUnits |> List.tryFind (fun cu -> not cu.IsSunk && cu.Zone = zone)
+                        | None -> None
+                    let britishEscortsInZone =
+                        state.Players
+                        |> Map.tryFind British
+                        |> Option.map (fun p ->
+                            p.Ships
+                            |> Map.toList
+                            |> List.map snd
+                            |> List.filter (fun s -> s.IsConvoyEscort && not s.IsSunk && s.CurrentZone = Some zone))
+                        |> Option.defaultValue []
+                    if contact.IsNone then
+                        Error "No German convoy contact exists in that zone"
+                    elif liveConvoyAtZone.IsNone then
+                        Error "No live convoy is currently in that zone"
+                    elif not britishEscortsInZone.IsEmpty then
+                        Error "Convoy is screened by active escort ships; resolve naval combat with escorts first"
+                    elif state.ConvoysSunkByGerman >= state.ConvoysAvailable then
+                        Error "All scenario convoys have already been sunk"
+                    else
+                        let convoy = liveConvoyAtZone.Value
+                        let sunkNumber = state.ConvoysSunkByGerman + 1
+                        let points = convoySinkingPoints sunkNumber
+                        let contacts' =
+                            state.ConvoyContacts
+                            |> List.filter (fun c -> not (c.Discoverer = German && (c.ConvoyId = Some convoy.Id || (c.ConvoyId.IsNone && c.Zone = zone))))
+                        let convoys' =
+                            state.ConvoyUnits
+                            |> List.map (fun c -> if c.Id = convoy.Id then { c with IsSunk = true } else c)
+                        let germanScore = state.Players.[German].Score
+                        let germanScore' =
+                            { germanScore with
+                                Points = germanScore.Points + points
+                                Events = ($"Sank convoy unit {convoy.Id} (#{sunkNumber}) at {zone}", points) :: germanScore.Events }
+                        let state' =
+                            { state with
+                                ConvoyContacts = contacts'
+                                ConvoyUnits = convoys'
+                                ConvoysSunkByGerman = sunkNumber }
+                        Ok(updatePlayer state' German (fun p -> { p with Score = germanScore' }))
 
     | AdvancePhase ->
         if state.Phase = Chance then
@@ -319,7 +517,8 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                             let p' = { p with Ships = p.Ships.Add(shipId, { p.Ships.[shipId] with CurrentZone = Some zone }) }
                             players |> Map.add nat p')
                     resetPlayers
-            Ok { state with
+            let advancedState =
+                { state with
                     Phase = UnitAvailability
                     Turn =
                         { state.Turn with
@@ -350,6 +549,7 @@ let update (tables: IRulesTables) (roll: unit -> int) (cmd: Command) (state: Gam
                                     | None -> false))
                         let finishTurn = 34   // Time Record Track's printed "Finish" turn — see Tables/TimeAndVisibility.fs
                         checkGameEnd finishTurn newTurnNumber bismarckInPort outcomes }
+            Ok (moveConvoysAlongRoute advancedState)
         elif state.Phase = ShipMovement then
             // Rule 9.728: "In any turn in which a ship moves either one
             // zone or not at all... it may attempt to repair lost evasion

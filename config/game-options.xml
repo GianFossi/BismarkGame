@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScenarioId>bismarck-1941-basic</ScenarioId>
+  <UseFixedSeed>true</UseFixedSeed>
+  <RandomSeed>42</RandomSeed>
+  <AutoSimulateTurns>0</AutoSimulateTurns>
+  <AutoSaveEnabled>false</AutoSaveEnabled>
+  <AutoSaveEveryTurns>1</AutoSaveEveryTurns>
+  <EnableEventLogging>true</EnableEventLogging>
+</GameOptions>

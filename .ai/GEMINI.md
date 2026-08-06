@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # GEMINI.md
+
+
 
 Instructions for Gemini CLI / Code Assist working in this repository.
 
@@ -28,6 +32,10 @@ hard requirement here rather than a style preference.
   Keep data modules and types free of rule logic.
 - Keep the engine scenario-agnostic; scenario data belongs in
   [src/BismarckGame.Core/Scenarios](src/BismarckGame.Core/Scenarios).
+- Keep integration-side persistence/logging effects in
+  [src/BismarckGame.Console/Persistence.fs](src/BismarckGame.Console/Persistence.fs)
+  and [src/BismarckGame.Console/EventLogger.fs](src/BismarckGame.Console/EventLogger.fs),
+  not in the core reducer.
 - Prefer `Result<'T, string>` in update paths and add English XML docs to
   public F# symbols.
 - Add or update tests for changes in rules, tables, or scenario data.

@@ -10,6 +10,7 @@
 /// </summary>
 module BismarckGame.Console.Program
 
+open System.IO
 open BismarckGame.Core.Common
 open BismarckGame.Core.SearchBoard
 open BismarckGame.Core.GameState
@@ -17,6 +18,10 @@ open BismarckGame.Core.Update
 open BismarckGame.Core.Scenario
 open BismarckGame.Core.Dice
 open BismarckGame.Core.PlayerView
+open BismarckGame.Core.Simulation
+open BismarckGame.Core.Configuration
+open BismarckGame.Core.Persistence
+open BismarckGame.Core.EventLogger
 
 [<EntryPoint>]
 let main _argv =
@@ -39,58 +44,34 @@ let main _argv =
     let tables = BismarckGame.Core.Tables.RulesTablesImpl.basicGame
 
     let mutable state = initializeGame BismarckGame.Core.Scenarios.BismarckBasicGame.scenario
+    let mutable eventLogEntries : GameEventLogEntryDto list = []
 
-    let apply (label: string) (cmd: Command) =
-        match update tables roll cmd state with
-        | Ok s' ->
-            state <- s'
-            printfn "  OK   %-30s %A" label cmd
-        | Error msg ->
-            printfn "  FAIL %-30s %s" label msg
+    let printEvent (evt: SimulationEvent) =
+        match evt.Succeeded, evt.Message with
+        | true, _ -> printfn "  OK   %-34s %A" evt.Label evt.Command
+        | false, Some msg -> printfn "  FAIL %-34s %s" evt.Label msg
+        | false, None -> printfn "  FAIL %-34s (unknown simulation error)" evt.Label
 
-    let advance (label: string) = apply label AdvancePhase
+    let playOneAutomaticTurn () =
+        let turnBefore = state.Turn.Number
+        let phaseBefore = state.Phase
 
-    let playOneTurn () =
         printfn "--- Turn %d (night=%b, C-turn=%b, visibility=%A) phase=%A ---"
             state.Turn.Number state.Turn.IsNightTurn state.Turn.IsEmergencyMovementTurn state.Turn.Visibility state.Phase
 
-        advance "-> Visibility"
-        apply "roll visibility change" RollVisibilityChange
-
-        advance "-> ShadowDetermination"
-        // British: attempt to shadow a German contact if one is already
-        // known from a prior turn (none on turn 1 -- this mostly proves
-        // the phase transition and the "nothing to do" path).
-
-        advance "-> AirMovement"
-
-        advance "-> ShipMovement"
-        // German: move Bismarck and Prinz Eugen out of Bergen (F20).
-        // F19 and G20 are Bergen's only two on-board neighbors per the
-        // transcribed board data.
-        apply "Bismarck: F20 -> F19" (MoveShip(ShipId "GER-BB-Bismarck", { Letter = 'F'; Number = 19 }))
-        apply "Prinz Eugen: F20 -> F19" (MoveShip(ShipId "GER-CA-PrinzEugen", { Letter = 'F'; Number = 19 }))
-        // British: move Suffolk one zone from Hvalfiord (D9) toward the
-        // Denmark Strait, exercising a normal (non-breakout) move.
-        apply "Suffolk: D9 -> D8" (MoveShip(ShipId "GBR-CA-Suffolk", { Letter = 'D'; Number = 8 }))
-
-        advance "-> Search"
-        apply "British search F19" (SearchZone(British, { Letter = 'F'; Number = 19 }))
-        apply "German search D8" (SearchZone(German, { Letter = 'D'; Number = 8 }))
-
-        advance "-> AirAttack"
-
-        advance "-> NavalCombat"
-
-        advance "-> Chance"
-        apply "chance roll: Bismarck" (RollChanceForShip(ShipId "GER-BB-Bismarck"))
-        apply "chance roll: Prinz Eugen" (RollChanceForShip(ShipId "GER-CA-PrinzEugen"))
-
-        advance "-> next turn's Unit Availability"
+        match simulateFullTurn tables roll state with
+        | Error msg ->
+            printfn "  FAIL automatic simulation            %s" msg
+        | Ok (nextState, events) ->
+            events |> List.iter printEvent
+            let startSeq = eventLogEntries.Length + 1
+            let newEntries = toLogEntries turnBefore phaseBefore startSeq events
+            eventLogEntries <- eventLogEntries @ newEntries
+            state <- nextState
         printfn ""
 
-    playOneTurn ()
-    playOneTurn ()
+    playOneAutomaticTurn ()
+    playOneAutomaticTurn ()
 
     printfn "=== Final state ==="
     printfn "Turn %d, phase %A, GameEnded=%A" state.Turn.Number state.Phase state.GameEnded
@@ -104,5 +85,43 @@ let main _argv =
         for c in view.RevealedEnemyContacts do
             printfn "    - %A at %O (shadowed=%b)" c.ShipClass c.Zone c.IsShadowed
         printfn ""
+
+    let xmlDir = Path.Combine(defaultStoragePaths.RootPath, defaultStoragePaths.XmlDirectory)
+    Directory.CreateDirectory(xmlDir) |> ignore
+    let optionsPath = Path.Combine(xmlDir, defaultStoragePaths.OptionsFileName)
+    let configPath = Path.Combine(xmlDir, defaultStoragePaths.ConfigurationFileName)
+    let statusPath = Path.Combine(xmlDir, defaultStoragePaths.GameStatusFileName)
+    let logDir = Path.Combine(defaultStoragePaths.RootPath, defaultStoragePaths.LogsDirectory)
+    let eventLogPath = Path.Combine(logDir, defaultStoragePaths.EventLogFileName)
+
+    let options =
+        { defaultGameOptions with
+            ScenarioId = BismarckGame.Core.Scenarios.BismarckBasicGame.scenario.Id
+            EnableEventLogging = true }
+    saveGameOptionsToFile defaultXmlPersistenceOptions optionsPath options
+    let loadedOptions = loadGameOptionsFromFile optionsPath
+
+    let appConfig =
+        { defaultAppConfiguration with
+            Paths = { defaultStoragePaths with LogsDirectory = defaultStoragePaths.LogsDirectory; EventLogFileName = defaultStoragePaths.EventLogFileName }
+            LastScenarioId = loadedOptions.ScenarioId
+            LastStatusFilePath = statusPath }
+    saveConfigurationToFile defaultXmlPersistenceOptions configPath appConfig
+    let loadedConfig = loadConfigurationFromFile configPath
+
+    saveGameStatusToFile loadedConfig.Xml statusPath state
+    let restoredState = loadGameStatusFromFile statusPath (initializeGame BismarckGame.Core.Scenarios.BismarckBasicGame.scenario)
+
+    if loadedOptions.EnableEventLogging then
+        Directory.CreateDirectory(logDir) |> ignore
+        saveEventLogToFile loadedConfig.Xml eventLogPath loadedOptions.ScenarioId eventLogEntries
+        let loadedLog = loadEventLogFromFile eventLogPath
+        let movementCount = loadedLog.Entries |> Array.filter (fun e -> e.IsMovement) |> Array.length
+        printfn "Event log written: %s (entries=%d, movements=%d)" eventLogPath loadedLog.Entries.Length movementCount
+    else
+        printfn "Event logging disabled by options."
+
+    printfn "Persistence files written to: %s" xmlDir
+    printfn "Restored state turn %d, phase %A" restoredState.Turn.Number restoredState.Phase
 
     0

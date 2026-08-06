@@ -18,6 +18,7 @@ module BismarckGame.Core.Scenario
 open BismarckGame.Core.Common
 open BismarckGame.Core.SearchBoard
 open BismarckGame.Core.Units
+open BismarckGame.Core.Markers
 open BismarckGame.Core.GameState
 open BismarckGame.Core.VictoryConditions
 
@@ -48,6 +49,25 @@ type ScenarioDefinition =
       TurnLengthHours: int
       DamagePoints: DamagePoints
       /// <summary>
+      /// Zones that make up the convoy route reference used by Chance
+      /// Table convoy outcomes (rows 10-12 on the Basic Game Tables Card).
+      /// </summary>
+      ConvoyRouteZones: Set<GridCoordinate>
+      /// <summary>
+      /// Ordered convoy route path. Convoy units move along this list's
+      /// indices, advancing by one per turn.
+      /// </summary>
+      ConvoyRoutePath: GridCoordinate list
+      /// <summary>
+      /// Initial convoy placement as route indices into ConvoyRoutePath.
+      /// </summary>
+      InitialConvoyRouteIndices: int list
+      /// <summary>
+      /// Number of convoy targets in this scenario (rule 12.44 lists the
+      /// 1st..5th convoy scoring progression for the Basic Game).
+      /// </summary>
+      ConvoyCount: int
+      /// <summary>
       /// Ships that start off-board and enter at a specific turn/zone
       /// (British Order of Battle "Reinforcements" section — Revenge,
       /// Dorsetshire). The ship itself is already in OrdersOfBattle with
@@ -61,6 +81,42 @@ type ScenarioDefinition =
 /// turn 1 / Unit Availability phase (rule 4.1).
 /// </summary>
 let initializeGame (scenario: ScenarioDefinition) : GameState =
+    let path = scenario.ConvoyRoutePath |> List.toArray
+
+    let directionFromTo (a: GridCoordinate) (b: GridCoordinate) : Heading =
+        let dy = int b.Letter - int a.Letter
+        let dx = b.Number - a.Number
+        let sy = if dy = 0 then 0 elif dy > 0 then 1 else -1
+        let sx = if dx = 0 then 0 elif dx > 0 then 1 else -1
+        match sy, sx with
+        | -1, 0 -> North
+        | -1, 1 -> NorthEast
+        | 0, 1 -> East
+        | 1, 1 -> SouthEast
+        | 1, 0 -> South
+        | 1, -1 -> SouthWest
+        | 0, -1 -> West
+        | -1, -1 -> NorthWest
+        | _ -> East
+
+    let convoyUnits =
+        scenario.InitialConvoyRouteIndices
+        |> List.mapi (fun i idx ->
+            let clampedIdx =
+                if path.Length = 0 then 0
+                elif idx < 0 then 0
+                elif idx >= path.Length then path.Length - 1
+                else idx
+            let zone = if path.Length = 0 then { Letter = 'A'; Number = 1 } else path.[clampedIdx]
+            let direction =
+                if path.Length > 1 && clampedIdx < path.Length - 1 then directionFromTo zone path.[clampedIdx + 1]
+                else East
+            { Id = i + 1
+              Zone = zone
+              RouteIndex = clampedIdx
+              Direction = direction
+              IsSunk = false })
+
     let players =
         scenario.OrdersOfBattle
         |> List.map (fun oob ->
@@ -77,6 +133,12 @@ let initializeGame (scenario: ScenarioDefinition) : GameState =
     { Turn = scenario.FirstTurn
       Phase = UnitAvailability
       SearchBoard = scenario.SearchBoard
+      ConvoyRouteZones = scenario.ConvoyRouteZones
+      ConvoyRoutePath = scenario.ConvoyRoutePath
+      ConvoyUnits = convoyUnits
+      ConvoyContacts = []
+      ConvoysAvailable = scenario.ConvoyCount
+      ConvoysSunkByGerman = 0
       Players = players
       ShadowMarkers = []
       LocationMarkers = []

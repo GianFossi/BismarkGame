@@ -1,11 +1,17 @@
+%% Last synchronized: 2026-08-06
 %% 01-phases/08-naval-combat.mmd
-%% Rule 4.8/9.2x/9.3x/9.6x/9.9x. Update.fs commands: InitiateNavalCombat,
-%% MoveShipInBattle, FireInBattle, WithdrawFromBattle, EndNavalCombat.
+%% Rule 4.8/9.2x/9.3x/9.6x/9.9x/12.44. Update.fs commands:
+%% InitiateNavalCombat, MoveShipInBattle, FireInBattle,
+%% WithdrawFromBattle, EndNavalCombat, AttackConvoy.
 %% Detailed function-level views:
 %%   ../02-detailed-functions/03-navalcombat-placement-detail.mmd
 %%   ../02-detailed-functions/04-navalfire-resolution-detail.mmd
 flowchart TD
-    Enter(["Enter Naval Combat Phase"]) --> Init["InitiateNavalCombat (zone, attacker)"]
+    Enter(["Enter Naval Combat Phase"]) --> ConvoyPath{"AttackConvoy issued?"}
+    ConvoyPath -->|Yes| Escort{"Active convoy escort in zone?"}
+    Escort -->|Yes| ConvoyErr(["Error: escort screens convoy"])
+    Escort -->|No| ConvoyHit["Mark convoy sunk,<br/>consume matching ConvoyContact,<br/>award VP by 12.44 progression"]
+    ConvoyPath -->|No| Init["InitiateNavalCombat (zone, attacker)"]
     Init --> BothSides{"Both sides have ships<br/>in the zone, and attacker<br/>is one of them?"}
     BothSides -->|No| Err1(["Error"])
     BothSides -->|Yes| Place["Placement, rule 9.28<br/>see detailed flowchart:<br/>defender at/around center hex,<br/>attacker rolls 1d6 for entry edge"]
@@ -31,6 +37,8 @@ flowchart TD
     Cleanup --> Ok(["Battle resolved"])
 
     Err1 --> Next
+    ConvoyErr --> Next
+    ConvoyHit --> Next
     Ok --> Next
     Next(["AdvancePhase leads to Chance Phase"])
 

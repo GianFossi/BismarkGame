@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # Flowcharts
+
+
 
 A hierarchical set of flowcharts documenting the game logic, from macro
 architecture down to individual function decision trees. Source files
@@ -18,16 +22,22 @@ preview).
                                        what each phase does and which
                                        Update.fs command(s) drive it.
 02-detailed-functions/                Function-level decision trees for
-                                       the five most rule-dense handlers:
+                                       the six most rule-dense handlers:
                                        MoveShip+fuelCost, SearchZone,
                                        naval combat placement, naval fire
-                                       resolution, and Mobilize.
+                                       resolution, Mobilize, and
+                                       persistence/event-logging flows.
 ```
 
 Every macro-level flowchart in `01-phases/` that has a corresponding
 detailed one in `02-detailed-functions/` says so in its own top comment
 and in an in-diagram note — follow those cross-references to go from
 "what happens in this phase" to "exactly how this one function decides."
+
+The persistence/event-logging flowchart documents the integration-layer
+pipeline (`BismarckGame.Console/Persistence.fs` and
+`BismarckGame.Console/EventLogger.fs`) rather than engine rules in
+`Update.fs`.
 
 ## Rendering to print-ready A3 pages
 

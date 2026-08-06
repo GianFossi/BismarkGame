@@ -42,6 +42,38 @@ type ConvoyMarker =
       Direction: Heading }
 
 /// <summary>
+/// Which Chance Table convoy-location branch produced a convoy contact
+/// marker (rules text on Basic Game Tables Card, Chance Table rows 10-12).
+/// </summary>
+type ConvoyContactSource =
+    | ChanceOnRoute
+    | ChanceNearRoute
+    | ChanceAdjacentToRoute
+
+/// <summary>
+/// A detected convoy contact on the Search Board. This is separate from
+/// ConvoyMarker (escort assignment): ConvoyContactMarker is what the
+/// German player has LOCATED via Chance-table convoy mechanics.
+/// </summary>
+type ConvoyContactMarker =
+    { Zone: GridCoordinate
+      ConvoyId: int option
+      Discoverer: Nationality
+      Source: ConvoyContactSource
+      TurnLocated: int }
+
+/// <summary>
+/// A convoy counter with its own Search Board position and route index.
+/// This models convoy movement independently from ship counters.
+/// </summary>
+type ConvoyUnit =
+    { Id: int
+      Zone: GridCoordinate
+      RouteIndex: int
+      Direction: Heading
+      IsSunk: bool }
+
+/// <summary>
 /// Placed in every zone containing a shadowed ship/task force so both
 /// players can track ongoing shadow attempts (rule 2.53, 8.1).
 /// </summary>

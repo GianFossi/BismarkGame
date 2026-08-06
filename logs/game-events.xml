@@ -1,0 +1,1350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameEventLogDto xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScenarioId>bismarck-1941-basic</ScenarioId>
+  <Entries>
+    <GameEventLogEntryDto>
+      <Sequence>1</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from UnitAvailability</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.3990651Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>2</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Roll visibility change</Label>
+      <Command>RollVisibilityChange</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4003045Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>3</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from Visibility</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4005965Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>4</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from ShadowDetermination</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4008724Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>5</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from AirMovement</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4011578Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>6</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prince of Wales: G15 -&gt; F15</Label>
+      <Command>MoveShip (ShipId "GBR-BB-PrinceOfWales", { Letter = 'F'
+                                           Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4017093Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>7</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prince of Wales: F15 -&gt; E15</Label>
+      <Command>MoveShip (ShipId "GBR-BB-PrinceOfWales", { Letter = 'E'
+                                           Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4022291Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>8</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Ramillies: S7 -&gt; R7</Label>
+      <Command>MoveShip (ShipId "GBR-BB-Ramillies", { Letter = 'R'
+                                       Number = 7 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4027358Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>9</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Rodney: K18 -&gt; J18</Label>
+      <Command>MoveShip (ShipId "GBR-BB-Rodney", { Letter = 'J'
+                                    Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4034529Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>10</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Hood: G15 -&gt; F15</Label>
+      <Command>MoveShip (ShipId "GBR-BC-Hood", { Letter = 'F'
+                                  Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4042248Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>11</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Hood: F15 -&gt; E15</Label>
+      <Command>MoveShip (ShipId "GBR-BC-Hood", { Letter = 'E'
+                                  Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4047578Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>12</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Norfolk: B7 -&gt; B8</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Norfolk", { Letter = 'B'
+                                     Number = 8 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4053031Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>13</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Norfolk: B8 -&gt; A8</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Norfolk", { Letter = 'A'
+                                     Number = 8 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4058856Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>14</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Suffolk: D9 -&gt; D10</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Suffolk", { Letter = 'D'
+                                     Number = 10 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4064338Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>15</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Suffolk: D10 -&gt; D9</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Suffolk", { Letter = 'D'
+                                     Number = 9 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4069509Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>16</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Arethusa: F12 -&gt; E12</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Arethusa", { Letter = 'E'
+                                      Number = 12 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4074703Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>17</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Arethusa: E12 -&gt; D12</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Arethusa", { Letter = 'D'
+                                      Number = 12 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4079885Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>18</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Birmingham: F14 -&gt; E14</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Birmingham", { Letter = 'E'
+                                        Number = 14 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4085159Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>19</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Birmingham: E14 -&gt; D14</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Birmingham", { Letter = 'D'
+                                        Number = 14 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4090495Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>20</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Edinburgh: T17 -&gt; S17</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Edinburgh", { Letter = 'S'
+                                       Number = 17 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4095670Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>21</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Edinburgh: S17 -&gt; R17</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Edinburgh", { Letter = 'R'
+                                       Number = 17 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4104329Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>22</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Manchester: E13 -&gt; D13</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Manchester", { Letter = 'D'
+                                        Number = 13 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4112774Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>23</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Manchester: D13 -&gt; C13</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Manchester", { Letter = 'C'
+                                        Number = 13 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4121149Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>24</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: F20 -&gt; F19</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'F'
+                                      Number = 19 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4129211Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>25</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: F19 -&gt; F18</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'F'
+                                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4138048Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>26</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: F18 -&gt; E18</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'E'
+                                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4144717Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>27</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: E18 -&gt; D18</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'D'
+                                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4151585Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>28</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: D18 -&gt; C18</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'C'
+                                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4159020Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>29</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: F20 -&gt; F19</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'F'
+                                        Number = 19 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4165182Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>30</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: F19 -&gt; F18</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'F'
+                                        Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4173671Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>31</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: F18 -&gt; E18</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'E'
+                                        Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4181498Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>32</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: E18 -&gt; D18</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'D'
+                                        Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4191253Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>33</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: D18 -&gt; C18</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'C'
+                                        Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4199012Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>34</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from ShipMovement</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4203619Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>35</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search A8</Label>
+      <Command>SearchZone (British, { Letter = 'A'
+                       Number = 8 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4212902Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>36</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search C13</Label>
+      <Command>SearchZone (British, { Letter = 'C'
+                       Number = 13 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4220808Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>37</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search D9</Label>
+      <Command>SearchZone (British, { Letter = 'D'
+                       Number = 9 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4228363Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>38</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search D12</Label>
+      <Command>SearchZone (British, { Letter = 'D'
+                       Number = 12 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4235869Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>39</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search D14</Label>
+      <Command>SearchZone (British, { Letter = 'D'
+                       Number = 14 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4242817Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>40</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search E15</Label>
+      <Command>SearchZone (British, { Letter = 'E'
+                       Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4249714Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>41</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search H18</Label>
+      <Command>SearchZone (British, { Letter = 'H'
+                       Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4257697Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>42</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search J18</Label>
+      <Command>SearchZone (British, { Letter = 'J'
+                       Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4265285Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>43</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search J19</Label>
+      <Command>SearchZone (British, { Letter = 'J'
+                       Number = 19 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4272838Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>44</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search L20</Label>
+      <Command>SearchZone (British, { Letter = 'L'
+                       Number = 20 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4280430Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>45</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search O22</Label>
+      <Command>SearchZone (British, { Letter = 'O'
+                       Number = 22 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4289165Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>46</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search R7</Label>
+      <Command>SearchZone (British, { Letter = 'R'
+                       Number = 7 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4297134Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>47</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search R17</Label>
+      <Command>SearchZone (British, { Letter = 'R'
+                       Number = 17 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4305032Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>48</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search Z29</Label>
+      <Command>SearchZone (British, { Letter = 'Z'
+                       Number = 29 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4311507Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>49</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search C18</Label>
+      <Command>SearchZone (German, { Letter = 'C'
+                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4316185Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>50</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search C19</Label>
+      <Command>SearchZone (German, { Letter = 'C'
+                      Number = 19 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4320705Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>51</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search F20</Label>
+      <Command>SearchZone (German, { Letter = 'F'
+                      Number = 20 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4325416Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>52</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search P23</Label>
+      <Command>SearchZone (German, { Letter = 'P'
+                      Number = 23 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4330221Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>53</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search Q25</Label>
+      <Command>SearchZone (German, { Letter = 'Q'
+                      Number = 25 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4334834Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>54</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search R26</Label>
+      <Command>SearchZone (German, { Letter = 'R'
+                      Number = 26 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4339527Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>55</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from Search</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4342496Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>56</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from AirAttack</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4347815Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>57</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from NavalCombat</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4353093Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>58</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Chance roll: ShipId "GER-BB-Bismarck"</Label>
+      <Command>RollChanceForShip (ShipId "GER-BB-Bismarck")</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4357836Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>59</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Chance roll: ShipId "GER-CA-PrinzEugen"</Label>
+      <Command>RollChanceForShip (ShipId "GER-CA-PrinzEugen")</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4361791Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>60</Sequence>
+      <TurnNumber>4</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from Chance</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4364841Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>61</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from UnitAvailability</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4887825Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>62</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Roll visibility change</Label>
+      <Command>RollVisibilityChange</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4890554Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>63</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from Visibility</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4893000Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>64</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from ShadowDetermination</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4895430Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>65</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from AirMovement</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4897873Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>66</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prince of Wales: E15 -&gt; D15</Label>
+      <Command>MoveShip (ShipId "GBR-BB-PrinceOfWales", { Letter = 'D'
+                                           Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4902627Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>67</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prince of Wales: D15 -&gt; C15</Label>
+      <Command>MoveShip (ShipId "GBR-BB-PrinceOfWales", { Letter = 'C'
+                                           Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4907115Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>68</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Ramillies: R7 -&gt; Q7</Label>
+      <Command>MoveShip (ShipId "GBR-BB-Ramillies", { Letter = 'Q'
+                                       Number = 7 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4912779Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>69</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Rodney: J18 -&gt; I18</Label>
+      <Command>MoveShip (ShipId "GBR-BB-Rodney", { Letter = 'I'
+                                    Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4917324Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>70</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Hood: E15 -&gt; D15</Label>
+      <Command>MoveShip (ShipId "GBR-BC-Hood", { Letter = 'D'
+                                  Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4921817Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>71</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Hood: D15 -&gt; C15</Label>
+      <Command>MoveShip (ShipId "GBR-BC-Hood", { Letter = 'C'
+                                  Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4926680Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>72</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Norfolk: A8 -&gt; A9</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Norfolk", { Letter = 'A'
+                                     Number = 9 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4931603Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>73</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Norfolk: A9 -&gt; A8</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Norfolk", { Letter = 'A'
+                                     Number = 8 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4936116Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>74</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Suffolk: D9 -&gt; D10</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Suffolk", { Letter = 'D'
+                                     Number = 10 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4940540Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>75</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Suffolk: D10 -&gt; D9</Label>
+      <Command>MoveShip (ShipId "GBR-CA-Suffolk", { Letter = 'D'
+                                     Number = 9 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4944968Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>76</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Arethusa: D12 -&gt; C12</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Arethusa", { Letter = 'C'
+                                      Number = 12 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4949383Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>77</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Arethusa: C12 -&gt; B12</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Arethusa", { Letter = 'B'
+                                      Number = 12 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4953918Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>78</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Birmingham: D14 -&gt; C14</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Birmingham", { Letter = 'C'
+                                        Number = 14 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4958269Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>79</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Birmingham: C14 -&gt; B14</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Birmingham", { Letter = 'B'
+                                        Number = 14 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4967249Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>80</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Edinburgh: R17 -&gt; Q17</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Edinburgh", { Letter = 'Q'
+                                       Number = 17 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4972421Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>81</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Edinburgh: Q17 -&gt; P17</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Edinburgh", { Letter = 'P'
+                                       Number = 17 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4976776Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>82</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Manchester: C13 -&gt; B13</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Manchester", { Letter = 'B'
+                                        Number = 13 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4981266Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>83</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Manchester: B13 -&gt; A13</Label>
+      <Command>MoveShip (ShipId "GBR-CL-Manchester", { Letter = 'A'
+                                        Number = 13 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4985575Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>84</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: C18 -&gt; B18</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'B'
+                                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4989903Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>85</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Bismarck: B18 -&gt; A18</Label>
+      <Command>MoveShip (ShipId "GER-BB-Bismarck", { Letter = 'A'
+                                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4994401Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>86</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: C18 -&gt; B18</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'B'
+                                        Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.4999140Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>87</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Prinz Eugen: B18 -&gt; A18</Label>
+      <Command>MoveShip (ShipId "GER-CA-PrinzEugen", { Letter = 'A'
+                                        Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>true</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5004390Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>88</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from ShipMovement</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5007085Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>89</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search A8</Label>
+      <Command>SearchZone (British, { Letter = 'A'
+                       Number = 8 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5011450Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>90</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search A13</Label>
+      <Command>SearchZone (British, { Letter = 'A'
+                       Number = 13 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5015669Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>91</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search B12</Label>
+      <Command>SearchZone (British, { Letter = 'B'
+                       Number = 12 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5019890Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>92</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search B14</Label>
+      <Command>SearchZone (British, { Letter = 'B'
+                       Number = 14 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5024056Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>93</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search C15</Label>
+      <Command>SearchZone (British, { Letter = 'C'
+                       Number = 15 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5028148Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>94</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search D9</Label>
+      <Command>SearchZone (British, { Letter = 'D'
+                       Number = 9 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5032738Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>95</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search H18</Label>
+      <Command>SearchZone (British, { Letter = 'H'
+                       Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5036789Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>96</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search I18</Label>
+      <Command>SearchZone (British, { Letter = 'I'
+                       Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5040910Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>97</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search J19</Label>
+      <Command>SearchZone (British, { Letter = 'J'
+                       Number = 19 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5044926Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>98</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search L20</Label>
+      <Command>SearchZone (British, { Letter = 'L'
+                       Number = 20 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5048918Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>99</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search O22</Label>
+      <Command>SearchZone (British, { Letter = 'O'
+                       Number = 22 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5052918Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>100</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search P17</Label>
+      <Command>SearchZone (British, { Letter = 'P'
+                       Number = 17 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5056952Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>101</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search Q7</Label>
+      <Command>SearchZone (British, { Letter = 'Q'
+                       Number = 7 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5061036Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>102</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>British search Z29</Label>
+      <Command>SearchZone (British, { Letter = 'Z'
+                       Number = 29 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5065007Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>103</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search A18</Label>
+      <Command>SearchZone (German, { Letter = 'A'
+                      Number = 18 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5068980Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>104</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search C19</Label>
+      <Command>SearchZone (German, { Letter = 'C'
+                      Number = 19 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5073019Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>105</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search F20</Label>
+      <Command>SearchZone (German, { Letter = 'F'
+                      Number = 20 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5076976Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>106</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search P23</Label>
+      <Command>SearchZone (German, { Letter = 'P'
+                      Number = 23 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5081050Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>107</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search Q25</Label>
+      <Command>SearchZone (German, { Letter = 'Q'
+                      Number = 25 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5085449Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>108</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>German search R26</Label>
+      <Command>SearchZone (German, { Letter = 'R'
+                      Number = 26 })</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5089430Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>109</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from Search</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5091893Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>110</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from AirAttack</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5094305Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>111</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from NavalCombat</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5096727Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>112</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Chance roll: ShipId "GER-BB-Bismarck"</Label>
+      <Command>RollChanceForShip (ShipId "GER-BB-Bismarck")</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5100449Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>113</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Chance roll: ShipId "GER-CA-PrinzEugen"</Label>
+      <Command>RollChanceForShip (ShipId "GER-CA-PrinzEugen")</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5103947Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+    <GameEventLogEntryDto>
+      <Sequence>114</Sequence>
+      <TurnNumber>5</TurnNumber>
+      <Phase>UnitAvailability</Phase>
+      <Label>Advance from Chance</Label>
+      <Command>AdvancePhase</Command>
+      <Succeeded>true</Succeeded>
+      <Message />
+      <IsMovement>false</IsMovement>
+      <LoggedAtUtc>2026-08-06T15:17:36.5106381Z</LoggedAtUtc>
+    </GameEventLogEntryDto>
+  </Entries>
+</GameEventLogDto>

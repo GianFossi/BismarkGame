@@ -1,3 +1,4 @@
+%% Last synchronized: 2026-08-06
 %% 01-phases/09-chance.mmd
 %% Rule 4.9/10.0. Update.fs command: RollChanceForShip.
 flowchart TD
@@ -15,7 +16,9 @@ flowchart TD
     GS -->|Yes| GSyes["Reveal the ship's zone"]
     GS -->|No| GSno(["Ok, unchanged"])
     Result -->|NoSearchPossible| NS(["Ok, unchanged"])
-    Result -->|ConvoyLocated...| Convoy["Structural no-op — convoys have<br/>no board position of their own yet"]
+    Result -->|ConvoyLocated...| Convoy{"German ship on/near convoy route?"}
+    Convoy -->|No| ConvoyNoop(["Ok, unchanged"])
+    Convoy -->|Yes| ConvoyPick["Pick nearest live ConvoyUnit<br/>and add ConvoyContactMarker<br/>(Zone, ConvoyId, source, turn)"]
 
     HD --> SetMarker["Add/replace LocationMarker<br/>Zone, ShipClass, Owner=German"]
     GSyes --> SetMarker
@@ -29,7 +32,8 @@ flowchart TD
     Done --> Next
     GSno --> Next
     NS --> Next
-    Convoy --> Next
+    ConvoyPick --> Next
+    ConvoyNoop --> Next
     Next(["AdvancePhase: turn ends —<br/>see 00-overview/00-turn-cycle.mmd<br/>for the end-of-turn bookkeeping"])
 
     style Enter fill:#cde

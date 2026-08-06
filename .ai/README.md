@@ -1,10 +1,23 @@
+Last synchronized: 2026-08-06
+
 # `.ai/`
+
+
 
 This folder holds context for AI coding assistants working on this
 repository, kept separate from the tool-specific root files
 (`AGENTS.md`, `.github/copilot-instructions.md`) so there's one shared
 place for anything not specific to a single tool. The tool-specific
 instructions now live in `.ai/CLAUDE.md` and `.ai/GEMINI.md`.
+
+Recent architecture additions to keep in mind while reading these files:
+
+- `BismarckGame.Core/Configuration.fs` for typed options and path/XML
+  configuration data.
+- `BismarckGame.Core/Simulation.fs` for automatic turn simulation.
+- `BismarckGame.Console/Persistence.fs` and
+  `BismarckGame.Console/EventLogger.fs` for XML persistence and optional
+  XML event logging at the integration boundary.
 
 - **`PROJECT_MEMORY.md`** — the project's narrative history: what was
   transcribed from which photo/PDF, what design decisions were made and

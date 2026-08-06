@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # CLAUDE.md
+
+
 
 Instructions for Claude Code and Claude working in this repository.
 
@@ -41,6 +45,11 @@ transcriptions live under [src](src), with the main engine code in
 - Expose player-visible state through
   [src/BismarckGame.Core/PlayerView.fs](src/BismarckGame.Core/PlayerView.fs)
   rather than reading raw state directly in client-facing code.
+- Keep integration-layer I/O in
+  [src/BismarckGame.Console/Persistence.fs](src/BismarckGame.Console/Persistence.fs)
+  and [src/BismarckGame.Console/EventLogger.fs](src/BismarckGame.Console/EventLogger.fs)
+  rather than introducing file or logging side effects into the core
+  reducer.
 - Add or update tests whenever changing rules, tables, or scenario data.
   The regression suite in [src/BismarckGame.Tests](src/BismarckGame.Tests)
   is the primary guardrail.

@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # Project Memory — BismarckGame
+
+
 
 A running journal of what has been done on this project and why, written
 for AI assistants (and the human maintainer) picking this up in a fresh
@@ -223,6 +227,20 @@ are easy to lose over time:
   coast/GB coast/Hvalfiord — not just the 5 port zones). This
   under-counts true coastal zones but doesn't fabricate strength in
   zones with no coastal feature at all.
+
+## 3.5 Recent infrastructure additions
+
+13. **Persistence/configuration/event-logging pass**: introduced typed
+    runtime configuration in `BismarckGame.Core/Configuration.fs`
+    (`GameOptions`, `StoragePaths`, `AppConfiguration`,
+    `XmlPersistenceOptions`) and integration-layer XML persistence in
+    `BismarckGame.Console/Persistence.fs` for options, configuration,
+    Search Board maps, and game-status snapshots. Added
+    `BismarckGame.Console/EventLogger.fs` to serialize simulation command
+    outcomes to XML, including movement tagging (`MoveShip`,
+    `MoveAirUnit`, `MoveShipInBattle`) and option-driven activation
+    (`EnableEventLogging`) with configurable log path and filename.
+    Regression coverage was added in `BismarckGame.Tests/PersistenceTests.fs`.
 
 ## 4. Open questions worth resurfacing if new source material appears
 

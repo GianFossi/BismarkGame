@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # BismarckGame
+
+
 
 Version v1.0.0
 
@@ -22,12 +26,8 @@ them.
 
 ## Building
 
-This project has **never been compiled** — it was written in a sandbox
-with no .NET toolchain, entirely by static reasoning about the F#. Build
-it in VS Code (with the Ionide extension or the C# Dev Kit's F# support)
-or plain `dotnet build` before trusting any of it. Expect at least a few
-compile errors on the first pass given the size of the codebase; please
-report them back so they can be fixed.
+This project is built and tested with the .NET 10 toolchain. Use VS Code
+(Ionide or C# Dev Kit with F# support) or plain `dotnet`:
 
 ```
 dotnet build BismarckGame.sln
@@ -42,8 +42,10 @@ dotnet run --project BismarckGame.Console   # two-turn play harness
 - **`BismarckGame.Tests`** — xUnit test suite.
 - **`BismarckGame.Console`** — a console harness (`Program.fs`) that
   references the Core DLL and plays a couple of turns for each side,
-  printing what happened. Meant for manual testing/debugging, not a real
-  UI.
+      printing what happened. It now also demonstrates XML persistence
+      (options/configuration/search-map/game-status) and optional XML event
+      logging for movement + command outcomes. Meant for manual
+      testing/debugging, not a real UI.
 
 ### Inside `BismarckGame.Core`
 
@@ -75,6 +77,21 @@ dotnet run --project BismarckGame.Console   # two-turn play harness
 - `PlayerView.fs` — hidden-information projection (see below).
 - `Validation.fs` — sanity-checks a `ScenarioDefinition` before it's
   loaded (dangling IDs, off-board zones, etc.).
+- `Configuration.fs` — typed runtime options and storage/XML settings
+      (including event-logging toggle and log filename/path settings).
+- `Simulation.fs` — deterministic automatic driver for full-turn command
+      sequencing (used by the console harness and tests).
+
+### Inside `BismarckGame.Console`
+
+- `Program.fs` — simulation harness + persistence demo wiring.
+- `Persistence.fs` — XML stream/file read-write for:
+      - `GameOptions`
+      - `AppConfiguration`
+      - `SearchBoardMap`
+      - game status snapshots (`GameState` DTO round-trip)
+- `EventLogger.fs` — XML event logging for simulation command outcomes,
+      with movement-event tagging.
 
 ## Design notes
 
@@ -113,16 +130,22 @@ the full explanation.
       properly. A web search (Aug 2026) turned up no secondary source
       with exact per-ship fuel pools — BGG listings and blog posts
       discuss the game but don't reprint the Hit Record Pad numbers.
+      Confidence is now machine-readable via
+      `ShipStats.fuelFactorsConfidence` (`Confirmed` for Bismarck/Tirpitz,
+      `Estimated` for other fuel-tracked ships).
 - [ ] **`MaxMidshipsHits`** (box counts) is confirmed only for Bismarck
       (10) and Rodney (6), both cross-checked against worked examples in
       the rules text itself. The rest are box-counts from a photo at
-      lower confidence.
+      lower confidence. Confidence is now machine-readable via
+      `ShipStats.maxMidshipsHitsConfidence` (`Confirmed` for
+      Bismarck/Rodney, `Estimated` otherwise).
 - [ ] The **Shadow Table's 4th column** (`Tables/ShadowTable.fs`) is
-      transcribed as data but has no confirmed letter name — the ship
-      reference list only ever uses X/Y/Z, never a 4th category, and the
-      day-letter (A/B/C) print alignment on the physical card doesn't
-      resolve which of the 4 visible columns it is by direct pixel
-      alignment. `categoryOf` doesn't expose it.
+      transcribed as data and now exposed as
+      `ShadowTable.CategoryUnconfirmed4`, but it still has no confirmed
+      printed letter name — the ship reference list only ever uses X/Y/Z,
+      never a 4th category, and the day-letter (A/B/C) print alignment on
+      the physical card doesn't resolve which of the 4 visible columns it
+      is by direct pixel alignment.
 
 ### Rules not yet implemented
 - [ ] Naval combat attack-eligibility (rules 9.221-9.224): aircraft
@@ -174,9 +197,13 @@ the full explanation.
       ship has been located" as equivalent to "Bismarck/Prinz Eugen
       confirmed to have left Bergen" — the rule text distinguishes these
       and this project conflates them.
-- [ ] Convoys have no board position of their own (only a `ConvoyMarker`
-      tying a marker to an escorting ship) — Chance Table convoy-location
-      results are structural no-ops.
+- [ ] Convoys now have independent Search Board units that advance along
+      a scenario-defined route each turn, plus Chance-phase contact
+      tracking (now linked to specific convoy-unit IDs), active-escort
+      screening in Naval Combat, and sinking/VP resolution (rule 12.44).
+      Remaining simplifications: convoy movement is deterministic
+      one-step route advancement and escort interaction is a coarse
+      screen/no-screen gate rather than a full tactical escort model.
 
 ### Not started
 - [ ] Intermediate Game (submarines, destroyers, convoys-with-real-position,

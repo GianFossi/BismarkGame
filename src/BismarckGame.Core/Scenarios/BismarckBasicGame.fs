@@ -121,6 +121,27 @@ let private buildBoard () : SearchBoardMap =
 /// </summary>
 let searchBoard = buildBoard ()
 
+/// <summary>
+/// Convoy-route proxy for Chance Table convoy results (rows 10-12): this
+/// uses the scenario's patrol-line annotation sorted in reading order as
+/// a best-effort stand-in until a dedicated printed convoy route
+/// transcription is added.
+/// </summary>
+let private convoyRoutePath : GridCoordinate list =
+    searchBoard.Zones
+    |> Map.toSeq
+    |> Seq.choose (fun (coord, zone) -> if zone.IsOnBritishPatrolLine then Some coord else None)
+    |> Seq.sortBy (fun c -> c.Letter, c.Number)
+    |> Seq.toList
+
+let private convoyRouteZones : Set<GridCoordinate> = convoyRoutePath |> Set.ofList
+
+/// <summary>
+/// Five independent convoy counters for the Basic Game's 12.44 scoring
+/// track; each starts at a distinct point on the route approximation.
+/// </summary>
+let private initialConvoyRouteIndices : int list = [ 0; 1; 2; 3; 4 ]
+
 open BismarckGame.Core.Units
 open BismarckGame.Core.Tables
 open BismarckGame.Core.Tables.ShipStats
@@ -288,6 +309,10 @@ let scenario : ScenarioDefinition =
       FirstTurn = { Number = 4; IsNightTurn = false; IsEmergencyMovementTurn = true; Visibility = VisibilityLevel 4 }  // rule 7.15: turn 1 of play visibility is always level 4
       TurnLengthHours = 4
       DamagePoints = basicGameDamagePoints
+      ConvoyRouteZones = convoyRouteZones
+      ConvoyRoutePath = convoyRoutePath
+      InitialConvoyRouteIndices = initialConvoyRouteIndices
+      ConvoyCount = 5   // rule 12.44 scores the 1st..5th convoy explicitly.
       // British card: "13. 1600 May24 — Revenge — L3" and "14. 1600 May25
       // — Dorsetshire — Z20". Cross-referenced against the Time Record
       // Track (Tables/TimeAndVisibility.fs): 1600/May24 is turn 17,

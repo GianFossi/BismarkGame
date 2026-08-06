@@ -24,6 +24,33 @@ let ``ShipStats fuel pool is confirmed for Bismarck and Tirpitz only`` () =
     Assert.Equal(Some 12, ShipStats.shipStats.["Tirpitz"].FuelFactors)
 
 [<Fact>]
+let ``ShipStats fuel confidence marks only Bismarck and Tirpitz as confirmed`` () =
+    Assert.Equal(Some ShipStats.Confirmed, ShipStats.fuelFactorsConfidence "Bismarck")
+    Assert.Equal(Some ShipStats.Confirmed, ShipStats.fuelFactorsConfidence "Tirpitz")
+    Assert.Equal(Some ShipStats.Estimated, ShipStats.fuelFactorsConfidence "Rodney")
+    Assert.Equal(None, ShipStats.fuelFactorsConfidence "Norfolk")
+
+[<Fact>]
+let ``ShipStats MaxMidshipsHits confidence marks Bismarck and Rodney as confirmed`` () =
+    Assert.Equal(Some ShipStats.Confirmed, ShipStats.maxMidshipsHitsConfidence "Bismarck")
+    Assert.Equal(Some ShipStats.Confirmed, ShipStats.maxMidshipsHitsConfidence "Rodney")
+    Assert.Equal(Some ShipStats.Estimated, ShipStats.maxMidshipsHitsConfidence "Hood")
+
+[<Fact>]
+let ``ShipStats confidence report includes expected confirmed and estimated entries`` () =
+    let report = ShipStats.shipStatsConfidenceReport ()
+
+    Assert.Contains(report, fun e -> e.ShipName = "Bismarck" && e.StatName = "FuelFactors" && e.Confidence = ShipStats.Confirmed)
+    Assert.Contains(report, fun e -> e.ShipName = "Rodney" && e.StatName = "FuelFactors" && e.Confidence = ShipStats.Estimated)
+    Assert.Contains(report, fun e -> e.ShipName = "Rodney" && e.StatName = "MaxMidshipsHits" && e.Confidence = ShipStats.Confirmed)
+
+[<Fact>]
+let ``ShipStats confidence report omits fuel entries for cruisers`` () =
+    let report = ShipStats.shipStatsConfidenceReport ()
+
+    Assert.DoesNotContain(report, fun e -> e.ShipName = "Norfolk" && e.StatName = "FuelFactors")
+
+[<Fact>]
 let ``ShipStats cruisers have no fuel tracked (rule 5.21 exemption)`` () =
     Assert.Equal(None, ShipStats.shipStats.["Prinz Eugen"].FuelFactors)
     Assert.Equal(None, ShipStats.shipStats.["Norfolk"].FuelFactors)
@@ -84,6 +111,11 @@ let ``ShadowTable resolves Hold Contact at die 1 for every named category`` () =
     Assert.Equal(ShadowTable.HoldContact, ShadowTable.resolve ShadowTable.CategoryX 1 4 false)
     Assert.Equal(ShadowTable.HoldContact, ShadowTable.resolve ShadowTable.CategoryY 1 4 false)
     Assert.Equal(ShadowTable.HoldContact, ShadowTable.resolve ShadowTable.CategoryZ 1 4 false)
+
+[<Fact>]
+let ``ShadowTable exposes the unconfirmed fourth column explicitly`` () =
+    Assert.Equal(ShadowTable.HoldContact, ShadowTable.resolve ShadowTable.CategoryUnconfirmed4 5 4 false)
+    Assert.Equal(ShadowTable.LoseContact, ShadowTable.resolve ShadowTable.CategoryUnconfirmed4 6 4 false)
 
 [<Fact>]
 let ``ShadowTable categoryOf knows Hood is category Y`` () =

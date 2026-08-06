@@ -75,6 +75,24 @@ type ShipCombatStats =
       FuelFactors: int option }
 
 /// <summary>
+/// Confidence level for transcribed values that are not uniformly sourced
+/// at the same photo quality.
+/// </summary>
+type DataConfidence =
+    | Confirmed
+    | Estimated
+
+/// <summary>
+/// Confidence status for one transcribed stat of one ship.
+/// </summary>
+type ShipStatConfidenceEntry =
+    {
+        ShipName: string
+        StatName: string
+        Confidence: DataConfidence
+    }
+
+/// <summary>
 /// Keyed by ship name (not ShipId) since this table is scenario-agnostic
 /// and different scenarios may assign different ShipId strings to the
 /// same historical ship.
@@ -176,3 +194,57 @@ let temporaryEvasionLossPerMidshipsHit (shipName: string) (shipClass: ShipClass)
     | _, (Battleship | AircraftCarrier) -> 2
     | _, (HeavyCruiser | LightCruiser) -> 5
     | _, (Battlecruiser | PocketBattleship) -> 2   // not explicitly listed by the rule text found so far; grouped with "other battleships" as the closest stated category — verify if a clearer source turns up
+
+/// <summary>
+/// Confidence of a ship's fuel-factor transcription. Returns None when
+/// fuel is not tracked for that ship in the Basic Game model.
+/// </summary>
+let fuelFactorsConfidence (shipName: string) : DataConfidence option =
+    match shipStats.TryFind shipName with
+    | None -> None
+    | Some stats ->
+        match stats.FuelFactors with
+        | None -> None
+        | Some _ ->
+            if shipName = "Bismarck" || shipName = "Tirpitz" then Confirmed
+            else Estimated
+            |> Some
+
+/// <summary>
+/// Confidence of a ship's MaxMidshipsHits transcription.
+/// </summary>
+let maxMidshipsHitsConfidence (shipName: string) : DataConfidence option =
+    match shipStats.TryFind shipName with
+    | None -> None
+    | Some _ ->
+        if shipName = "Bismarck" || shipName = "Rodney" then Confirmed
+        else Estimated
+        |> Some
+
+/// <summary>
+/// Returns a flat list of confidence entries for transcribed values that
+/// currently carry explicit confidence semantics (FuelFactors and
+/// MaxMidshipsHits). Use this to quickly locate all Estimated entries for
+/// future source-photo re-verification.
+/// </summary>
+let shipStatsConfidenceReport () : ShipStatConfidenceEntry list =
+    shipStats
+    |> Map.toList
+    |> List.collect (fun (shipName, stats) ->
+        let fuelEntries =
+            match stats.FuelFactors, fuelFactorsConfidence shipName with
+            | Some _, Some confidence ->
+                [ { ShipName = shipName
+                    StatName = "FuelFactors"
+                    Confidence = confidence } ]
+            | _ -> []
+
+        let midshipsEntries =
+            match maxMidshipsHitsConfidence shipName with
+            | Some confidence ->
+                [ { ShipName = shipName
+                    StatName = "MaxMidshipsHits"
+                    Confidence = confidence } ]
+            | None -> []
+
+        fuelEntries @ midshipsEntries)

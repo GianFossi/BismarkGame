@@ -4,6 +4,7 @@ open Xunit
 open BismarckGame.Core.Common
 open BismarckGame.Core.Units
 open BismarckGame.Core.GameState
+open BismarckGame.Core.Markers
 open BismarckGame.Core.Update
 open BismarckGame.Tests.TestHelpers
 
@@ -168,6 +169,226 @@ let ``SearchZone finds nothing when capacity is below visibility`` () =
     | Ok state' -> Assert.Equal(0, state'.LocationMarkers.Length)
     | Error msg -> Assert.Fail msg
 
+// --- chance table convoy mechanics -----------------------------------------
+
+[<Fact>]
+let ``Chance roll 10 creates a convoy contact when the German ship is on route`` () =
+    let state = { (testState ()) with Phase = Chance }
+    let germanOnRoute = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3) }
+    let state' =
+        { state with
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanOnRoute.Id, germanOnRoute) } }
+
+    match update unusedTables (constantRoll 5) (RollChanceForShip(ShipId "GER-1")) state' with
+    | Error msg -> Assert.Fail msg
+    | Ok after ->
+        let contact = Assert.Single(after.ConvoyContacts)
+        Assert.Equal(coord 'C' 3, contact.Zone)
+        Assert.Equal(Some 1, contact.ConvoyId)
+        Assert.Equal(German, contact.Discoverer)
+        Assert.Equal(ChanceOnRoute, contact.Source)
+
+[<Fact>]
+let ``Chance roll 11 requires patrol and route proximity`` () =
+    let state = { (testState ()) with Phase = Chance }
+    let germanNearRoute =
+        { state.Players.[German].Ships.[ShipId "GER-1"] with
+            CurrentZone = Some(coord 'C' 1)
+            Mode = Patrol }
+    let state' =
+        { state with
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanNearRoute.Id, germanNearRoute) } }
+
+    let mutable seq11 = [ 5; 6 ]
+    let rollEleven () =
+        match seq11 with
+        | x :: xs -> seq11 <- xs; x
+        | [] -> 5
+
+    match update unusedTables rollEleven (RollChanceForShip(ShipId "GER-1")) state' with
+    | Error msg -> Assert.Fail msg
+    | Ok after ->
+        let contact = Assert.Single(after.ConvoyContacts)
+        Assert.Equal(coord 'C' 3, contact.Zone)
+        Assert.Equal(Some 1, contact.ConvoyId)
+        Assert.Equal(ChanceNearRoute, contact.Source)
+
+[<Fact>]
+let ``Chance roll 11 without patrol creates no convoy contact`` () =
+    let state = { (testState ()) with Phase = Chance }
+    let germanNearRouteNoPatrol =
+        { state.Players.[German].Ships.[ShipId "GER-1"] with
+            CurrentZone = Some(coord 'C' 1)
+            Mode = Movement }
+    let state' =
+        { state with
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanNearRouteNoPatrol.Id, germanNearRouteNoPatrol) } }
+
+    let mutable seq11 = [ 5; 6 ]
+    let rollEleven () =
+        match seq11 with
+        | x :: xs -> seq11 <- xs; x
+        | [] -> 5
+
+    match update unusedTables rollEleven (RollChanceForShip(ShipId "GER-1")) state' with
+    | Error msg -> Assert.Fail msg
+    | Ok after -> Assert.Empty(after.ConvoyContacts)
+
+[<Fact>]
+let ``Chance roll 12 creates a convoy contact when adjacent to route`` () =
+    let state = { (testState ()) with Phase = Chance }
+    let germanAdjacent = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 2) }
+    let state' =
+        { state with
+            Players =
+                state.Players
+                |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(germanAdjacent.Id, germanAdjacent) } }
+
+    let rollSix () = 6   // 6 + 6 = 12
+    match update unusedTables rollSix (RollChanceForShip(ShipId "GER-1")) state' with
+    | Error msg -> Assert.Fail msg
+    | Ok after ->
+        let contact = Assert.Single(after.ConvoyContacts)
+        Assert.Equal(coord 'C' 3, contact.Zone)
+        Assert.Equal(Some 1, contact.ConvoyId)
+        Assert.Equal(ChanceAdjacentToRoute, contact.Source)
+
+[<Fact>]
+let ``AttackConvoy in NavalCombat consumes contact and awards first-convoy VP`` () =
+    let state =
+        { (testState ()) with
+            Phase = NavalCombat
+            ConvoyUnits =
+                [ { Id = 1
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false } ]
+            ConvoyContacts =
+                [ { Zone = coord 'A' 1
+                    ConvoyId = Some 1
+                    Discoverer = German
+                    Source = ChanceOnRoute
+                    TurnLocated = 4 } ] }
+
+    match update unusedTables (constantRoll 3) (AttackConvoy(ShipId "GER-1", coord 'A' 1)) state with
+    | Error msg -> Assert.Fail msg
+    | Ok after ->
+        Assert.Empty(after.ConvoyContacts)
+        Assert.Equal(1, after.ConvoysSunkByGerman)
+        Assert.Equal(6, after.Players.[German].Score.Points)
+
+[<Fact>]
+let ``AttackConvoy outside NavalCombat is rejected`` () =
+    let state =
+        { (testState ()) with
+            Phase = Search
+            ConvoyContacts =
+                [ { Zone = coord 'A' 1
+                    ConvoyId = Some 1
+                    Discoverer = German
+                    Source = ChanceOnRoute
+                    TurnLocated = 4 } ] }
+    let result = update unusedTables (constantRoll 3) (AttackConvoy(ShipId "GER-1", coord 'A' 1)) state
+    Assert.True(isError result)
+
+[<Fact>]
+let ``AttackConvoy follows 12.44 VP progression for first three convoys`` () =
+    let state0 =
+        { (testState ()) with
+            Phase = NavalCombat
+            ConvoyUnits =
+                [ { Id = 1
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false }
+                  { Id = 2
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false }
+                  { Id = 3
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false } ]
+            ConvoyContacts =
+                [ { Zone = coord 'A' 1; ConvoyId = Some 1; Discoverer = German; Source = ChanceOnRoute; TurnLocated = 4 } ] }
+
+    let state1 =
+        { state0 with
+            ConvoysSunkByGerman = 1
+            ConvoyUnits =
+                [ { Id = 1
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = true }
+                  { Id = 2
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false }
+                  { Id = 3
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false } ]
+            ConvoyContacts = [ { Zone = coord 'A' 1; ConvoyId = Some 2; Discoverer = German; Source = ChanceOnRoute; TurnLocated = 4 } ]
+            Players =
+                state0.Players
+                |> Map.add German { state0.Players.[German] with Score = { state0.Players.[German].Score with Points = 6 } } }
+
+    let state2 =
+        { state0 with
+            ConvoysSunkByGerman = 2
+            ConvoyUnits =
+                [ { Id = 1
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = true }
+                  { Id = 2
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = true }
+                  { Id = 3
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false } ]
+            ConvoyContacts = [ { Zone = coord 'A' 1; ConvoyId = Some 3; Discoverer = German; Source = ChanceOnRoute; TurnLocated = 4 } ]
+            Players =
+                state0.Players
+                |> Map.add German { state0.Players.[German] with Score = { state0.Players.[German].Score with Points = 12 } } }
+
+    let p1 =
+        match update unusedTables (constantRoll 3) (AttackConvoy(ShipId "GER-1", coord 'A' 1)) state0 with
+        | Ok after -> after.Players.[German].Score.Points
+        | Error msg -> Assert.Fail msg; 0
+
+    let p2 =
+        match update unusedTables (constantRoll 3) (AttackConvoy(ShipId "GER-1", coord 'A' 1)) state1 with
+        | Ok after -> after.Players.[German].Score.Points
+        | Error msg -> Assert.Fail msg; 0
+
+    let p3 =
+        match update unusedTables (constantRoll 3) (AttackConvoy(ShipId "GER-1", coord 'A' 1)) state2 with
+        | Ok after -> after.Players.[German].Score.Points
+        | Error msg -> Assert.Fail msg; 0
+
+    Assert.Equal(6, p1)
+    Assert.Equal(12, p2)
+    Assert.Equal(20, p3)
+
 // --- phase sequencing -------------------------------------------------------
 
 [<Fact>]
@@ -184,3 +405,107 @@ let ``AdvancePhase from Chance increments the turn number using real card number
     match update unusedTables (constantRoll 3) AdvancePhase state with
     | Ok state' -> Assert.Equal(state.Turn.Number + 1, state'.Turn.Number)
     | Error msg -> Assert.Fail msg
+
+[<Fact>]
+let ``AdvancePhase from Chance moves live convoy units one route step`` () =
+    let state =
+        { (testState ()) with
+            Phase = Chance
+            ConvoyRoutePath = [ coord 'A' 1; coord 'A' 2; coord 'A' 3 ]
+            ConvoyUnits = [ { Id = 1; Zone = coord 'A' 1; RouteIndex = 0; Direction = BismarckGame.Core.Markers.East; IsSunk = false } ]
+            ConvoyContacts =
+                [ { Zone = coord 'A' 1
+                    ConvoyId = Some 1
+                    Discoverer = German
+                    Source = ChanceOnRoute
+                    TurnLocated = 4 } ] }
+
+    match update unusedTables (constantRoll 3) AdvancePhase state with
+    | Error msg -> Assert.Fail msg
+    | Ok after ->
+        let convoy = Assert.Single(after.ConvoyUnits)
+        Assert.Equal(coord 'A' 2, convoy.Zone)
+        Assert.Equal(1, convoy.RouteIndex)
+        let contact = Assert.Single(after.ConvoyContacts)
+        Assert.Equal(coord 'A' 2, contact.Zone)
+        Assert.Equal(Some 1, contact.ConvoyId)
+
+[<Fact>]
+let ``Sunk convoy units stop while live convoy units keep advancing across turns`` () =
+    let state0 =
+        { (testState ()) with
+            Phase = Chance
+            ConvoyRoutePath = [ coord 'A' 1; coord 'A' 2; coord 'A' 3; coord 'A' 4 ]
+            ConvoyUnits =
+                [ { Id = 1
+                    Zone = coord 'A' 2
+                    RouteIndex = 1
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = true }
+                  { Id = 2
+                    Zone = coord 'A' 2
+                    RouteIndex = 1
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false } ]
+            ConvoyContacts =
+                [ { Zone = coord 'A' 2
+                    ConvoyId = Some 2
+                    Discoverer = German
+                    Source = ChanceOnRoute
+                    TurnLocated = 4 } ] }
+
+    let state1 =
+        match update unusedTables (constantRoll 3) AdvancePhase state0 with
+        | Error msg -> Assert.Fail msg; state0
+        | Ok after -> after
+
+    let sunkAfter1 = state1.ConvoyUnits |> List.find (fun c -> c.Id = 1)
+    let liveAfter1 = state1.ConvoyUnits |> List.find (fun c -> c.Id = 2)
+    Assert.Equal(coord 'A' 2, sunkAfter1.Zone)
+    Assert.Equal(1, sunkAfter1.RouteIndex)
+    Assert.Equal(coord 'A' 3, liveAfter1.Zone)
+    Assert.Equal(2, liveAfter1.RouteIndex)
+
+    let state2 =
+        let toChance = { state1 with Phase = Chance }
+        match update unusedTables (constantRoll 3) AdvancePhase toChance with
+        | Error msg -> Assert.Fail msg; state1
+        | Ok after -> after
+
+    let sunkAfter2 = state2.ConvoyUnits |> List.find (fun c -> c.Id = 1)
+    let liveAfter2 = state2.ConvoyUnits |> List.find (fun c -> c.Id = 2)
+    Assert.Equal(coord 'A' 2, sunkAfter2.Zone)
+    Assert.Equal(1, sunkAfter2.RouteIndex)
+    Assert.Equal(coord 'A' 4, liveAfter2.Zone)
+    Assert.Equal(3, liveAfter2.RouteIndex)
+
+[<Fact>]
+let ``AttackConvoy is blocked while convoy escort remains active in zone`` () =
+    let baseState = testState ()
+    let britishWithEscort =
+        { baseState.Players.[British] with
+            Ships =
+                baseState.Players.[British].Ships
+                |> Map.add (ShipId "GBR-ESC-1")
+                    { (testShip "GBR-ESC-1" "EscortShip" British Battleship (coord 'A' 1)) with
+                        IsConvoyEscort = true } }
+    let state =
+        { baseState with
+            Phase = NavalCombat
+            ConvoyUnits =
+                [ { Id = 1
+                    Zone = coord 'A' 1
+                    RouteIndex = 0
+                    Direction = BismarckGame.Core.Markers.East
+                    IsSunk = false } ]
+            ConvoyContacts =
+                [ { Zone = coord 'A' 1
+                    ConvoyId = Some 1
+                    Discoverer = German
+                    Source = ChanceOnRoute
+                    TurnLocated = 4 } ]
+            Players = baseState.Players |> Map.add British britishWithEscort }
+
+    match update unusedTables (constantRoll 3) (AttackConvoy(ShipId "GER-1", coord 'A' 1)) state with
+    | Ok _ -> Assert.Fail "Expected attack to fail while escort ship is active"
+    | Error msg -> Assert.Contains("screened by active escort", msg)

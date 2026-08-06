@@ -13,7 +13,9 @@
     <Compile Include="TestHelpers.fs" />
     <Compile Include="TablesTests.fs" />
     <Compile Include="EngineTests.fs" />
+    <Compile Include="SimulationTests.fs" />
     <Compile Include="ScenarioTests.fs" />
+    <Compile Include="PersistenceTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

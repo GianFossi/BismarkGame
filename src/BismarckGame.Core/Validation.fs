@@ -29,6 +29,11 @@ type ValidationIssue =
     | ReinforcementDuplicateShip of ShipId
     | ReinforcementNonPositiveTurn of turn: int * ShipId
     | NoShipsForNationality of Nationality
+    | ConvoyRouteZoneOffBoard of GridCoordinate
+    | ConvoyRoutePathEmpty
+    | ConvoyRoutePathZoneOffBoard of GridCoordinate
+    | InitialConvoyRouteIndexOutOfRange of int
+    | ConvoyCountNonPositive of int
     | EmptySearchBoard
     | CarrierCanPatrol of ShipId   // rule 2.423 violation if scenario data sets this incorrectly
 
@@ -44,6 +49,11 @@ let private describe (issue: ValidationIssue) : string =
     | ReinforcementDuplicateShip (ShipId id) -> $"Ship '{id}' appears more than once in PendingReinforcements"
     | ReinforcementNonPositiveTurn (turn, ShipId id) -> $"PendingReinforcement for '{id}' has a non-positive turn number ({turn})"
     | NoShipsForNationality nat -> $"{nat} has no ships in its order of battle"
+    | ConvoyRouteZoneOffBoard coord -> $"Convoy route includes {coord}, which isn't a zone on this scenario's Search Board"
+    | ConvoyRoutePathEmpty -> "ConvoyRoutePath must contain at least one zone"
+    | ConvoyRoutePathZoneOffBoard coord -> $"ConvoyRoutePath includes {coord}, which isn't a zone on this scenario's Search Board"
+    | InitialConvoyRouteIndexOutOfRange i -> $"Initial convoy route index {i} is outside ConvoyRoutePath bounds"
+    | ConvoyCountNonPositive n -> $"ConvoyCount must be positive, got {n}"
     | EmptySearchBoard -> "SearchBoard has no zones at all"
     | CarrierCanPatrol (ShipId id) -> $"'{id}' is an AircraftCarrier but isn't marked CanPatrol=false (rule 2.423)"
 
@@ -115,12 +125,34 @@ let validate (scenario: ScenarioDefinition) : ValidationIssue list =
         |> List.filter (fun oob -> oob.Ships.IsEmpty)
         |> List.map (fun oob -> NoShipsForNationality oob.Nationality)
 
+    let convoyRouteIssues =
+        scenario.ConvoyRouteZones
+        |> Set.toList
+        |> List.choose (fun coord -> if scenario.SearchBoard.Zones.ContainsKey coord then None else Some(ConvoyRouteZoneOffBoard coord))
+
+    let convoyRoutePathIssues =
+        [ if scenario.ConvoyRoutePath.IsEmpty then
+              yield ConvoyRoutePathEmpty
+          for coord in scenario.ConvoyRoutePath do
+              if not (scenario.SearchBoard.Zones.ContainsKey coord) then
+                  yield ConvoyRoutePathZoneOffBoard coord ]
+
+    let initialConvoyIndexIssues =
+        scenario.InitialConvoyRouteIndices
+        |> List.choose (fun i ->
+            if scenario.ConvoyRoutePath.IsEmpty then
+                Some(InitialConvoyRouteIndexOutOfRange i)
+            elif i < 0 || i >= scenario.ConvoyRoutePath.Length then
+                Some(InitialConvoyRouteIndexOutOfRange i)
+            else None)
+
     let carrierPatrolIssues =
         allShips
         |> List.filter (fun s -> s.Class = AircraftCarrier && s.CanPatrol)
         |> List.map (fun s -> CarrierCanPatrol s.Id)
 
     let boardIssue = if scenario.SearchBoard.Zones.IsEmpty then [ EmptySearchBoard ] else []
+    let convoyCountIssue = if scenario.ConvoyCount <= 0 then [ ConvoyCountNonPositive scenario.ConvoyCount ] else []
 
     duplicateShipIds
     @ duplicateAirUnitIds
@@ -129,8 +161,12 @@ let validate (scenario: ScenarioDefinition) : ValidationIssue list =
     @ reinforcementIssues
     @ reinforcementDuplicates
     @ nationalityIssues
+    @ convoyRouteIssues
+    @ convoyRoutePathIssues
+    @ initialConvoyIndexIssues
     @ carrierPatrolIssues
     @ boardIssue
+    @ convoyCountIssue
 
 /// <summary>
 /// Convenience: human-readable report, one issue per line, or a

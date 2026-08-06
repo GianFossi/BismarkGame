@@ -74,6 +74,32 @@ type GameState =
     { Turn: GameTurn
       Phase: Phase
       SearchBoard: SearchBoardMap
+      /// <summary>
+      /// Scenario-defined convoy route zones used by Chance Table convoy
+      /// outcomes (rows 10-12 on the Basic Game Tables Card).
+      /// </summary>
+      ConvoyRouteZones: Set<GridCoordinate>
+      /// <summary>
+      /// Ordered convoy route path used to move independent convoy units.
+      /// </summary>
+      ConvoyRoutePath: GridCoordinate list
+      /// <summary>
+      /// Independent convoy units on the Search Board.
+      /// </summary>
+      ConvoyUnits: ConvoyUnit list
+      /// <summary>
+      /// Convoy contacts the German player has located so far.
+      /// </summary>
+      ConvoyContacts: ConvoyContactMarker list
+      /// <summary>
+      /// Total number of convoy targets available in the scenario.
+      /// Rule 12.44's schedule explicitly lists the 1st..5th convoy.
+      /// </summary>
+      ConvoysAvailable: int
+      /// <summary>
+      /// Running count of convoys sunk by the German side.
+      /// </summary>
+      ConvoysSunkByGerman: int
       Players: Map<Nationality, PlayerState>
       ShadowMarkers: ShadowMarker list
       LocationMarkers: LocationMarker list
@@ -164,6 +190,12 @@ type Command =
     /// longer a caller-supplied input.
     /// </summary>
     | RollChanceForShip of ShipId
+    /// <summary>
+    /// Resolve a convoy attack in the Naval Combat phase against a convoy
+    /// contact in `zone`. This awards German VP per rule 12.44's convoy
+    /// schedule.
+    /// </summary>
+    | AttackConvoy of attacker: ShipId * zone: GridCoordinate
     /// <summary>
     /// Releases a ship from a scenario-specific restriction (port lock,
     /// convoy escort, or patrol lock — British Order of Battle notes

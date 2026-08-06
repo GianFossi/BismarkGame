@@ -1,5 +1,7 @@
+%% Last synchronized: 2026-08-06
 %% 00-overview/01-command-dispatch-architecture.mmd
-%% Macro level: how one player action becomes a new GameState.
+%% Macro level: how one player action becomes a new GameState,
+%% and (optionally) a persisted event-log entry.
 %% This is the software architecture, not the game rules — see
 %% 00-turn-cycle.mmd for the rules-level view.
 flowchart LR
@@ -22,7 +24,12 @@ flowchart LR
     end
 
     ErrOut --> CallerHandles["Caller shows the error message"]
-    OkOut --> Project["PlayerView.project state viewer"]
+    OkOut --> EventObj["SimulationEvent<br/>(label, command, success, message)"]
+    ErrOut --> EventObj
+    EventObj --> LogOpt{"GameOptions.EnableEventLogging?"}
+    LogOpt -->|Yes| LogXml["EventLogger.saveEventLogToFile<br/>(logs/*.xml)"]
+    LogOpt -->|No| Project
+    LogXml --> Project["PlayerView.project state viewer"]
     Project --> Render["Redacted view rendered to each player<br/>(own units in full, enemy only where<br/>a LocationMarker/shadow has revealed them)"]
 
     style ErrOut fill:#fcc

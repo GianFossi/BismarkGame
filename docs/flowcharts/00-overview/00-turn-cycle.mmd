@@ -1,3 +1,4 @@
+%% Last synchronized: 2026-08-06
 %% 00-overview/00-turn-cycle.mmd
 %% Macro level: the Basic Game turn cycle (rule 4.0, Sequence of Play).
 %% Source: BismarckGame.Core/Update.fs's `phaseOrder` and the AdvancePhase
@@ -17,7 +18,7 @@ flowchart TD
     P9[["9. Chance Phase<br/>(see 09-chance.mmd)"]] --> EndTurn
 
     EndTurn{AdvancePhase<br/>called from Chance}
-    EndTurn --> Reset[/"Reset ZonesMovedThisTurn=0 for every ship<br/>Reset TurnsAirborne=0 for air units at base<br/>Look up new turn's IsNightTurn / IsEmergencyMovementTurn<br/>from Tables/TimeAndVisibility.timeRecordTrack"/]
+    EndTurn --> Reset[/"Reset ZonesMovedThisTurn=0 for every ship<br/>Reset TurnsAirborne=0 for air units at base<br/>Advance each live convoy unit one step on ConvoyRoutePath<br/>Look up new turn's IsNightTurn / IsEmergencyMovementTurn<br/>from Tables/TimeAndVisibility.timeRecordTrack"/]
     Reset --> Reinforce{Any PendingReinforcements<br/>due this turn?}
     Reinforce -->|Yes| Place[/"Place reinforcement ship at its zone<br/>Remove from PendingReinforcements"/]
     Reinforce -->|No| CheckEnd

@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # GitHub Copilot instructions for BismarckGame
+
+
 
 This repository is an F# implementation of the *Bismarck* (Avalon Hill,
 1978/79) board wargame's Basic Game rules. Read `README.md` first for the
@@ -10,9 +14,9 @@ context matters when you're asked to extend or fix something.
 
 ## Ground rules for suggestions in this repo
 
-1. **This codebase has never been compiled.** Treat every file as
-   "probably right but unverified." If you're asked to fix a build
-   error, trust the compiler over any comment in the code.
+1. **Always verify with the toolchain.** This repository builds/tests on
+  .NET 10, but treat compiler/test output as authoritative over comments
+  or stale docs when they disagree.
 2. **Every rule-derived number or table must cite its source** in a
    comment — the manual section (e.g. "rule 9.714"), or the photographed
    component ("Hit Record Pad", "Search Board Ship Counter"). Do not

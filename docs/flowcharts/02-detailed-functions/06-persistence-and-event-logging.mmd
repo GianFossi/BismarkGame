@@ -1,0 +1,26 @@
+%% Last synchronized: 2026-08-06
+%% 02-detailed-functions/06-persistence-and-event-logging.mmd
+%% Integration-layer persistence flow (console harness), not engine rules.
+flowchart TD
+    Start([Console harness finishes turn simulation]) --> Options[Load/save GameOptions XML]
+    Options --> OptCheck{"EnableEventLogging?"}
+
+    Options --> Config[Load/save AppConfiguration XML]
+    Config --> Paths[Resolve storage paths:<br/>xml dir, saves dir, logs dir]
+
+    Paths --> SaveMap[saveSearchMapToFile<br/>(SearchBoardMap -> SearchBoardMapDto -> XML)]
+    Paths --> SaveStatus[saveGameStatusToFile<br/>(GameState -> GameStatusDto -> XML)]
+    SaveStatus --> LoadStatus[loadGameStatusFromFile<br/>(XML -> DTO -> applyGameStatus)]
+
+    OptCheck -->|Yes| BuildEvents[toLogEntries from SimulationEvent list]
+    BuildEvents --> TagMove[isMovementCommand?<br/>MoveShip / MoveAirUnit / MoveShipInBattle]
+    TagMove --> SaveLog[saveEventLogToFile<br/>(GameEventLogDto -> XML)]
+    SaveLog --> LoadLog[loadEventLogFromFile]
+    OptCheck -->|No| SkipLog[Skip log write]
+
+    LoadStatus --> Done([Persistence complete])
+    LoadLog --> Done
+    SkipLog --> Done
+
+    style Start fill:#cde
+    style Done fill:#cde

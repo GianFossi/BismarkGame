@@ -24,6 +24,12 @@ type ShadowCategory =
     | CategoryX   // day letter A
     | CategoryY   // day letter B
     | CategoryZ   // day letter C
+    /// <summary>
+    /// The transcribed fourth (rightmost) shadow-table column, whose
+    /// printed letter label could not be confirmed from available photos.
+    /// No Basic Game unit is currently mapped to this category.
+    /// </summary>
+    | CategoryUnconfirmed4
 
 type ShadowResult =
     | HoldContact
@@ -78,5 +84,10 @@ let resolve (category: ShadowCategory) (rawDieRoll: int) (visibilityLevel: int) 
         (visibilityModifier.TryFind visibilityLevel |> Option.defaultValue 0)
         + (if targetMoving2Zones then 1 else 0)
     let modifiedRoll = max 1 (min 6 (rawDieRoll + modifier))
-    let column = match category with CategoryX -> columnX | CategoryY -> columnY | CategoryZ -> columnZ
+    let column =
+        match category with
+        | CategoryX -> columnX
+        | CategoryY -> columnY
+        | CategoryZ -> columnZ
+        | CategoryUnconfirmed4 -> columnUnnamed4
     column.TryFind modifiedRoll |> Option.defaultValue HoldContact

@@ -48,6 +48,7 @@
     <Compile Include="BattleBoard.fs" />
     <Compile Include="VictoryConditions.fs" />
     <Compile Include="GameState.fs" />
+    <Compile Include="Configuration.fs" />
 
     <!-- Data tables that the engine (Update.fs) and scenario data both
          depend on — must compile before both. -->
@@ -62,6 +63,9 @@
     <Compile Include="Scenario.fs" />
     <Compile Include="Scenarios\BismarckBasicGame.fs" />
     <Compile Include="Update.fs" />
+    <Compile Include="Simulation.fs" />
+    <Compile Include="Persistence.fs" />
+    <Compile Include="EventLogger.fs" />
 
     <!-- Data tables only needed by RulesTablesImpl. -->
     <Compile Include="Tables\NavalFireTables.fs" />

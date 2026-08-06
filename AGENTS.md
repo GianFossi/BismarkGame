@@ -1,4 +1,8 @@
+Last synchronized: 2026-08-06
+
 # AGENTS.md
+
+
 
 Generic instructions for AI coding agents (OpenAI Codex, and any tool
 that reads `AGENTS.md`) working in this repository. See also
@@ -21,9 +25,9 @@ dotnet restore BismarckGame.sln
 dotnet build BismarckGame.sln
 ```
 
-This code has **never been successfully compiled** as of this file's
-writing — expect to fix real build errors on first contact, not just
-style nits.
+The current branch builds and tests under .NET 10; still verify after
+every meaningful change because F# offside/indentation regressions can
+appear during edits.
 
 ## Test
 
@@ -45,9 +49,17 @@ can't silently break them.
 - `BismarckGame.Core/Scenarios/BismarckBasicGame.fs` — the one concrete
   scenario's data; the engine itself must stay scenario-agnostic (see
   `Scenario.fs`'s `ScenarioDefinition`).
+- `BismarckGame.Core/Configuration.fs` — typed runtime options and
+   storage/XML configuration values.
+- `BismarckGame.Core/Simulation.fs` — full-turn automatic command
+   simulation helpers used by tests/harness.
 - `BismarckGame.Core/PlayerView.fs` — the hidden-information projection;
   a real client renders from this, never from raw `GameState`.
 - `BismarckGame.Console/Program.fs` — a debugging harness, not a UI.
+- `BismarckGame.Console/Persistence.fs` — XML persistence helpers for
+   options/config/search-map/game-status.
+- `BismarckGame.Console/EventLogger.fs` — optional XML event logger for
+   command and movement traces.
 
 ## Rules for changes
 

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Paths>
+    <RootPath>.</RootPath>
+    <SaveDirectory>saves</SaveDirectory>
+    <LogsDirectory>logs</LogsDirectory>
+    <DatabasePath>data\bismarck.db</DatabasePath>
+    <ImagesDirectory>docs\Parts\counter-images</ImagesDirectory>
+    <XmlDirectory>config</XmlDirectory>
+    <OptionsFileName>game-options.xml</OptionsFileName>
+    <ConfigurationFileName>app-configuration.xml</ConfigurationFileName>
+    <GameStatusFileName>game-status.xml</GameStatusFileName>
+    <EventLogFileName>game-events.xml</EventLogFileName>
+  </Paths>
+  <Xml>
+    <IndentOutput>true</IndentOutput>
+    <OmitXmlDeclaration>false</OmitXmlDeclaration>
+    <EncodingName>utf-8</EncodingName>
+  </Xml>
+  <LastScenarioId>bismarck-1941-basic</LastScenarioId>
+  <LastStatusFilePath>.\config\game-status.xml</LastStatusFilePath>
+</AppConfiguration>
