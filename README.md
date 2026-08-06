@@ -106,14 +106,21 @@ to change. `SearchBoard.fs`'s `Zone.IsWhiteDot` flag and `neighbors`/
 `distanceWithin` functions are similarly generic over whatever
 `SearchBoardMap` is loaded.
 
-**Hidden information.** `GameState` itself is the authoritative,
-omniscient state (both sides' true positions) — that's what `Update.fs`
-needs to resolve rules correctly. `PlayerView.fs` is the redaction layer:
-given a `GameState` and a `Nationality`, it produces a `PlayerView` that
-only shows that side's own units at their true positions, plus the
-*opponent's* units only where a `LocationMarker` or successful shadow has
-actually revealed them. This is what a real multiplayer client should
-render — never the raw `GameState`.
+**Two players and hidden information.** `GameState` itself is the
+authoritative, omniscient state (both sides' true positions) — that's
+what `Update.fs` needs to resolve rules correctly. `PlayerView.fs` is the
+redaction layer: given a `GameState` and a `Nationality`, it produces a
+`PlayerView` that only shows that side's own units at their true
+positions, plus the *opponent's* units only where a `LocationMarker` or
+successful shadow has actually revealed them. `Players.fs` wraps that
+projection in the two actual Basic Game seats: the British player
+controls British and allied units, the German player controls German and
+allied units, and `submitCommand` rejects commands aimed at the opponent's
+ships, air units, task forces, searches, reports, or score sheet. That
+player-facing layer returns `Ganfoss.ROP` `Returns<'T,string>` values, so
+callers can handle errors and non-fatal warnings with Railway-Oriented
+Programming while the lower-level reducer remains the existing
+`Result<'T,string>` rules referee.
 
 ## Known limitations / TODO
 

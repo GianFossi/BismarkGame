@@ -7,18 +7,21 @@
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
     <InformationalVersion>v1.0.0</InformationalVersion>
+    <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="TestHelpers.fs" />
     <Compile Include="TablesTests.fs" />
     <Compile Include="EngineTests.fs" />
+    <Compile Include="PlayerTests.fs" />
     <Compile Include="SimulationTests.fs" />
     <Compile Include="ScenarioTests.fs" />
     <Compile Include="PersistenceTests.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="10.1.301" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />

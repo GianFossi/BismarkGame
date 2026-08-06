@@ -298,3 +298,24 @@ Tests added in `EngineTests.fs` and `TablesTests.fs` pin these behaviors.
 Open backlog after this pass remains reinforcement-combat entry (9.4x),
 Rodney/KGV/PoW asterisked gunnery exceptions (9.81-9.83), and full per-zone
 fog state.
+
+## 6. 2026-08 two-player access layer
+
+Added `BismarckGame.Core/Players.fs` as the multiplayer-facing layer over the
+existing omniscient `GameState` and redacted `PlayerView`. The standard roster
+has a British player seat and a German player seat; allied control deliberately
+maps to the owning Basic Game nationality because the current Basic Game model
+only distinguishes `British` and `German` (rule 2.421). `submitCommand`
+validates ownership before delegating to `Update.update`, so a client can let
+each player manage their own search, movement/combat commands, reports, and
+score without exposing or allowing direct control of the opponent's units. Tests
+in `PlayerTests.fs` pin the two seats, private dashboard projection, rejected
+opponent movement, and accepted own movement.
+
+Follow-up in the same area: `Players.fs` now uses `Ganfoss.ROP` 1.0.2 for the
+player-facing operation surface. Its public command-validation helpers return
+`Returns<'T,string>` so callers can carry warnings on success and errors on
+failure using ROP, while `Update.update` remains the lower-level
+`Result<GameState,string>` reducer. Because `Ganfoss.ROP` depends on
+`FSharp.Core >= 10.1.301`, all F# projects now disable the implicit SDK
+`FSharp.Core` reference and pin `FSharp.Core` 10.1.301 explicitly.
