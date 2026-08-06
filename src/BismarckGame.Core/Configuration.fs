@@ -10,7 +10,20 @@ module BismarckGame.Core.Configuration
 /// Runtime options that influence how a host app runs the engine.
 /// </summary>
 [<CLIMutable>]
-type GameOptions = { ScenarioId: string; UseFixedSeed: bool; RandomSeed: int; AutoSimulateTurns: int; AutoSaveEnabled: bool; AutoSaveEveryTurns: int; EnableEventLogging: bool }
+type GameOptions =
+    { ScenarioId: string
+      UseFixedSeed: bool
+      RandomSeed: int
+      AutoSimulateTurns: int
+      AutoSaveEnabled: bool
+      AutoSaveEveryTurns: int
+      EnableEventLogging: bool
+      EnableFullBattleBoardRules: bool
+      EnableFullWithdrawalRules: bool
+      EnableBattleReinforcements: bool
+      EnableSpecialShipRules: bool
+      EnablePerZoneFog: bool
+      EnableCompleteHuffDuff: bool }
 
 /// <summary>
 /// XML serializer behavior options for persistence helpers.
@@ -47,7 +60,13 @@ let defaultGameOptions : GameOptions =
       AutoSimulateTurns = 0
       AutoSaveEnabled = false
       AutoSaveEveryTurns = 1
-      EnableEventLogging = false }
+      EnableEventLogging = false
+      EnableFullBattleBoardRules = true
+      EnableFullWithdrawalRules = true
+      EnableBattleReinforcements = true
+      EnableSpecialShipRules = true
+      EnablePerZoneFog = true
+      EnableCompleteHuffDuff = true }
 
 /// <summary>
 /// Baseline XML persistence options used when no config file exists yet.

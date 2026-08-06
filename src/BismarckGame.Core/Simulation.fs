@@ -158,6 +158,7 @@ let simulateCurrentPhase (tables: IRulesTables) (roll: unit -> int) (state: Game
         let st1, searchEvents = runSearchPhase tables roll state
         runAdvance st1 searchEvents
     | AirAttack -> runAdvance state []
+    | TorpedoAttack -> runAdvance state []
     | NavalCombat ->
         let st1, convoyEvents = runNavalCombatPhase tables roll state
         runAdvance st1 convoyEvents

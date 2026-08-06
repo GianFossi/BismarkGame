@@ -1,0 +1,274 @@
+
+---PAGE 1---
+From The General 16/2  BISMARCK 
+ 
+5.28 In the basic game, if the Bismarck breaks out with a move of 3 or 
+less could the Prinz Eugen still move 4 or 5 at no fuel cost?  
+ 
+A. Yes. 
+ 
+7.23 If German ships have passed through a zone must their general type 
+and number be revealed?  
+ 
+A. Yes. 
+ 
+9.64 In determining the shots that can he fired, are the salvoes available 
+first assigned to a target and then halved? Or are the salvoes available 
+halved and then the shots divided among the targets? 
+ 
+A. The salvoes are assigned and then halved. 
+ 
+9.716'1f a ship is firing directly into a ship's bow or stern.' By 'directly', 
+do you mean a firing ship is firing directly at a bow or stern if it is only 
+in the hex directly in front of the bow or behind the stem? Or do You 
+mean a ship is firing directly at the bow or stern if it is anywhere in the 
+bow or stem sectors as defined in 9.67? 
+ 
+A. Directly in front of the bow or behind the stern as indicated by the 
+shaded hexes in the diagram in 9.716. 
+ 
+9.717 If a ship with a 0 in a secondary hit box receives a secondary hit 
+on that side, must the box be crossed out before any secondary hits are 
+treated as midships hits? 
+ 
+A. Yes. 
+ 
+Q. Is K22 considered a coast hex?  
+ 
+A. Yes. 
+ 
+23.21 Can destroyers refuel as per 17.0  
+ 
+A. No.  
+ 
+Q. Is combat allowed when the visibility is X?  
+ 
+A. No. 
+ 
+35.0 Ferrol Table - Is the Spanish reaction to the British Raid Table 
+triggered by a British attack against German ships in port? 
+ 
+A. Yes. 
+ 
+Q. Are evasion losses due to torpedo damage permanent or repairable? 
+ 
+A. Repairable in port only. 
+ 
+Q. May ships in Ferrol refuel? Replenish ammunition? 
+ 
+A. Yes. In case of Ammo, yes for die roll 2. No for die roll 3-5 on Ferrol 
+table. 
+ 
+29.3 Is air loss determined before or after penetration? 
+ 
+A. After air penetration. 
+ 
+Battle Board Procedure. 
+ 
+Q. Can ships move through hexes containing other friendly ships? 
+ 
+A. No. 
+ 
+Q. Can a ship make a direction change before moving into another hex? 
+ 
+A. Yea. 
+ 
+Q. Can a ship, more than six hexes away from all enemy ships, but not 
+designated as a withdrawing ship, withdraw immediately anyway? 
+ 
+A. No. 
+ 
+Q. Does a ship with one gun box left get one shot, or is it rounded down 
+to none? Is a ship with one gun box that is halved then halved again 
+unable to fire, or does it still get one shot? 
+ 
+A. Ships always get one shot (if they have at least one gun box left). 
+ 
+Q. If the Prince of Wales, King George V, or the Tirpitz are firing only 
+one section of their guns (bow or stern), do they have to throw to see if 
+one section jams, or can they automatically jam the non-firing section?  
+ 
+A. They still must roll dice to determine which section jams. If it is 
+the non-firing section, luck is on your side. 
+ 
+Q. Does a ship with 0 listed for secondary armament take one secondary 
+hit?  
+ 
+A. Yes.  
+ 
+Q. Can ships torpedoes be fired through hexes occupied by other ships 
+(friendly and enemy)?  
+ 
+A. Yes.  
+ 
+Q. Does fog affect shadowing?  
+ 
+A. No.  
+ 
+Q. Can German ships attack convoys when the visibility is X?  
+ 
+A. No.  
+ 
+Q. When using additional German ships or French ships under German 
+control with the Basic Game rules, does the British Player have to throw 
+on the Chance Table for each German/French ship in the game? Can 
+each ship attack convoys as a result of the chart?  
+ 
+A. Yes to both questions. Of course, German ships in task force only 
+have to abide by the first chance roll for any ship in each task force.  
+ 
+Q. When is the Spanish Reaction To British Raid Table used?  
+ 
+A. if German ships have entered Ferrol and are then attacked by British 
+planes there.  
+ 
+Q. Which column on the Chance Table would a ship in O17 use (A, B or 
+C?). A ship in O18?  
+ 
+A. 017 - Column A, 018 - Column C.  
+  
+Q. Are the evasion rating modifiers on the Ship Combat Torpedo Table 
+correct? Are these used per Intermediate rule 19.5? What kind of 
+damage do these hits cause?  
+ 
+A. The modifiers are correct. Omitted: A ship which evades gets a -1 to 
+the die. Damage is rolled on the Torpedo Damage Table.  
+ 
+Q. Is the listing of a modifier for visibility level 7 on the Air Loss Table 
+a mistake, since planes cannot fly when the visibility is 7 or worse?  
+ 
+
+---PAGE 2---
+A. They cannot take off in visibility 7 or worse. They can fly into and 
+attack in a zone in visibility 7 or worse.  
+ 
+Q. Can British ships move into German ports?  
+ 
+A. No.  
+ 
+Q. Can German ships move into British ports?  
+ 
+A. No.  
+ 
+Q. Can British air units attack German ships in port? 
+ 
+A. Yes. 
+ 
+Q. Can German air units attack British ships in port? 
+ 
+A. No, unless the Intermediate Port rule (37.0) is used. 
+ 
+Q. Does the intermediate Game end when the Bismarck enters a port? 
+ 
+A. No. 
+ 
+Q. Why is the Scheer (PB) symbol on the back of the counter smaller 
+than the Prince Eugen's symbol (CA)? 
+ 
+A. Because the Scheer was a small ship whose silhouette was not as 
+similar to a battleship as was the Prince Eugen's. 
+ 
+Q. Can a ship repairing at sea repair the same section in more than one 
+turn as long as it doesn't throw an Unsuccessful attempt, until it has only 
+one damaged box left? 
+ 
+A. Yes. 
+ 
+Q. The Suffolk and Norfolk shadowed the Bismarck in history, yet in 
+the game they can only do so by risking an attack by the Bismarck and 
+Prince Eugen, because the evasion rating of the Eugen enables it to 
+engage the two British cruisers, which means the Bismarck can also 
+engage if in a task force with the Eugen. Is there any way to avoid this 
+situation? 
+ 
+A. The Bismarck and Eugen must be able to locate these ships by search 
+in order to attack them. Once on the board the cruisers can outrace the 
+Bismarck and need deal only with the Prince Eugen. 
+ 
+Q. Does the French CT Flotilla function the same as a destroyer flotilla? 
+ 
+A. Yes 
+ 
+Bismarck errata 
+ 
+Rules Manual 
+ 
+For all Rectangular Ship Counters: The stern of the ship is always next 
+to its name. The bow of the ship is always next to its evasion rating. 
+ 
+8.18 Last sentence - Change the word 'decreased' to 'increased'. 
+ 
+9.222 add to the next to last sentence: 'When a task force is attacking, its 
+current evasion level is that of the fastest ship (excluding aircraft 
+carriers)'.  
+ 
+Major Change: No ship, convoy or air combat can occur in visibility 
+level X. Ignore any and all rules to the contrary.  
+ 
+17.3 first sentence - change 'Z20' to read 'Z10'.  
+ 
+Add 19.7 The effect of each hit is resolved on the Torpedo Damage 
+Table. 
+ 
+23.53 Change the first sentence to read '...the British player rolls two 
+dice...'  
+ 
+27.52 Change the first sentence to read 'Land-based bomber and carrier-
+based bomber attacks, land-based bomber air units from different home 
+bases or carrier-based air attacks from different carriers not in the same 
+task force can never be combined. Only bomber air units from the 
+carrier or carriers in the task force can combine their strength in attack.'  
+ 
+Add - '40.7 Ships in port may repair two evasion factors per turn.' 
+ 
+41.5 delete last sentence beginning with 'If a shadowing ship...' 
+ 
+55.11 change '(p.34)' to '(p.35)' 
+ 
+58.5 delete word 'light' 
+ 
+p.28 The ammo for Prinz Eugen and Bismarck must be switched. 
+ 
+p.31 Delete the specifications for Exeter on page 31. The correct 
+specifications are on page 33. 
+ 
+Terrain Effects Chart.  
+ 
+3. Coast Zone - Change last sentence to read 'German ships cannot enter 
+a port zone in Great Britain'. 
+ 
+IMPORTANT - British and German Player Aid Cards - The signs of the 
+modifiers in the Visibility Track must be reversed e.g., -1 in the level 1 
+box must be changed to +1; the +2 in the Level X box must be changed 
+to -2, etc.  
+ 
+Intermediate Tables Card, Phase 3 Intermediate Shadow Table - Change 
+'Br LR Recon' under column B to read 'BR Air Recon'. Add 'All Ger 
+Ships - Z' to column C.  
+ 
+Intermediate Tables Card, Phase 9 Ship Combat Torpedo Table - Add to 
+'Modifications to Colored Die' - 'Ship Conducting Evasion: -1 to colored 
+die'.  
+ 
+Basic Game Tables Card, Shadow Table Modifications to Die Roll - 
+delete Level 0 modification. Change Level 1 modification from 0 to -1.  
+ 
+IMPORTANT ADDITION '9.57 On the battle board, a ship can move 
+only into the hex that its bow points'. Although this is already inferred in 
+the rules, it is not exactly spelled out.  
+ 
+Add 9.57 In addition to the movement possibilities permitted to ships at 
+an evasion level of 30 or greater, allow all cruisers (heavy and light) 
+with such an evasion level an additional move for a total of three hexes 
+straight ahead as long as they make no turns.  
+ 
+Reformatted and typos corrected.  
+Original from http://grognard.com/ 
+NB submitted by John Kula (kula@telus.net) 
+on behalf of the Strategy Gaming Society 
+(http://www.boardgamegeek.com/~sgs),  
+originally collected by Andrew Webber  
+(gbm@wwwebbers.com) 
+ 
+ 
+ 

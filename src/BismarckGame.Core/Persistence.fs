@@ -35,6 +35,7 @@ type ShipStatusDto =
       EvasionRating: int
       MidshipsHits: int
       PermanentEvasionLoss: int
+      TorpedoesRemaining: int
       ZonesMovedThisTurn: int
       IsSunk: bool
       IsConvoyEscort: bool
@@ -108,10 +109,31 @@ type BattleShipDto =
       GunSections: BattleGunSectionDto array }
 
 [<CLIMutable>]
+type ReinforcementAttemptDto = { ShipId: string; Attempts: int }
+
+[<CLIMutable>]
+type TorpedoSalvoDto = { ShipId: string; Salvoes: int }
+
+[<CLIMutable>]
+type TorpedoTargetDto = { FirerId: string; TargetId: string }
+
+[<CLIMutable>]
+type TaskForceReinforcementAttemptDto = { TaskForceId: int; Attempts: int }
+
+[<CLIMutable>]
 type BattleStatusDto =
     { Id: int
+      ZoneLetter: string
+      ZoneNumber: int
       Round: int
-      Ships: BattleShipDto array }
+      Ships: BattleShipDto array
+      ReinforcementAttempts: ReinforcementAttemptDto array
+      TaskForceReinforcementAttempts: TaskForceReinforcementAttemptDto array
+      TorpedoSalvosFired: TorpedoSalvoDto array
+      TorpedoTargets: TorpedoTargetDto array
+      DefensiveFireResolved: string array
+      SpecialFireChecked: string array
+      FiredOrders: string array }
 
 [<CLIMutable>]
 type PlayerScoreDto =
@@ -131,6 +153,7 @@ type GameStatusDto =
       IsNightTurn: bool
       IsEmergencyMovementTurn: bool
       Visibility: int
+      FogZones: string array
       Phase: string
       GermanLocatedTurn: int
       ConvoysAvailable: int
@@ -342,6 +365,7 @@ let private phaseToString = function
     | ShipMovement -> "ShipMovement"
     | Search -> "Search"
     | AirAttack -> "AirAttack"
+    | TorpedoAttack -> "TorpedoAttack"
     | NavalCombat -> "NavalCombat"
     | Chance -> "Chance"
 
@@ -353,6 +377,7 @@ let private parsePhase (text: string) =
     | "ShipMovement" -> ShipMovement
     | "Search" -> Search
     | "AirAttack" -> AirAttack
+    | "TorpedoAttack" -> TorpedoAttack
     | "NavalCombat" -> NavalCombat
     | "Chance" -> Chance
     | _ -> UnitAvailability
@@ -382,6 +407,17 @@ let private parseGunSection (text: string) =
     | "PortGuns" -> PortGuns
     | "StarboardGuns" -> StarboardGuns
     | _ -> BowGuns
+
+let private fireRangeToString = function
+    | RangeA -> "RangeA"
+    | RangeB -> "RangeB"
+    | OutOfRange -> "OutOfRange"
+
+let private parseFireRange (text: string) =
+    match text with
+    | "RangeB" -> RangeB
+    | "OutOfRange" -> OutOfRange
+    | _ -> RangeA
 
 let private hexSideToString = function
     | HexN -> "HexN" | HexNE -> "HexNE" | HexSE -> "HexSE"
@@ -432,6 +468,7 @@ let captureGameStatus (state: GameState) : GameStatusDto =
                    EvasionRating = s.EvasionRating
                    MidshipsHits = s.MidshipsHits
                    PermanentEvasionLoss = s.PermanentEvasionLoss
+                   TorpedoesRemaining = s.TorpedoesRemaining
                    ZonesMovedThisTurn = s.ZonesMovedThisTurn
                    IsSunk = s.IsSunk
                    IsConvoyEscort = s.IsConvoyEscort
@@ -536,7 +573,41 @@ let captureGameStatus (state: GameState) : GameStatusDto =
                        IsSunk = s.IsSunk
                        GunSections = sections } : BattleShipDto))
                 |> List.toArray
-            ({ Id = b.Id; Round = b.Round; Ships = ships } : BattleStatusDto))
+            let checkedShips = b.SpecialFireChecked |> Set.toArray |> Array.map (fun (ShipId id) -> id)
+            let fired =
+                b.FiredOrders
+                |> Set.toArray
+                |> Array.map (fun (ShipId id, section, range) -> $"{id}|{gunSectionToString section}|{fireRangeToString range}")
+            ({ Id = b.Id
+               ZoneLetter = string b.Zone.Letter
+               ZoneNumber = b.Zone.Number
+               Round = b.Round
+               Ships = ships
+               ReinforcementAttempts =
+                   b.ReinforcementAttempts
+                   |> Map.toList
+                   |> List.map (fun (sid, attempts) ->
+                       let (ShipId id) = sid
+                       { ShipId = id; Attempts = attempts })
+                   |> List.toArray
+               TaskForceReinforcementAttempts =
+                   b.TaskForceReinforcementAttempts
+                   |> Map.toList
+                   |> List.map (fun (TaskForceId id, attempts) -> { TaskForceId = id; Attempts = attempts })
+                   |> List.toArray
+               TorpedoSalvosFired =
+                   b.TorpedoSalvosFired
+                   |> Map.toList
+                   |> List.map (fun (ShipId id, salvoes) -> { ShipId = id; Salvoes = salvoes })
+                   |> List.toArray
+               TorpedoTargets =
+                   b.TorpedoTargets
+                   |> Map.toList
+                   |> List.map (fun (ShipId firer, ShipId target) -> { FirerId = firer; TargetId = target })
+                   |> List.toArray
+               DefensiveFireResolved = b.DefensiveFireResolved |> Set.toArray |> Array.map (fun (ShipId id) -> id)
+               SpecialFireChecked = checkedShips
+               FiredOrders = fired } : BattleStatusDto))
         |> List.toArray
 
     let scores =
@@ -552,6 +623,7 @@ let captureGameStatus (state: GameState) : GameStatusDto =
       IsNightTurn = state.Turn.IsNightTurn
       IsEmergencyMovementTurn = state.Turn.IsEmergencyMovementTurn
       Visibility = let (VisibilityLevel v) = state.Turn.Visibility in v
+      FogZones = state.FogZones |> Set.toArray |> Array.map string
       Phase = phaseToString state.Phase
       GermanLocatedTurn = state.GermanLocatedTurn |> Option.defaultValue 0
       ConvoysAvailable = state.ConvoysAvailable
@@ -591,6 +663,7 @@ let applyGameStatus (snapshot: GameStatusDto) (state: GameState) : GameState =
                           Mode = parseShipMode dto.Mode
                           CurrentZone = parseZone dto.CurrentZone
                           Fuel = None
+                          TorpedoesRemaining = dto.TorpedoesRemaining
                           TaskForce = None
                           IsConvoyEscort = dto.IsConvoyEscort
                           ZonesMovedThisTurn = dto.ZonesMovedThisTurn
@@ -607,6 +680,7 @@ let applyGameStatus (snapshot: GameStatusDto) (state: GameState) : GameState =
                         EvasionRating = dto.EvasionRating
                         MidshipsHits = dto.MidshipsHits
                         PermanentEvasionLoss = dto.PermanentEvasionLoss
+                        TorpedoesRemaining = dto.TorpedoesRemaining
                         ZonesMovedThisTurn = dto.ZonesMovedThisTurn
                         IsSunk = dto.IsSunk
                         IsConvoyEscort = dto.IsConvoyEscort
@@ -745,9 +819,44 @@ let applyGameStatus (snapshot: GameStatusDto) (state: GameState) : GameState =
                        IsWithdrawing = s.IsWithdrawing
                        IsSunk = s.IsSunk } : BattleShipState))
                 |> Map.ofList
-            ({ Id = b.Id; Round = b.Round; Ships = ships } : BattleBoardState))
+            (let zoneCoordinate =
+                 { Letter = (if String.IsNullOrWhiteSpace b.ZoneLetter then 'A' else b.ZoneLetter.[0])
+                   Number = b.ZoneNumber }
+             { Id = b.Id
+               Zone = zoneCoordinate
+               Round = b.Round
+               Ships = ships
+               ReinforcementAttempts =
+                   b.ReinforcementAttempts
+                   |> Array.toList
+                   |> List.map (fun a -> ShipId a.ShipId, a.Attempts)
+                   |> Map.ofList
+               TaskForceReinforcementAttempts =
+                   b.TaskForceReinforcementAttempts
+                   |> Array.toList
+                   |> List.map (fun a -> TaskForceId a.TaskForceId, a.Attempts)
+                   |> Map.ofList
+               TorpedoSalvosFired =
+                   b.TorpedoSalvosFired
+                   |> Array.toList
+                   |> List.map (fun a -> ShipId a.ShipId, a.Salvoes)
+                   |> Map.ofList
+               TorpedoTargets =
+                   b.TorpedoTargets
+                   |> Array.toList
+                   |> List.map (fun a -> ShipId a.FirerId, ShipId a.TargetId)
+                   |> Map.ofList
+               DefensiveFireResolved = b.DefensiveFireResolved |> Array.map ShipId |> Set.ofArray
+               SpecialFireChecked = b.SpecialFireChecked |> Array.map ShipId |> Set.ofArray
+               FiredOrders =
+                   b.FiredOrders
+                   |> Array.choose (fun text ->
+                       let parts = text.Split('|')
+                       if parts.Length = 3 then Some(ShipId parts.[0], parseGunSection parts.[1], parseFireRange parts.[2]) else None)
+                   |> Set.ofArray } : BattleBoardState))
 
     { state with
+        FogZones = snapshot.FogZones |> Array.choose parseZone |> Set.ofArray
         Turn =
             { Number = snapshot.TurnNumber
               IsNightTurn = snapshot.IsNightTurn

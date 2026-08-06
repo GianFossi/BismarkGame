@@ -47,6 +47,8 @@ type ShipCounter =
       /// cruisers are fuel-exempt in the Basic Game (rule 5.21).
       /// </summary>
       Fuel: FuelState option
+      /// <summary>Unspent torpedo salvoes; zero for ships without torpedoes.</summary>
+      TorpedoesRemaining: int
       TaskForce: TaskForceId option
       IsConvoyEscort: bool
       /// <summary>

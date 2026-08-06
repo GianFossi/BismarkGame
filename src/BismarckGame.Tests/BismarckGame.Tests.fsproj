@@ -18,6 +18,16 @@
     <Compile Include="SimulationTests.fs" />
     <Compile Include="ScenarioTests.fs" />
     <Compile Include="PersistenceTests.fs" />
+    <Compile Include="FeatureCoverageTests.fs" />
+    <Compile Include="RuleMatrixTests.fs" />
+    <Compile Include="Rule9ErrataTests.fs" />
+    <Compile Include="ErrataRulesTests.fs" />
+    <Compile Include="ErrataStateTests.fs" />
+    <Compile Include="TorpedoDamageTableTests.fs" />
+    <Compile Include="TorpedoReducerTests.fs" />
+    <Compile Include="SubmarineAttackTableTests.fs" />
+    <Compile Include="BasicCompletionTests.fs" />
+    <Compile Include="FinalRuleAuditTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

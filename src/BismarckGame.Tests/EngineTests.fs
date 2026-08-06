@@ -394,12 +394,12 @@ let ``AttackConvoy follows 12.44 VP progression for first three convoys`` () =
 // --- phase sequencing -------------------------------------------------------
 
 [<Fact>]
-let ``AdvancePhase cycles through all nine phases back to UnitAvailability`` () =
+let ``AdvancePhase cycles through all phases back to UnitAvailability`` () =
     let state = { (testState ()) with Phase = UnitAvailability }
     let rec advanceN n s =
         if n = 0 then s else advanceN (n - 1) (update unusedTables (constantRoll 3) AdvancePhase s |> Result.defaultWith (fun e -> failwith e))
-    let afterNine = advanceN 9 state
-    Assert.Equal(UnitAvailability, afterNine.Phase)
+    let afterAll = advanceN 10 state
+    Assert.Equal(UnitAvailability, afterAll.Phase)
 
 [<Fact>]
 let ``AdvancePhase from Chance increments the turn number using real card numbering`` () =
@@ -665,7 +665,7 @@ let ``Slower attacker cannot force naval combat against faster defender`` () =
     Assert.True(isError result)
 
 [<Fact>]
-let ``Shadowing attacker cannot initiate combat against unshadowed enemy ships`` () =
+let ``Errata 41.5 allows a shadowing attacker to initiate combat against another enemy ship`` () =
     let state = testState ()
     let attacker = { state.Players.[British].Ships.[ShipId "GBR-1"] with CurrentZone = Some(coord 'C' 3); EvasionRating = 35; MaxEvasionRating = 35 }
     let g1 = { state.Players.[German].Ships.[ShipId "GER-1"] with CurrentZone = Some(coord 'C' 3); EvasionRating = 30; MaxEvasionRating = 30 }
@@ -679,4 +679,4 @@ let ``Shadowing attacker cannot initiate combat against unshadowed enemy ships``
                 |> Map.add German { state.Players.[German] with Ships = state.Players.[German].Ships.Add(g1.Id, g1).Add(g2.Id, g2) }
             ShadowMarkers = [ { Zone = coord 'C' 3; ShadowingUnit = UnitId "GBR-1"; ShadowedUnit = UnitId "GER-1" } ] }
     let result = update unusedTables (constantRoll 3) (InitiateNavalCombat(coord 'C' 3, British)) state'
-    Assert.True(isError result)
+    Assert.True(match result with Ok _ -> true | Error _ -> false)

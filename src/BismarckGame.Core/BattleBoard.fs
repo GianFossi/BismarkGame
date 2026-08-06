@@ -7,6 +7,7 @@
 module BismarckGame.Core.BattleBoard
 
 open BismarckGame.Core.Common
+open BismarckGame.Core.SearchBoard
 
 /// <summary>
 /// Cubic hex coordinates (q + r + s = 0). Chosen over offset coordinates
@@ -255,5 +256,40 @@ type BoardEdge =
 /// </summary>
 type BattleBoardState =
     { Id: int
+      Zone: GridCoordinate
       Ships: Map<ShipId, BattleShipState>
-      Round: int }
+      Round: int
+      ReinforcementAttempts: Map<ShipId, int>
+      TaskForceReinforcementAttempts: Map<TaskForceId, int>
+      TorpedoSalvosFired: Map<ShipId, int>
+      TorpedoTargets: Map<ShipId, ShipId>
+      DefensiveFireResolved: Set<ShipId>
+      SpecialFireChecked: Set<ShipId>
+      FiredOrders: Set<ShipId * GunSectionType * FireRange> }
+
+/// <summary>
+/// Returns the legal movement paths for a ship in one combat round. A path
+/// includes the starting hex and honours the printed movement allowance,
+/// the number of direction changes, the bow-only movement rule (errata
+/// 9.57), and occupied-hex blocking (errata clarification).
+/// </summary>
+let legalMovementPaths (occupied: Set<HexCoord>) (ship: BattleShipState) (hexesMoved: int) (directionChanges: int) : HexCoord list list =
+    if hexesMoved < 0 || directionChanges < 0 then
+        []
+    else
+        let rotate (side: HexSide) delta : HexSide =
+            if delta = 1 then side.RotateClockwise
+            elif delta = -1 then side.RotateCounterclockwise
+            else side
+        let rec walk remaining turns direction position path =
+            if remaining = 0 then
+                if turns = directionChanges then [ List.rev path ] else []
+            elif turns > directionChanges then []
+            else
+                [ -1; 0; 1 ]
+                |> List.collect (fun delta ->
+                    let nextDirection = rotate direction delta
+                    let next = hexNeighbor position nextDirection
+                    if not (isOnBoard next) || occupied.Contains next then []
+                    else walk (remaining - 1) (turns + (if delta = 0 then 0 else 1)) nextDirection next (next :: path))
+        walk hexesMoved 0 ship.Facing ship.Position [ ship.Position ]

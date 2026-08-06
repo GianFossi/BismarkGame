@@ -294,6 +294,29 @@ shape without introducing a large model redesign:
 - `NavalFireTables.resolve` now enforces 9.84: cruiser targets use Special
   Damage Table A regardless of main-fire range.
 
+## 6. 2026-08 Battle Board and rule preferences pass
+
+`BattleBoard.legalMovementPaths` and the `MoveShipInBattle` reducer branch
+now reject paths that violate the movement allowance, bow direction, board
+boundary, or occupied friendly hex restriction. `WithdrawFromBattle` now
+checks the 9.93 evasion requirement and marks the ship as withdrawing;
+`AdvanceBattleRound` resolves the 9.97 successful-withdrawal condition and
+increments the battle round. `GameOptions` now persists explicit switches
+for complete Battle Board movement, withdrawal, reinforcements, special
+ship fire rules, per-zone fog, and complete Huff-Duff behavior. The default
+values enable the complete rules while the remaining reducer slices are
+being completed.
+
+## 7. 2026-08 reinforcement and special-fire pass
+
+`BattleBoardState` now records its Search Board zone and progressive
+reinforcement attempts. `AttemptBattleReinforcement` implements rule 9.41
+from round 3, with delayed attempts and rule 9.42's six-hex entry check;
+the state is included in XML persistence. Naval fire now applies Rodney's
+9.81 stern-hit conversion and the KGV/Prince of Wales 9.83 gun-section
+reduction. Rodney's 9.82 interaction between simultaneous bow/stern fire
+still needs a round-level fire declaration to be represented exactly.
+
 Tests added in `EngineTests.fs` and `TablesTests.fs` pin these behaviors.
 Open backlog after this pass remains reinforcement-combat entry (9.4x),
 Rodney/KGV/PoW asterisked gunnery exceptions (9.81-9.83), and full per-zone

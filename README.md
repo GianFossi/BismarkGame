@@ -155,17 +155,24 @@ the full explanation.
       is by direct pixel alignment.
 
 ### Rules not yet implemented
-- [ ] Reinforcement combat entry (rule 9.4x) — ships arriving as
-      reinforcements mid-battle, the 6-hexes-away placement rule, and the
-      "roll for reinforcement" die mechanic starting round 3.
-- [ ] Rodney's special stern-turret rules (9.81/9.82) and King George
-      V/Prince of Wales's random gun-section-disable rule (9.83) — the
-      Hit Record Pad data captures the *asterisked stats* but the
-      per-round resolution logic for those asterisks isn't implemented.
+- [x] Reinforcement combat entry (rule 9.4x) — `AttemptBattleReinforcement`
+      now handles round-3 attempts, progressive die thresholds, six-hex
+      entry distance, and delayed entry.
+- [x] Rodney's 9.81 stern-hit conversion and King George V/Prince of
+      Wales's 9.83 gun-section reduction are implemented in battle fire.
+      Rodney's 9.82 cross-section salvo-halving still requires a round-level
+      fire declaration so the engine knows whether both sections fired.
 - [ ] High-speed shadow (rule 8.2) is only partially modeled: shadow can
       now be declared during Ship Movement after the target's first move,
       but the specific "moved through a searched zone" condition is not
       tracked yet.
+
+The Battle Board now validates legal movement paths, bow direction, board
+limits, and occupied friendly hexes. `WithdrawFromBattle` now performs the
+rule 9.93 eligibility check and marks the ship for mandatory bonus movement;
+`AdvanceBattleRound` resolves successful withdrawal and advances the round.
+Full reinforcements and the asterisked ship-specific fire rules remain the
+next implementation slice.
 - [ ] Port-combat continuation from rule 12.7 is not modeled; ending a
       battle is still caller-driven via `EndNavalCombat`.
 

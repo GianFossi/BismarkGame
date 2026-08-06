@@ -1,0 +1,2057 @@
+
+---PAGE 1---
+1.0 INTRODUCTION 
+BISMARCK is a thorough update of the 
+popular Avalon Hill release of the same name 
+issued in the early sixties. The game now 
+includes, however , a more historical presenta­
+tion of the campaign while retaining much of 
+its predecessor's simplicity and ease of play . 
+BISMARCK is composed of three games of 
+increasing complexity. The Basic Game pits 
+the German battleship Bismarck and heavy 
+cruiser Prinz Eugen against the might of the 
+British navy and can be played in less than 2½ 
+hours . The Intermediate Game expands upon 
+the historical scenario by providing various 
+alternative orders of battle which cou ld have 
+occurred . The Advanced Game uses a 
+miniatures -oriented combat system similar to 
+that employed in another Avalon Hill game , 
+JUTLAND, to present the ultimate in tactical 
+naval combat. Players should play each game 
+in the order presented as this is the easiest 
+method to assimilate the system of play . 
+1.1 Historical Background 
+At dusk on May 21 , 1941 , the German 
+Battleship Bismarck , accompanied by the 
+heavy cruiser Prinz Eugen , quietly slipped from 
+her base in Bergen, Norway to begin one of the 
+most dramatic chapters of naval history. Her 
+orders: clear the Atlantic of Allied shipping . 
+Success would mean the isolation and eventu ­
+al defeat of Great Britain . Defeat would mean 
+the loss of Germany's only operational battle ­
+ship and an indefinite delay to the Krieg smar­
+ine's strategic timetable . 
+C1979 THE AVALON HILL GAME CO . BALTIMORE. MD 21214 
+Success in the operation hinged upon the 
+ability of the Bismarck to sneak past the British 
+air and naval search screen which extended 
+from Britain to Green land . Once out in the vast 
+expanse of the Atlantic , it would be diff icult for 
+the British to maintain offensive search patro ls 
+of sufficient strength to defeat her. 
+Taking advantage of the bad weather in the 
+Arctic regions, Bismarck and Prinz Eugen 
+sailed north of Iceland and through the 
+Denmark Straits between Iceland and Green ­
+land. While in passage , the Bismarck was 
+discovered by the British cruisers Suffolk and 
+Norfolk, who quickly radioed the Bismarck 's 
+position . Early the next morning the British 
+battleships Hood and Prince of Wales , homing 
+in on the radio signals , intercepted them . In 
+one of the most famous naval battles in history, 
+the Bismarck blew up the Hood and damaged 
+the Prince of Wales, which then quickly 
+retreated out of action . Great though the 
+victory was, the Bismarck was sti II in danger as 
+long as the two British cruisers maintained 
+contact with her. British capital ships were 
+closing in from all directions and it would be 
+but a matter of hours before they would 
+recommence battle . 
+Admiral Lutjens , the German commander, 
+decide d that the operation was too risky to 
+continue and ordered a change of course for 
+the Bismarck back to the French port of Brest 
+while the Prinz Eugen was to maint ain the 
+original course and mission . This move caught 
+the British shadowing force completely off 
+guard . The Bismarck was able to sha ke off her 
+pursuers and was racing undetected to France 
+when an unfortunate radio message was 
+issued by Lutjens to Germany, deta iling the 
+victory of the previous morning . The British 
+were able to locate the source of the sig na I and 
+the chase was on again . The jurrip that the 
+Bismarck had gained meant that the aircra ft 
+carrier Ark Royal was all that stood betwee n 
+her and safety. Two desper ate air strikes w ere 
+launched from t his carrier in hopes of stopping 
+the Bismarck . One lucky hit damaged the 
+Bismarck's rudder which forced her to reduce 
+speed. This was exactly wha t the British 
+needed . Early the next day, the battleships 
+King George V and Rodne y caugh t up with the 
+Bismarck as her crew was vainly trying to 
+repair the damage . At these odds, and in the 
+condition she was in, the Bismar ck was 
+doomed to defeat. Firing for almost two hours , 
+the British battleships were unable to sink her, 
+although they knocked out all of her guns. It 
+finally took a comb ination of torpe do damage 
+and scuttling charges to send the mighty 
+Bismarck to the bottom . 
+BISMARCK recreates this operation in 
+detail. Each player or side controls either the 
+British or German order-of -battle as it actually 
+existed . The German player attempts to break 
+the Bismarck and Prinz Eugen out into the 
+Atlant ic and gain victory points by sinking 
+enemy ships and convoys. The British player 
+must utilize his superior numbers to locate, 
+corner and sink the Bismarck . 
+7190001 
+S6908 
+
+---PAGE 2---
+1.2 Brief Synopsis of Play 
+The Basic Game is played in turns, each 
+representing four hours of real time. In each 
+turn, both players secretly move any or all 
+ships and air units under their command on 
+the search board. Each player may then call out 
+zones in which he has searching ships and / or 
+air units in an attempt to locate the opponent's 
+ships. If an air unit locates an enemy ship in its 
+zone, it may conduct an air strike . If opposing 
+ships are discovered in the same zone, they 
+may proceed to combat on the Battle Board . 
+Ships fire simultaneously and damage is 
+recorded on the HIT RECORD PAD. Play 
+continues until the Bismarck returns to port , is 
+sunk, or time runs out . The player who has 
+acquired the most victory points wins the 
+game. 
+2.0 COMPONENTS 
+2.1 Parts Inventory 
+1. Game Box and Lid 
+2. Two Identical Search Boards 
+3. One Battle Board 
+4. One Sheet of Die-cut Counters 
+5. One Set of 6 Player-Aid Cards 
+6. Two Range Finders and Battle Maneuver 
+Gauges 
+7. Hit Record Pad 
+8. Two Dice (one colored and one white) 
+9. Rules Manual 
+2.2 Search Board 
+There are two identical search boards (one 
+for each player) provided in the game . Each 
+player uses a search board to maneuver his 
+ships and air units in an attempt to locate 
+oppos ing ships and convoys. All movement 
+and location of units on the search board must 
+be hidden from the view of the opponent. 
+Players can either place a box-half upright 
+between the two boards (placing one board 
+over the box lid to hold it in place) or place each 
+board in a different location in order to 
+accomplish this. 
+Printed on each search board is a map of 
+the North Atlantic over which the Bismarck 
+operation occurred . The map has been divided 
+into square 'zones· . Each zone is approximate­
+ly 90 statute miles in length. Ships may only 
+enter or move through zones which contain a 
+grid -coordinate (EXCEPTION: see TERRAIN 
+EFFECTS CHART). Air units may enter any 
+zone either with or without a grid-coordinate. 
+No unit can enter a portion of the map which 
+does not contain a zone. Partial zones conta in­
+ing a grid-coordinate (and the Bordeaux air 
+base) along the edge of the board and along 
+some of the land borders are considered and 
+used as normal zones . Partial zones without a 
+grid-coordinate other than Bordeaux cannot be 
+entered by any unit. 
+Each grid-coordinate is composed of one 
+letter and one or two digits . It is used to identify 
+that particular zone and to establish the zones 
+which ships can enter . All significant features 
+of the search board map are identified on the 
+terrain effects chart found on the cover of 
+this manual. 
+2.3 Battle Board 
+During search procedure, whenever oppos­
+ing ships are discovered to be in the same zone 
+on the search board, play may revert to the 
+battle board , where ship to ship combat is 
+resolved . At the start of any battle, the 
+BASIC GAME 
+defending ships are placed in the center 
+hexagon (hereafter referred to as hex). Any and 
+all of the attacking ships are placed in any of 
+the outermost hexes along any one edge 
+randomly determined by a die roll. 
+2.4 Unit Counters and Markers 
+Included in the game is a sheet of die-cut 
+counters which represent all of the major 
+fighting ships and air units that participated in 
+the campaign, plus some optional ships which 
+could have been involved . Also included are 
+different types of markers to be used as playing 
+aids. Enough counters and markers have been 
+provided to play the basic and advanced 
+games . Several of the optional rules in the 
+intermediate game require players to provide 
+their own markers. Only those ship and air unit 
+counters listed in each player's BASIC GAME 
+ORDER OF APPEARANCE CHART and the 
+markers described below are used in the basic 
+game. All others should be placed aside. Their 
+use will be explained in the appropriate game 
+in which they are to be included. 
+2.41 Counter Identification 
+2.411 Search Board Ship and Air Counters 
+■ 
+Ship Counter 
+■ 
+Destroyer Flotilla 
+■ 
+Submarine Counter 
+2-1 
+~ 
+Ark Royal 
+Torpedo Bomber Air Unit 
+1~ 
+Zeppelin 
+Dive Bomber Air Unit 
+~-1 
+!./.a 
+Victorious 
+Fighter Air Unit 
+2-1 
+~ 
+2 • 6 
+Eire 
+Long Range Reconnaissance Level Bomber 
+(LR recon) Air Unit Air Unit 
+2.412 Tactical Board Ship Counters 
+BC 8 
+Repulse 28 
+NOTE: There are no Tactical Board Counters 
+for submarines or destroyers. 
+2 
+2.413 Advanced Tactical Ship Counters 
+(used in Advanced Game only) 
+NOTE: All counters have a white stripe on a 
+blue background . There are no Advanced 
+Tactical Ship counters for submarines or 
+destroyers . 
+2.414 Markers 
+Search 
+Conditions 
+Visibility 
+■ 
+Air Unit Return to Base 
+II 
+Time 
+EJ 
+Shadow 
+B 
+Location Ship Unit Return to Base 
+(also used for task forces) 
+II 
+Task Force Number 
+Convoy Escort quadrant 
+2.42 Ship Counters 
+Each ship has a ½" square counter that 
+represents it on the search board . Printed on 
+the counter is various information needed for 
+play. 
+Front of Counter 
+movement mode 
+search 
+Back of Counter 
+patrol mode 
+Pnnz ■~strength 
+-- name Eugen 
+~ CA Patrol 
+r maximum speed 
+evasion rating 
+
+---PAGE 3---
+2.42 1 Nationality: 
+Front of 
+Counter 
+Germany Gold letter-
+ing on black 
+background 
+Great White letter-
+Britain ing on red 
+background 
+France (not White letter -
+used in ing on blue 
+Basic Game) background 
+United White letter -
+States (not ing on green 
+used in background 
+Basic Game) 
+2.422 General Type of Ship 
+Batt leship 
+BB- Battleship 
+BC-Battlecruiser 
+Back of 
+Counter 
+Black letter -
+ing on gold 
+background 
+Red letter -
+ing on white 
+background 
+Blue letter -
+ing on white 
+background 
+Green letter-
+ing on white 
+background 
+PB- Pocket Battleship (more accurately 
+termed Armored Cru iser) 
+~ 
+CA- Heavy Cruiser 
+CL-Light Cruiser 
+Aircraft Carrier 
+CV- Aircraft Carrier 
+Destroye r 
+DD or CT - Destroyer (CT is an abbreviation for 
+Contre -Torpilleur - a fast French destroyer) ­
+not used in Basic Game 
+Subma rine 
+SS or UB·Submarine (UB is an abbreviation for 
+U-Boat)- not used in Basic Game . 
+2.423 M ovement and Patrol M ode- When 
+the front of the counter is face-up . the ship is in 
+movement mode. When the back of the 
+counter is face -up, the ship is in patrol mode. A 
+ship in movement mode can move up to its 
+maximum speed . A ship in patrol mode cannot 
+move but has a greater search capability . 
+Aircraft carriers do not have a patro l mode . 
+They cannot patrol. 
+2. 424 Searc h Strengths - The left -hand 
+number indicates the ship 's search capabi lity 
+during day light turns . The right -hand number 
+indicates the ship's search capability during 
+night turns. 
+i.425 Name-The name of the ship . 
+2.426 Evasion Rating- The ship 's maximum 
+speed in knots . On the search board, the 
+evasion rating is used to determine whethe r a 
+ship can break away from a shadowing ship. 
+2.427 Maximu m Speed- The greatest num­
+ber of zones that a ship can move in one turn. 
+No ship has a maximum speed greater than 
+two. 
+2.43 Air Unit Counters 
+There are two basic types of air unit counters 
+used in the basic game : long range reconnais ­
+sance and bomber . The bomber air units are 
+further divided into two sub -types. level 
+bomber and torpedo bomber . The silhouette on 
+the front side of the counter indicates the type 
+of air unit that it represents . 
+Front of Counter 
+moveme nt mode 
+Back of Counte r 
+patrol mode 
+2.43 1 
+search 
+strength 
+maximum 
+speed 
+of airc raft 
+' / endurance rating 
+Nationality 
+Front of 
+Counter 
+Germany Black print-
+ing on blue-
+gray 
+background 
+Great Black print · 
+Britain ing on brown 
+background 
+home base 
+Back of 
+Counter 
+Blue-gray 
+printing on 
+white back-
+ground 
+Brown print-
+ing on white 
+background 
+2.4 32 A ll bomber air units used in the basic 
+game have either the torpedo bomber or the 
+leve l bomber si lhouette on the front of the 
+counter and either one of the reeonna issance 
+silhouettes or nothing on the back. 
+Type-
+~ -Land-Based Reconna issance 
+T - Ship-Based Reconnaissance 
+~ -Torpedo Bomber 
+~ - Level Bomber 
+~ -Dive Bomber 
+.,,,/' - Fighter 
+2.43 3 All LR recon air units have the land­
+based reconnaissance silhouette with the 
+word 'Patrol' on the back . 
+2.43 4 Mode - A ll LR recon air units have a 
+movement and patro l mode. When the front of 
+the counter is face -up. the LR recon air unit is 
+in movement mode . When the back of the 
+counter is face-up. the LR recon air unit is in 
+patro l mode. Like ship coun ters, an LR recon 
+air unit in patro l mode has a reduced maximum 
+speed but an increased search capability . 
+Bomber air units have an attack and 
+reconnaissance mode (EXCEPTION: German 
+leve l bomber air units do not have a reconnais­
+sance mode). When the front of the counter is 
+face-up, the bomber air unit is in attack mode. 
+It can attack any located enemy ship in the 
+same zone it is in . When the back of the 
+counter is face-up. the bomber air unit is in 
+reconnaissance mode. It has a grea ter endur­
+ance. speed and search capab ili ty, but it 
+cannot launch an air attack . LR recon air units 
+can never launch an air attack. 
+2.435 Search Strengths - Identica l in func ­
+tion to ship 's Search Strengths 
+2.436 Endurance Rating-The number of 
+turns that an air unit can remain in flight. 
+2.437 Maximum Speed- The maximum 
+number of zones that an air unit can move in 
+one turn . 
+2.43 8 Home Base- Location from which air 
+unit operates (either aircraft carrier or land 
+base). 
+2. 439 # of Aircraft - This value is used only in 
+the intermediate game and is ignored in the 
+basic game . 
+3 
+2.5 Search Board Marker Infor mation 
+These markers have been provided to aid in 
+identifying location or mission of ships on the 
+search board and are used only on the search 
+board . 
+2 .51 Convoy: Two Brit ish battleships are 
+relegated to convoy escort at the start of play . A 
+convoy marker is placed over each of the ships 
+to identify their special assignment. The arrow 
+indica tes the direction the convoy is moving . 
+2 .52 Task Force: Ships which are to move 
+and have combat as a sing le force must be 
+placed in a task force. A task force marker is 
+used to identify the task force on the search 
+board. 
+2 .53 Shadow : A shadow marker is used to 
+remind players which ships on the search 
+board are being shadowed . One is placed in 
+each zone that the shadowed ships occupy. 
+2 .54 Locatio n: These markers aid in tracking 
+the position of enemy ships which have been 
+located by search . The type symbol printed on 
+the location counter indicates the type of ship 
+located. Beca use of the great variety of ship 
+types included in the game , only a lim ited 
+numbe r of location marke rs have been pro­
+vided. If players need more location markers, 
+they can either handmake them or comman ­
+deer other type marke rs used in the intermedi­
+ate or advanced games . The numbe r marke rs 
+are especially suitab le. Just write in the type 
+symbol of the vessel being tracked on the 
+marker. 
+2.6 Battle Board Ship Counter Information 
+Used only on the battle board. The cou nters 
+have been designed to fit snugly into the batt le 
+board hexes. 
+turrets anti-aircraft value 
+8 
+name 
+secondary armament evas ion rating 
+2.61 Anti-Aircraft Value: Not used in the 
+basic game . 
+2.62 Evasion Rating : Same value as on 
+search board ship counte r. On the battle board. 
+the evasion rating determines the abili ty of the 
+ship to withdraw from combat . 
+2.6 3 Name: Name of ship 
+2.64 Turrets and Secondary Armament: 
+Indicates the position of these gun sections on 
+the ship counter. 
+2 .7 Player Aid Marker Informat ion 
+Used on the player a id card to keep track of 
+time, air and ship endurance or visibi lity 
+conditions: 
+2.8 Playe r Aid M aterials 
+2.8 1 Each player receives a Player A id Card 
+corresponding to the nationality of the side he 
+is . playing . On the card is given the Order of 
+Battle . Time Record Track , and the Visibility 
+Tables. He also gets the Basic Game Tables 
+card containing the Search and Shadow 
+Tables . Optimum placement of the card is 
+upright against the boxtop between the search 
+boards . 
+2.8 2 Hit Record Pad 
+The Hit Record Pad is used to keep track of 
+damage and salvoes available for each ship. 
+Only one side of the hit record pad. labell ed 
+'Bismarck Hit Record Pad', is used in the basic 
+game. 
+
+---PAGE 4---
+2 .83 Range Finder and Battle Maneuver 
+Gauge 
+These implements are used in the advanced 
+game only . 
+3.0 PREPARE FOR PLAY 
+Both players decide which game level to play . 
+Players should become familiar with the basic 
+game first before venturing into the more 
+advanced games . Each player takes his player 
+aid card with the 'Basic Game ' side up and 
+places it in a convenient location out of the 
+view of his opponent. The opponent should 
+never be perm itted to look at the player aid card 
+at any time during the game . The players also 
+put their basic game tables card in a conve • 
+nient location . Both players punch out the ship 
+and air unit counters that they will use and 
+place them on the search board as detailed in 
+the order of appearance . Only those ships and 
+air units listed in the basic game order of 
+appearance are used in the basic game. All of 
+the remaining counters are reserved for the 
+more advanced versions . A battle board 
+counter for each battleship , cruiser and 
+aircraft carrier is also punched out and set 
+aside wi th the battle board to be used in naval 
+or air combat. Each player takes one sheet 
+from the hit record pad. Begin play . 
+4 .0 SEQUENCE OF PLAY 
+BISMARCK is played in turns . Each tu rn is 
+divided into several phases which must be 
+performed in the sequence described below . 
+4 .1 Unit Availability Phase: The Brit ish 
+player places on the search board any ships 
+wh ich enter play in the current turn . Air units 
+available from rest and ref it in the current turn 
+can be returned to their base . 
+4 .2 Visibility Phase: The German player 
+determines the visibility conditions for the 
+current turn. Ships may enter into or break 
+from task force or convoy during this phase . 
+4 .3 Shadow Determination Phase: Either or 
+both players may select one air unit or ship in 
+the same zone as a located enemy ship to 
+shadow that ship . The ship must have the 
+same or greate r evasion rating than the ship it 
+is attempt ing to shadow . All ships designated 
+for shadow must move in this phase . The 
+Shadow Table is then ut ili zed to determi ne the 
+success of the shadow attempt. 
+4.4 Air Movement Phase: Any and all air 
+units in play may move up to their maximum 
+speed . Air units which must return to base are 
+removed from the search board onto the Time 
+Record Chart to be returned after a period of 
+rest and refit. 
+4 .5 Ship Movement Phase: Any and all ships 
+in play which have not moved in the Shadow 
+Determination Phase may move up to their 
+maximum speed . 
+4.6 Search Phase: Each player may search 
+every zone in which he has sufficient search 
+capacity as determined by the visibility level for 
+the current turn . 
+4 . 7 Air Attack Phase: An air unit in attack 
+mode and in the same zone as a located enemy 
+ship may launch an air attack against that ship . 
+Air units which flew from base this turn and 
+with remaining movement may return to base 
+after all combat is resolved. 
+4 .8 Naval Combat Phase: If both players 
+have one or more located ships in the same 
+zone, they may conduct combat between these 
+ships on the battle board if either player 
+w ishes . 
+4 .9 Chance Phase: The British player rolls 
+two dice and consults the Chance Table to 
+determine whether the Bismarck and / or Prinz 
+Eugen locates a convoy or are themselves 
+located by gen eral search . At the conclusion of 
+the chance phase , each player moves his time 
+mark er to the next turn on his time record 
+track . This same sequence of phases is 
+followed each turn . 
+5.0 SHIP ACTIVITIES ON 
+THE SEARCH BOARD 
+5.1 Ship Movement 
+5 .11 A playe r can move all , some or none of 
+his ship counters on the search board in a turn . 
+A player is never required to move any of his 
+ships in a turn . 
+5 . 12 A cruiser may move up to two zones 
+each turn. 
+5 . 13 A battleship or aircraft carrier with a 
+maximum speed of '2' may move two zones in 
+non-consecutive turns. It must alternate each 
+turn that it moves two zones w ith at least one 
+turn in which it moves less than two zones . 
+5 .14 A battleship with a maximum speed of 
+' 1 • (either Rodney, Ramillies or Revenge) may 
+move up to one zone each turn . 
+5 .15 All movement made by battl eships or 
+aircraft carriers is subject to fuel limitations 
+(see section 5.2). The maximum speed of any 
+ship can be reduced due to battle damage . 
+5 . 16 A ship can move less than its maximum 
+speed or not at all. It is never required to mov e. 
+5 . 17 When moving, each zone entered must 
+be adjacent to the zone being exited . A ship 
+counter cannot enter a zone which does not 
+contain a grid -coordinate. There are several 
+exceptions and they are enumerated in the 
+Terrain Effects Key. 
+7 
+5. 18 There are entr y and exit restrict ions at 
+certai n ports that prevent a ship from moving 
+to certain adjacent zones . These restrictions 
+are detailed in the Terrai n Effects Key. German 
+ships cannot enter a zone in the Irish Sea 
+(these zones have black instead of white grid • 
+coordinates) , nor can German ship s enter a 
+zone containing a port in Great Britain . 
+Otherwise , a ship can enter any zone with a 
+grid -coordinate w hich is adjacentto the zone it 
+occup ies. 
+5.19 Any number of ships may enter and / or 
+occupy the same zone w ithout penalty . A ship 
+cannot move off the search mapboard . 
+5 .2 Battleship and Aircraft Carrier Fuel 
+Allotment 
+5 .21 In the basic game, cruisers are exempt· 
+ed from any fuel expenditure . They can move 
+up to two zones each turn without penalty . A 
+battleship or aircraft carrier with a maximum 
+speed of ·2· must expend one fuel factor of its 
+fuel allotment each turn that it moves iwo 
+zones. 
+5.22 As long as a battleship or aircraft carrier 
+w ith a maximum speed of ·2· has at least one 
+unexpended fuel factor , it can move one zone 
+each turn without any fuel exper.diture. 
+5.23 When a battleship or aircraft carrier 
+expends all of the fuel factors available to it. it 
+can no longer move normally and must 
+henceforth utilize emergency movement . 
+5 .24 Ships in emergency movement can 
+move up to one zone every second turn . These 
+alternate turns are labelled 'C' on the time 
+record track . Ships in emergency movement 
+cannot move in a turn which is not labelled ·c· . 
+4 
+5.25 A battleship w ith a max imum speed of 
+• 1 ' expends one fuel factor only if it moves one 
+zone in a non 'C' turn . Once it expends all of its 
+fuel factors , it can only move by emergency 
+movement . 
+5.26 Each player records fuel expenditure by 
+checking off one fuel box in the fuel section on 
+the hit record sheet by th e ship 's name for each 
+fuel factor expended . In order to insure that 
+fast battleships and carriers do not expend fuel 
+moving two zones in consecutive turns , it is 
+suggested that player s mark the turn number 
+in the expended fuel box. Under no circum­
+stance may a battleship or aircraft carrier move 
+two zones in consecutive turns . 
+5.27 A ship whose speed is reduced due to 
+battle damage still retains its original maxi· 
+mum speed when determining fuel expendi • 
+lure . EXAMPLE : As a result of battle damage , 
+the Bismarck 's speed has been reduced to a 
+maximum move of just one zone per turn. It 
+does not have to expend a fuel factor every 
+time it moves a zone in a non -·c· turn , as would 
+the Rodney . For purposes of fuel expenditure, 
+it is still considered to have a speed of '2 ', even 
+though it can no longer move two zones in a 
+turn . 
+5.28 German Breakout Bonus: In the first 
+turn of play, each German ship may move 
+three zones without expending any fuel or 
+each German ship may move four zones at a 
+cost of one fuel factor , or each ship may move 
+five zones at a cost of two fuel factors . Each 
+turn thereafter they must move normally . 
+5.29 Aircraft carriers cannot move 2 zones in 
+a turn that they launch air units . 
+5.3 Ship Patrol 
+5.31 All ships except aircraft carriers have 
+the capability to patrol. Patrolling allows ships 
+to use a higher search strength when search · 
+ing for enemy ships . Patrolling also improves 
+the chances that the Bismarck or Prinz Eugen 
+will locate a convoy . 
+5 .32 A ship may change to or from patrol 
+mode each turn . Any change to or from patrol 
+mode must be made before the ship moves 
+(EXCEPTION: 8.24). 
+5.33 A ship cannot move at all while in patrol 
+mode . It may only move when it is in movement 
+mode . 
+5.34 A ship is in patrol mode only when the 
+patrol mode side of its counter is face up. 
+5.4 Task Force 
+5.41 Either player can combine any two or 
+more of his ships , if they occupy the same 
+zone, into a task force in the visibility phase . 
+There is no limit as to the number of ships 
+which may be in the sam e task force . 
+5.42 Ships in a task force have an advantage 
+in that they all can commence combat against 
+enemy ships as a single group . If several ships 
+are in the same zone with enemy ships , but are 
+not in a task force, only one ship can initiate 
+combat . The other ship s in the zone may or 
+may not join combat at a later tim e. 
+5.43 All ship counters that will operate in a 
+task force are removed from the search board 
+and replaced by a numbered task force 
+counter . The ship counte rs are placed in the 
+Task Force box on the appropr iate player aid 
+card corresponding to the number on the task 
+force marker . There is no limit to the number of 
+task forces the British player can organ ize. If 
+he runs out of count ers, he may use the ship 
+RTB markers . 
+5.44 The task forc e marker is moved during 
+the ship movement phase . The task force 
+marker uses the maximum speed of the 
+slowest ship in the task force . The task force 
+marker 's move constitutes the move for all 
+ships in the task force . Fuel expenditure in a 
+
+---PAGE 5---
+task force is determined independently for 
+each ship . Ship s may break from task force 
+only during the visibility phase. before any 
+ships begin their moves. A player has total 
+liberty as to how he combine s ships into task 
+forces as long as they are in the same zone . 
+5.45 A task force can patrol at the search 
+capability of any one ship in the task force . Flip 
+the task force counter over to the blank side to 
+indicate that it is on patrol. 
+6.0 AIR UNIT ACTIVITIES 
+ON THE SEARCH BOARD 
+6 .1 Air Unit Movement 
+6.11 Each player can move all , some or none 
+of his air unit counters . An air unit can enter or 
+pass through any zone on the map (EXCEP­
+TION: 6.12). 
+6 .12 No German air unit may move through 
+two consecutive zones containing a part of 
+Great Britain . German air units may fly over 
+Eire. 
+6 .13 In a turn , an air unit can move any 
+numb er of consecutive zones in any direction 
+or combination of dir ections up to the maxi ­
+mum speed printed on the side of the counter 
+that is face up. The maximum speed of an air 
+unit can change depending on the mode it is in . 
+6 .14 Any number of air units may enter or 
+pass through the same zone . The movement of 
+air un its has no effect on ship movement and 
+vice versa . Air units cannot move off the 
+search mapboard . 
+6.2 Air Endurance 
+6.21 Each air unit has an endurance rating 
+which states the maximum number of turns 
+that it may be airborne . An air unit may remain 
+airborne for fewer turns than allowed by its 
+enduran ce rating , but it may never remain 
+airborne for more turns than allowed by its 
+endur ance rating . If an air unit cannot return to 
+its home base by th e conclusion of the last turn 
+of its endurance , it is eliminated from play and 
+the opponent is awarded two victory points for 
+its loss . A player cannot el ect to fly any air unit 
+past its endurance even if he accepts the loss 
+of victory points . 
+6.22 For endurance purpose s. count the turn 
+that an air unit leaves base and the turn that it 
+returns to base as airborne turns. For example , 
+an air unit with a maximum speed of ·5· and an 
+endurance of ·2· may fly any number of zones 
+up to six from its base in one turn but must 
+return to that base in the next turn . Unused 
+movement cannot be saved from one turn to 
+the next . 
+6.23 Some air units have an endurance of 
+one turn . These air units must take off and land 
+in the same turn . Such an air unit must take off 
+from its base in the air movement phase and 
+return to base at the end of the air attack phase 
+of the same turn . Its total movement in both 
+phases cannot exceed its maximum speed. For 
+example , a torpedo bomber air unit with a 
+maxim um speed of ·5· and an endurance of '1 •. 
+flies two zones from the Ark Royal during the 
+air movement phase , launches a torpedo 
+attack during the air attack phase and returns 
+thr ee zones to the Ark Royal, which has moved 
+one zone away in its move , at conclusion of the 
+air attack phase . Players also have the opt ion 
+to fly air units with an endurance greater than 
+1 for just one turn . 
+6.24 Air Unit Endurance markers have been 
+included as an aid in tracking the number of 
+turns that LR recon air units (these have great 
+enduranc e) can remain airborne . Wh en an LR 
+recon air unit flies from its base, the corre ­
+sponding 'Return to Base· marker is placed on 
+the time record track on the turn that the unit 
+must return to base . 
+6.3 Reconnaissance and Patrol 
+6.31 British Bomb er air units have both an 
+attack and reconnaissanc e mode . Each time 
+that a British bomber air unit takes off from its 
+base. the British player must decide in which 
+mode it will operate for its entire mission in the 
+air . Once aloft, the mod e of a British bomber 
+unit cannot be changed . The mode in operation 
+is indicated by putting that side of the count er 
+fac e up. Only bomber air units in attack mode 
+can launch an air attack. British bomber air 
+units , in reconnaissance mode, have an 
+improved search and speed capability but 
+cannot launch an air attack . 
+6.32 LR recon air units can never launch an 
+air attack. Instead of an attack mode, they have 
+a patrol mode . Like ship patrol , an LR recon air 
+unit can switch to or from patrol mode any or 
+every turn it is in the air by placing the proper 
+side of the counter face up. Any change to or 
+from patrol mode mu st be made before the unit 
+moves during that turn. 
+6 .33 NOTE: While in patrol mode , the maxi­
+mum speed of the LR recon air unit is reduced 
+to ·2·. but its search capacity is increased . 
+6.4 Air Unit Rest and Refit 
+6.41 Every air unit which returns to base after 
+completing its air mission must undergo a 
+period of rest and refit before it can return to 
+action . 
+6.42 An air unit that has been airb orne and 
+returns to its home base must remain out of 
+play for the next turn for rest and refit . For 
+example , an air unit returns to its home base 
+during the '0800 , May 23' turn . It must spend 
+the '1200, May 23 ', turn in rest and refit . It can 
+return to action on the '1600 , May 23' turn . 
+The controlling player remov es the air unit 
+from th e search board and places it on the 
+' 1600, May 23 ' slot on his Time Record Track . 
+During the Unit Availability Phase oft he ··1 600, 
+May 23 ' turn , the air unit is returned to its 
+home base and can be flown that same turn . 
+6 .43 An air unit may not take off or land at any 
+other base other than its home base . 
+6.44 After rest and refit , an air unit must be 
+returned to its home base. 
+6.45 Rather than keeping carrier-based air 
+units physically with their home carrier, they 
+are better placed in Spain or Greenland to 
+reduce counter congestion . Just remember 
+that their true location is with their home 
+carrier . 
+7.0 SEARCH 
+7 .1 Visibility 
+7 .11 Each turn during the visibility phase, the 
+German player determines, by dice roll, the 
+visibility level for that turn . This visibility level 
+determines which zones can be searched for 
+enemy ships. 
+7 .12 On both player aid cards is printed a 
+visibility track comprising nine levels of 
+visibility . Each level is displayed as a square . 
+The number in each square represents the 
+minimum search strength able to search a 
+zone at that visibility level. For example , during 
+the visibility phase , the German player deter­
+mines that the visibility level for that turn is '5'. 
+Both players can search only those zones in 
+which they have ships and / or air units whose 
+total combined search strength is ·5· or higher . 
+7 .13 At the start of the game. both players 
+place a visibility marker on level ·4 · on their 
+visibility track . The British play er will have to 
+use the blank marker. Hereafter . any change in 
+w eather is based upon the current position of 
+the marker on the track . 
+7 .14 During the visibility phase of each turn , 
+excluding the first turn of the game , the 
+German player rolls two dice , cross-indexing 
+5 
+their sum on the Visibility Change Table and 
+moves the vis ibility marker forward or back 
+along the visibility track the number of boxes 
+equal to and in the direction indicated by the 
+result. The result is the visib ility level for the 
+turn in progress. On the first turn of play the 
+visibility level is automatically level '4' . 
+7.15 If the visibility change would force the 
+visibility marker off the end of the visibility 
+track, the visibility marker rem a ins at the end 
+box of the track and the excess is ignored . 
+7.16 Underneath several of the extreme 
+visibility boxes are modifiers to the visibility 
+change dice roll. If a visibility marker is in one 
+of these boxes at the start of the visibility 
+phase , the dice roll for visibility change for that 
+turn is altered by that modif ication . For 
+example, if the visibility marker is at level 'Tat 
+the start of the visibility phase and the German 
+player rolls a '7' for his visibility change dice 
+roll , the dice result is changed by +1 from '7' to 
+'8'. 
+7 .17 Visibility level ·x· means that no search 
+can be made in the turn . 
+7 .2 Search Procedure 
+7 .21 During the search phase, the British 
+player may call out any and all zone grid ­
+coordinates in which he has ships, air units 
+and / or coastal search capabil ity whose total 
+combined search strength equals or exceeds 
+the visibility level. 
+7.22 After the British player has completed 
+his search, the German player may call out any 
+and all zones by grid-coordinate in which he 
+has ships, air units and / or coastal search 
+whose total combined search strength equals 
+or exceeds the visibility level. 
+7 .23 As each zone is called, the opposing 
+player must state whether or not any ships 
+(never air units) are in the zone in that turn . 
+After the first turn , the German player only 
+must also state whether any of his ships have 
+passed through the zone in that turn . If ship(s) 
+are located , the opponent must state the 
+number and general type (either battleship , 
+aircraft carrier or cruiser) of all ships in the 
+zone . He must also reveal which types are in 
+the same task force . For example, the German 
+player searches a zone which contains the 
+Hood and the Prince of Wales in task force and 
+the Suffolk and Kenya on patrol. The British 
+player states that there are two battleships in a 
+task force and two cruisers in the zone. 
+7 .24 If a search is successful , the searching 
+player does not have to state the type of 
+searching force which located it. He reveals 
+nothing . 
+7.25 Search is voluntary . A player can waive 
+any and all of his eligible searches . 
+7 .26 When totalling search strength in a 
+zone, the searching player must check 
+whether the current turn is day or night. The 
+left-hand search strength on the counter is 
+used only in the day turns. The right hand 
+strength on the counter is used only in the 
+night turns . Never count the search strengths 
+of ships in a task force. Use only the search 
+strength on the task force counter . If the task 
+force is on patrol use only the patrol search 
+strength of one ship in the task force . The 
+search strengths of all other ships in the task 
+force must be ignored . 
+7.27 The British player has an inherent 
+search strength of ·4· search points in each of 
+the zones occupied by the Faeroe Islands, 
+Shetland Islands, the coast of Ireland , the 
+coast of Great Britain and Hvalfiord . The 
+German player has an inherent search 
+strength of '4 ' search points in each of the 
+
+---PAGE 6---
+zones occupied by the coast of Norway and 
+France . All coastal search strengths are 
+reduced to ·3· at night. 
+7 .28 An air unit can only search the zone that 
+it occupies . It cannot search any of the zones 
+through which it moves. 
+7 .29 Ships in port cannot be located by sea 
+search nor by a combination of air and sea 
+search . They can be located by air search only . 
+7.3 Fog 
+7 .31 When determining the visibility level 
+each turn , both players check whether th e 
+visibility change dice roll, including any 
+modification , will also result in fog . If there is 
+fog, the visibility marker is adjusted normally , 
+but neither player can conduct a search in any 
+fog zone that turn . Search can be conducted 
+normally in any and all non -fog zones . 
+7 .32 Fog occurs automatically in the first turn 
+of the game . Bergen , therefore , cannot be 
+searched in the first turn . 
+7 .33 No type of combat(naval or air)can occur 
+in a zone in fog . 
+8 .0 SHADOWING 
+8. 1 Shadow Determination 
+8 .11 Onl'y the British player has the ability to 
+shadow opposing ships or task forces (never 
+air un its) located by search or shadow in the 
+previous turn . A ship or task force that is 
+selected for shadow must make its move (if 
+any) before the shadow attempt is resolved and 
+then reveal its new position if the shadow is 
+successful. The opponent can then reactto the 
+shadowed ship's move with his air and ship 
+movement . 
+8.12 To determine whether a ship can be 
+shadowed each turn , a player must perform 
+the following steps in the shadow determina ­
+tion phase : 
+a. Determine shadow assignment 
+b. Determine evasion capability 
+c. Determine contact maintenance 
+8 .13 For each opposing ship or task force to 
+be shadowed , the British player may assign 
+one ship (excluding aircraft carriers) , task force 
+or air unit in the same zone as a shadow unit . 
+There can never be more than one unit 
+shadowing a single ship or task force. A 
+shadowing unit cannot search in the same 
+turn . 
+8 .14 If the shadowing unit is a ship , its 
+current evasion rating must be equal to or 
+greater than the current evasion rating of the 
+ship or the slowest ship in a task force to be 
+shadowed. If it is not equal to or greater than 
+the shadowed ship 's evasion rating, the ship 
+cannot shadow . If the shadowing ship is in a 
+task force , all ships in the task force must be 
+faster than the shadowed ship or task force . If it 
+is not equal or greater than the shadowed ship 
+or task force evasion rating , the ship or task 
+force cannot shadow . The British player may 
+then select another ship or task force in the 
+same zone to shadow . Air units do not have to 
+check evasion rating. The two conditions 
+required to assign an air unit as a shadow is 
+that it must be able to remain in the air during 
+that turn and that it, alone, must be capable of 
+conducting a search in the turn it is shadow­
+ing. For example, an LR recon air unit in patrol 
+can only shadow in day turns when the 
+visibility level is '6' or less, or night turns when 
+the visibility is ·3· or less. 
+8.15 Once the shadowing unit or task force 
+has been selected, the ship to be shadowed 
+makes its move for the turn, then either player 
+rolls one die and cross-indexes the result with 
+the shadowing unit's name on the shadow 
+table . If the result is 'Lost Contact' the shadow 
+does not succeed . If the result is 'Hold Contact ', 
+the unit is successfully being shadowed , and 
+its new location must be revealed. The 
+shadowing player does not have to reveal the 
+names or types of ships conducting the 
+shadow. 
+8.16 A player must reaffirm all shadow 
+contacts each turn . Even if an opposing ship 
+was successfully shadowed in a previous turn , 
+the shadow table must still be consulted in the 
+current turn to determine whether contact has 
+been mainta ined . If a player requests to 
+shadow a task force which has broken up in the 
+visibility phase , the opponent must reveal 
+which ships (by general type) have left the task 
+force . 
+8.17 The current visibility can affect the 
+Shadow Table die roll as explained in the 
+Shadow Table . 
+8.18 If the controlling player has moved the 
+ship or the task force being targeted for 
+shadow through two zones, he must announce 
+it before the Shadow Table is consulted. The 
+Shadow Table die roll must then be reduced by 
+' 1' for that ship or task force 
+8 .19 A ship or air unit is not required to follow 
+the ship it is shadowing in its movement 
+phase . 
+8 .2 High Speed Shadow 
+8 .21 High speed shadow can occur only if a 
+successful search is conducted by the Briti sh 
+player in the first of two zones entered by an 
+opposing ship or task force in its move . If, 
+during the Search phase , the British player 
+locates a ship which has passed through the 
+zone he is search ing, he may immediately 
+attempt to shadow the ship or task force with 
+one of the ships task forces or air units that can 
+qualify for shadow in the zone . The shadow 
+can be attempted even if the ship or task force 
+has been located in the other zone of its move . 
+8 .22 The shadowing player uses the same 
+procedure described in 8.15 to determine the 
+success of the shadow. The ship to be 
+shadowed still gains a '1 • for the two zone 
+move on the Shadow Table die roll. 
+8 .23 If the shadow is successful, the sha­
+dowed ship or task force must reveal its final 
+location , if not already known , and any and all 
+British ships and air units in the search zone 
+which have not utilized thei r maximum 
+movem ent and which are not in emergency 
+movement may move the one zone into the 
+shadowed ship 's zone. Fast battleships and 
+aircraft carriers must be able to expend one 
+fuel factor to enter the zone if this would be the 
+second zone of their move . 
+8 .24 A ship on patrol may immediately 
+change to movemen t mode in order to follow 
+the shadowed ship . If it is a battleship or 
+aircraft carrier on patrol , then it must be able to 
+expend one fuel factor to move . 
+9.0 COMBAT 
+9.1 Air Combat 
+9.11 Every bomber air unit has the ability to 
+attack any of the ships located by search in the 
+zone that it occupies . LR recon air units cannot 
+perform air attacks . 
+9.12 Air units cannot attack enemy air unit s. 
+6 
+Air units cannot be eliminated in combat . Air 
+units are eliminated only if they are unable to 
+return to base. 
+9 .13 A bomber air unit can launch an air 
+attack only if it has started its mission in the 
+attack mode . If the bomber air unit has flown 
+from base in reconnaissance mode , it cannot 
+change to attack mode and cannot launch an 
+air attack . Bomber air units cannot attack ships 
+in enemy ports . 
+9 .14 All air attacks are conducted during the 
+air attack phase after all search has been 
+completed, but before any naval combat is 
+begun. 
+9 .15 The British player conducts any and all 
+air attack §._ that he wishes to make first . Then 
+the German player does the same . 
+9.16 Each British bomber air unit is allowed 
+to make two strikes each day turn . Each 
+German bomber air unit is allowed to make 
+one str ike in a day turn . Air units are not 
+allowed to make an air attack at night . A British 
+bomber air unit can assign its two strikes to 
+one ship or assign one strike each to two 
+different ships of his choice . 
+9 .17 To resolve air combat , the defending 
+player places the battle counter of each of his 
+ships in the zone under attack face down on 
+the battle board . The attacking player assigns 
+the strikes he has available in that zone in any 
+manner he wishes . For each strike, he rolls two 
+dice and consults the proper Bomber Table on 
+the battle board for the result . 
+9.18 Any damage inflicted takes effect imme ­
+diately and is recorded for that ship on the hit 
+record sheet . If damage is inflicted , the name 
+of the ship must be revealed to the attacking 
+player so that he can mainta in a record of 
+damage on his hit record sheet . If no damage is 
+inflicted, the name of the ship does not have to 
+be revealed. 
+9.2 Naval Combat Determination and Set­
+Up 
+9.21 When opposing ships have been located 
+in the same zone, naval combat may occur at 
+the option of one or both of the players . More 
+than one naval action can occur in the same 
+zone in the same turn . Naval combat is 
+voluntary . A ship or task force can only attack 
+enemy ships in the same zone. 
+9 .22 A player cannot initiate combat against 
+an enemy ship or task force if his ships in the 
+zone are not permitted to attack it. 
+9.221 Aircraft carriers may never attack 
+enemy ships . 
+9 .222 A ship or task force may not attack an 
+enemy ship or task force if its current evasion 
+level is less than that of the enemy unless the 
+opponent accepts the combat. When a task 
+force is attacking, its current evasion level is 
+that of the fastest ship . The evasion level of a 
+defending task force is that of the slowest ship 
+contained . 
+9 .223 A ship or task force cannot attack an 
+enemy ship or task force if it has already been 
+committed to another combat action . 
+9 .224 A shadowing ship or task force may 
+only attack the ship or task force it is shadow­
+ing. 
+9.23 A player may announce attacks against 
+only those ships and task forces that he located 
+that turn by search or shadow . The British 
+player always announces his attacks first. 
+9.24 When announcing his intention to 
+initiate naval combat , a player must attack 
+each single opposing ship (i.e. not in task force) 
+
+---PAGE 7---
+or task force separately . A single ship or task 
+force cannot be involved in more than one 
+naval combat in the same turn . Both players 
+must also announce the current evasion levels 
+involved . The names of the ships do not have to 
+be revealed . 
+9.241 When a player has a choice of more 
+than one enemy single ship , or task 
+force to attack, he announces the general type 
+of ship that he wishes to attack. Task forces 
+are identified by the most powerful ship 
+contained in the following order : 
+battleship , cruiser and, lastly , aircraft carrier. If 
+a check of evasion levels still permits a choice 
+of target of the named type, the ship or task 
+force to be attacked must be determined 
+randomly (just pull the search counter out of a 
+cup). 
+9.242 · When a player has a choice of more 
+than one single ship or task force with which to 
+attack, he must state the type he wishes to use. 
+If there is still mere than one ship or 
+task force of that type , he must select one 
+randomly . 
+9 .25 All other ships not involved in combat 
+can enter combat at a later time as a reinforce­
+ment . 
+9.26 In the rare occasions where both the 
+Bismarck and the Prinz Eugen are in the same 
+zone but not in task force , there is a possibility 
+that both can be involved in separate combat 
+actions . If this occurs , assume that the 
+separate actions are occurring simultaneously 
+even though they are to be resolved sequen ­
+tially. The ship or task force selected for one 
+action cannot participate in the other . The first 
+act ion selected must be the first action fought . 
+The second combat action cannot be started 
+until the first combat action is completed . 
+9 .27 Ships cannot break from task force in the 
+naval combat phase . When determining 
+combat, task forces must be treated in single 
+units . Once a task force has been committed to 
+naval combat though , not all of the ships 
+contained have to participate as explained 
+below. 
+9.271 If a task force contains an aircraft 
+carrier , the carrier does not have to participate 
+in combat as long as at least one other ship in 
+the task force does join in combat . The only 
+way to guarantee attacking an aircraft carrier 
+is to catch it alone . 
+9 .272 If a task force contains one or more 
+ships whose evasion levels are higher than 
+those of all opposing ships , then any or all of 
+those ships may avoid combat providing at 
+least one ship whose evasion level is the same 
+or higher than the fastest opposing ship 
+remains to fight. The escaping ships may enter 
+combat in a subsequent round at the con­
+trolling player's option . They must enter the 
+battle board from the side opposite that 
+entered by the enemy or (if part of the attacking 
+force) along the side selected at the start of 
+combat . 
+EXAMPLE : Combat Determination : 
+The British player has successfully shadowed the 
+Bismarck with the heavy cruiser Suffolk. He moves 
+the Suffolk into the Bismarck 's new locatio n along 
+with a task force containing the battleships Hood and 
+Repulse , the cruisers Norfolk and Kenya, the aircraft 
+carrier Victor ious and a lone battleship King George 
+V. The German player moves the Prinz Eugen and a 
+couple of air units into the same zone. The visibility 
+level is '6', so only the German player has sufficient 
+strength to search . He calls out the zone and the 
+British player announces that he has in that zone 
+two battleships, two cruisers and an aircraft carrier 
+in task force and a cruiser and battleship not in task 
+force . 
+The British player chooses to attack the Bismarck , 
+which he has successfully shadowed , w ith his 
+battleships . (He is not allowed to attack the Bismarck 
+with his aircraft carrier) . Since he has some 
+battleships in task force and another battleship by 
+itself, he must select rand omly the ship or task force 
+that will initiate combat against the Bismarck . Both 
+may initiate combat since their evasion levels are 
+identical to the Bismarck's. The British player blindly 
+selects the King George V to initiate combat . Only 
+that ship can start combat against the Bismarck. The 
+Hood, Repulse, and cruisers can enter combat at a 
+later time as a reinfor cement if not attacked by the 
+Prinz Eugen . Note that if the task force had been 
+picked , both the Hood, the Repulse and any or all of 
+the cruisers could have attacked the Bismarck . 
+The German player decides to attack with the 
+Prinz Eugen. He can attack the remaining battleship 
+(remember the task force is identified as 'battleship ' 
+since that is the strongest type of ship it contained) , or 
+the cruiser . He chooses to attack the cruiser . As the 
+British player has only one cruiser type available (the 
+Suffolk) this ship must defend against the Prinz 
+Eugen. Since the ships were selected for the 
+Bismarck combat action before the Prinz Eugen 
+combat action , the Bismarck battle must be con­
+ducted first. 
+9,28 Naval combat is conducted in the naval 
+combat phase on the battle board. The 
+defending player always places his ships first 
+in the center hex of the battle board . The 
+attacking player then places his ships in any of 
+the hexes of his choice along one edge of the 
+battle board . The attacking player rolls one die 
+to determine which edge of hexes he must use 
+to set up. 
+9 .281 No more than two friendly ships may 
+be placed in one hex . If the defending player 
+has more ships than can be placed in his 
+starting hex, the additional ships may be 
+placed in any hexes adjacent to his starting 
+hex. 
+9.282 A ship must always be positioned 
+throughout combat so that its bow points 
+toward one of the six hex sides forming the hex 
+it occupies . A ship may never point its bow 
+toward a corner of the hex. If placed improper ­
+ly, the opponent realigns the bow to point 
+toward one of the two adjacent hexsides . All 
+ships on the same side must point in the same 
+direction at the start of combat . 
+/',,...._ 
+~ ,, ~, 
+§ ~ 
+~- \ ~ IJ § ' ~ 
+- E -
+'-' 
+Illegal Legal 
+9.3 Naval Combat Procedure 
+9.31 Naval Combat is conducted in rounds . In 
+each round , any and all ships may move one or 
+two hexes . Each ship moves within a specific 
+sequence , starting with the ship with the 
+lowest evasion rating and finishing with the 
+ship with the highest evasion rating . If two or 
+7 
+more ships have the same evasion rating , the 
+attacking ships move first before the defending 
+ships . After all movement has been completed , 
+enemy ships may fire at one another. Upon 
+completion of all fire, one or both sides may 
+attempt or agree to disengage , after wh ich 
+withdrawing ships make a bonus withdrawal 
+move . This completes one round . 
+9.32 Within one naval combat phase. players 
+may fight any number of rounds . The naval 
+combat phase is over only when all of one 
+player's ships involved in naval combat have 
+been sunk or have been successfully dis ­
+engaged . 
+9.33 None of the survivors of a naval combat 
+action can participate in any other action in the 
+same turn . They must wait until the next turn 
+to recommence combat . 
+9.4 Reinforcements 
+9.41 At the conclusion of the third round of 
+battle. and every round thereafter , either or 
+both players , if they have qualified ships in the 
+zone available to enter combat , may roll for 
+reinforcement. For each individual ship or task 
+force to enter, the controll ing player rolls one 
+die . A result of ·1 • permits it to enter combat in 
+the next round . For each subsequent attempt 
+for that particular ship or task force an 
+additional • 1 • can be subtracted from the die 
+roll. 
+9.42 When reinforcements enter , the con­
+trolling player must roll a die to determine 
+along which edge of hexes he may place the 
+reinforcing ship or ships . All reinforcing ships 
+from the same task force must point in the 
+same direction . The reinforcing ships must be 
+at least six hexes away from all enemy ships . 
+9 .43 Only those ships that can attack at least 
+one enemy ship in the naval action may enter 
+as reinforcements. 
+9 .44 A ship or task force which is able to enter 
+as a reinforcement may delay its entry . It can 
+enter in any subsequent combat round at the 
+controlling player 's option . A player is never 
+required to bring reinforcing ships into battle. 
+9.45 If there are two separate naval actions 
+occurring in the same zone, a player must 
+record on paper each potent ial reinforcing ship 
+and task force to either of the naval actions 
+before any combat begins. A ship or task force 
+which is committed to reinforce one naval 
+action cannot reinforce the other naval action . 
+EXAMPLE : From the previous l!Xample , the 
+British task force containing the battleships Hood and 
+Repulse, the cruisers Kenya and Norfolk and the 
+aircraft carrier Victorious can legally enter as a 
+reinforcement into either the naval action against the 
+Bismarck or the naval action against the Prinz Eugen. 
+Before any combat begins , the Briti sh player must 
+record which naval action the task force is to 
+reinforce . 
+9.5 Naval Combat Movement 
+9.51 In each combat round, a ship may move 
+two hexes , one hex or not at all depending 
+upon its current evasion level. 
+9.52 Ships are also allowed to change the 
+direction in which they are moving depending 
+upon their current evasion level. A change of 
+direction is defined as changing the direction 
+of a ship 's bow to point toward either one of the 
+two hex sides adjacent to the one its bow is 
+currently poin ting 
+
+---PAGE 8---
+MOVEMENT ON BATTLE BOARD 
+Current Ension Rating 
+0 1-3 4-10 11-17 18-24 25-29 30+ 
+Maximum 
+0 0 1 0 Movement 
+(in hexes) 
+or or 
+Maximum# of 
+0 1 1 2 Direction Changes 
+Per Round 
+9.53 The movement and turning capability of 
+ships 'on the battle board are displayed in the 
+Combat Movement Chart shown above. Note 
+that at certain evasion levels. a ship has a 
+choice of moves and turns that it can make . For 
+example, a ship with an evasion level of 28 can 
+move ahead two hexes and make up to one 
+change of direction ; or it can move just one hex 
+and make up to two direction changes; or it can 
+not move at all and make up to three direction 
+changes . 
+9.54 A ship is never required to move or make 
+any directional change . It may complete none 
+or part of its move without penalty . 
+9 .55 A ship may never move into a hex 
+occupied by an enemy ship . 
+9.56 A player may physically move a ship 
+counter off of the battle board or start 
+reinforcing ships off the battle board . In this 
+situation , all ships in play must be shifted the 
+same number of hexes in the same direction to 
+return the ship to the battle board . In those rare 
+cases where it is impossible to fit all ships on 
+SECTOR DIAGRAM 
+1 0 1 2 0 1 2 1 2 
+or or or or or 
+1 2 1 0 3 2 1 3 2 
+the battle board , extend an imaginary field of 
+hexes outward around the board . Position and 
+move the ships in these imaginary hexes. 
+9.6 Naval Fire Designation and Resolution 
+9 .61 In each round , afte r any and all move­
+ment , a ship may fire at any enemy ship within 
+'A' or ·s· range . A ship that is one. two or three 
+hexes from a firing ship is in its 'A ' range . A 
+ship that is four, five or six hexes from a firing 
+ship is in its ·s· range . A ship which is seven or 
+more hexes from a firing ship is beyond its 
+firing range and cannot be attacked by the ship . 
+9 .62 Fire for each ship is resolved individual ­
+ly. A ship may fire at more than one enemy 
+ship . A player must designate the number of 
+salvoes each of his ships intends to fire at 
+enemy ships before resolving any fire . The 
+firing procedure for one ship must be com ­
+pleted before the designation and resolution of 
+fire for another ship is begun . If a ship is sunk 
+before all fire directed at it has been resolved , 
+the remaining salvoes designated against it 
+are lost. The defending ship(s) always fire after 
+all attacking ships have completed their fire . 
+8 
+9.63 Every ship has four gun sections, each of 
+which has a certain sector of hexes into which 
+it can fire . The Sector Diagram illustrates each 
+gun section and the hex sector into which it 
+can fire . A gun section cannot fire any of its 
+salvoes at a target that is not in its sector . The 
+two secondary armament gun sections are 
+further limited in that each section may only 
+fire at a target in its sector in 'A" range . It 
+cannot fire at a target in ·s· range . Only bow 
+and stern turret gun sections can fire at targets 
+within sector in 'A' and ·s· ranges . 
+9.64 To determine the total number of shots 
+that a ship can fire at a specific target ship , a 
+player first has to total the salvoes for each gun 
+section that can fire at the target . In the log 
+pad, four groups of gun boxes are printed 
+beside each ship's name which correspond to, 
+and are labelled by, gun section . In each box is 
+a salvo number indicating the maximum 
+number of salvoes that that gun section can 
+fire . If there is a zero in a gun section box. that 
+gun section has no fire power . 
+9.651 When a ship fires at an enemy ship 
+more than one hex away , its total salvo count 
+targeted for that ship must be halved (rounded 
+DOWN). This is the number of shots that the 
+ship can fire . For example . the Bismarck is 
+firing all of its guns at a ship two hexes away . 
+The number of shots the Bismarck can fire is 
+eight (half its total salvo count of 17). 
+9 .652 A ship does not halve its salvo count if 
+firing at a target ship occupying the adjacent 
+hex. In this case, the number of shots it can fire 
+is equal to its salvo count . 
+9 .66 For each shot fired , the attacking player 
+rolls two dice and cross -indexes the result with 
+the proper range and field offire column on the 
+battle board . The result is either a miss which 
+causes no damage , or a hit which is directed at 
+a specific gun section or at the ship's midships . 
+
+---PAGE 9---
+9.67 The corr ect field of fire column to be 
+used is determined by selecting one of the 
+diagrams that corresponds to the attitude of 
+the firing ship to the target ship . 
+9.68 Naval Combat fire is never blocked by 
+other ships . A ship can alway s fire at an enemy 
+ship within range . 
+9 .7 Damage 
+9 .71 Record of Damage 
+9 . 711 All hits rece ived are recorded on th e Hit 
+Record sheet in th e proper section indicated in 
+the damage results . Hits are alway s marked off 
+from left to right so that the gun boxes with the 
+highest salvo count are marked out first. Note 
+that as gun hits are acquired , a ship's salvo 
+count is reduced . As an example, the Bismar ck 
+has received two port secon dary hits, two bow 
+turret hits, and three midships hits after one 
+round of combat. Damag e is marked out as 
+illustrated below . 
+9 .712 When a hit result states either ·consult 
+Special Damage A' or 'Consult Specia l Dam ­
+age B' the attacking player rolls again for that 
+shot on the appropriate Special Damag e 
+Table. 
+9 .713 All Naval Combat fire is conside red 
+simultaneous . Damage does not take effect 
+until all combat fire for the round has been 
+resolved . For example, the Bismarck star ts out 
+with a bow turret salvo count of seven . If two 
+bow turret hits are acquired in the first round , 
+the Bismarck still may count seven salvoes for 
+the bow turret in the first round ; however, in 
+th e second round, the Bisma rcl<. would get only 
+five salvoes for the bow turret. 
+9 .714 A ship is not sunk unt il every midships 
+box has been marked out . For exam ple, it takes 
+ten mid shi ps hits to sink the Bismarcl<., six 
+midships hits to sink the Rodney , etc. If a ship is 
+sunk before the combat round is over , it still 
+rolls its lull number of shots for that round . 
+When a ship other than the Bismarck is sunk , it 
+is removed from the game. When the Bismarck 
+is sunk , the game is over . 
+9 . 715 To record dam age without losing count 
+of the ava ilable salvoes for the current round , 
+the following system should be used. For 
+damage received in the current roun d, mark a 
+slash (/ ) in the appropriate gun section boxes. 
+After all fire l'las been comp leted for the round , 
+cha nge each slash to an ·x·. 
+9 . 716 A port secondary box can only be hit by 
+a ship fi ring on the targ et ship 's port side. A 
+starboard seconda ry box can only be hit by a 
+ship firing on the target ship's starboard side . If 
+a ship is firing directly into a targ et ship's bow 
+or stern , both the port and starboard secondary 
+box can be hit. 
+SECONDARY 
+BB AND BC 
+BISMARCK 
+BOW 
+TURRETS 
+EVASION AATING , 29 
+ARMAMENT STERN 
+PORT STARBOARD TURRETS MIDSHIPS 
+~ ~ I1 ,6 Js J4 l3 J2J , I XXXJ I I 
+AMMUNITION · 14 
+9 
+9.717 A hit scored on a gun section that has 
+been completely knocked out is treated as a 
+midships hit , inst ead. For example, the Hovd 
+has already rece ived one hit to its port 
+secondary box. The Bismarck , firing from the 
+Hood 's port side , gets another secondary hit. 
+Since the hit cannot be record ed on the 
+starboard secondary box and there are no 
+unmarked boxes remaining for the port 
+secondary gun section , th e secondary hit must 
+be recorded as a midsh ips hit. 
+9.72 Damage to Evasion Rating 
+9 .721 As a ship receiv es damage there is a 
+possibil ity that it will also incur a reduction in 
+its evasion rating . The reduction can be eittier 
+temporary or permanent. 
+9 .722 Anytime a ship receives a hit re5u lt 
+either by air or naval combat which states 
+" REDUCE EVASION LEVEL BY X AMOUNT" , it 
+must reduce its current evasion by the amount 
+specified . This reduct ion is perman ent and 
+cannot be repaired . 
+9 . 723 For each midsh ips hit that a ship 
+recei ves, even if it also rece ives permanent 
+evasion damage in the same result , the currem 
+evasion rating is reduced , depending upon 
+type . This reduction is temporary and can be 
+repaired . 
+9.724 The Bismarck reduces its evasion level 
+by '1 ' for every midships hit receive d. All other 
+battleships and aircraft carriers redu ce their 
+evasion level by '2' for every midships hit 
+received . 
+9 .725 The Prinz Eugen reduces its evasion 
+level by ·3· for every midships hit recei ved. 
+9 .726 All cru isers reduce their evasion level 
+by ·5· for every midships hit received . 
+9 . 727 There is space to keep a record of the 
+current evasion level for each ship on the Hit 
+Record sheet. 
+9 .728 In any turn in wh ich a sh ip moves 
+either one zone or not at all on the search 
+board , it may attempt to repair lost evasion 
+rating fac tors by roll ing one die on the 
+EVASION RATING REPAIR TABLE . Repair can 
+on ly be done immediately upon completion of 
+all movement in the ship movement phas e. 
+Midship boxes are NEVER repairea . 
+EVASION RATING REPAIR TABLE • 
+Die 
+Roll 
+1 
+2 
+3 
+4 
+5 
+6 
+Number of Evasion 
+Rating Factors 
+Regaine d 
+0 
+0 
+2 
+4 
+6 
+8 
+9 .729 A ship whose current evasion level is 
+between '16' and ·24· inc lusiv e, must utilize a 
+maximum speed of ·1 • on th e Search Board . A 
+ship whos e current evasion level is between 
+'7' and ·15 ' inclusive must move by emergency 
+speed . A ship whos e current evasion level is '6' 
+or less can not be moved. It may be towed by a 
+battleship , by a sh ip of the same type, or any 
+two ships. All ships involved in the tow must be 
+placed in task force and must move at 
+emergency speed . 
+
+---PAGE 10---
+9.8 Special Combat Fire Restrictions 
+9.81 The Rodney has no stern turrets. It does 
+have a third bow turret, but it is positioned so 
+that it can fire only into the port and starboard 
+secondary armament sectors out to 'B' range 
+On the Hit Record Pad, the third bow turret is 
+located with the stern turrets. It is treated as a 
+bow turret when taking damage . For each 
+stern turret hit from broadside the Rodney 
+receives, the British player rolls one die. A 
+result of '1 • or ·2· converts the hit to a bow 
+turret hit to either bow gun section. A result of 
+'3', '4', '5' or '6' converts the hit to a bow hit 
+that must be taken by the third turret. When 
+firing at the Rodney's stern, all stern hits are 
+treatFd as a secondary hit . 
+9.82 The Rodney must fire its stern turret at 
+half strength (rounded down) if it also fires its 
+main bow turret at a target in A range. The 
+stern turret can always fire at least one shot. 
+9.83 In each round that the Prince of Wales or 
+King George Vfire their guns, there is a chance 
+that one of the gun sections will be unable to 
+fire . A die roll of '1 •. ·2· or ·3· results in no 
+penalty to fire . A die roll of '4', ·5· or '6' forces 
+either the bow or stern turret gun section to 
+reduce its salvo count to half strength (rounded 
+down) . If there is a strength reduction, second 
+die roll of '1 ·, '2' or '3' forces the bow turret to 
+reduce its salvo count and a '4', ·5· or '6 ' result 
+forces the stern turret to reduce its salvo count . 
+9.84 Cruisers must always use Special 
+Damage Table A when receiving special 
+damage, regardless of the range. If the result is 
+Special Damage B, use Table A in the same 
+manner as Hood, Repulse and Renown . 
+9.9 Withdrawal 
+9.91 Attempts to disengage and withdraw 
+ships from combat can occur only at the end of 
+a naval combat round after all combat fire for 
+that round has been resolved. 
+9.92 If both players agree to withdraw all of 
+the ships involved in combat, the naval 
+combat phase is immediately over and the 
+players proceed to the next phase . 
+9.93 If only one player wishes to withdraw, or 
+if both wish to withdraw some of their ships, 
+each may do so with any ship whose evasion 
+level is higher than every opposing ship of the 
+same or larger general type within six hexes of 
+it, i.e., a cruiser cannot prevent a battleship 
+within six hexes of it from withdrawing. 
+9.94 At the beginning of each round, in­
+cluding the first round, players state which of 
+their ships intend to withdraw . Blank counters 
+are placed on top of withdrawing ships. Those 
+ships whose evasion levels are reduced below 
+that of opposing ships within six hexes cease 
+to be in withdrawal status and lose their blank 
+counters. 
+9.95 At the end of each round, all ship 
+counters with blank counters. MUST move one 
+additional hex after the conclusion of all 
+combat. The bonus move is the same as a 
+normal combat move except that the 
+withdrawing ship cannot change its direction 
+in the hex it exits . It may change its direction 
+one hex side in the hex that it enters . 
+9.96 Both the normal combat move and the 
+bonus move of a withdrawing ship must be 
+made so that the ship never moves closer to an 
+enemy ship than it presently is, unless it is 
+impossible to do otherwise. 
+9.97 If, at the end of any bonus move, a 
+withdrawing ship no longer has any enemy 
+ship within six hexes of it, then it has 
+successfully withdrawn from combat . Its 
+counter is removed from the battle board and it 
+cannot be involved in any other naval combat 
+for the remainder of the turn . 
+9.98 While withdrawing , a ship has all of its 
+shots for each gun section halved (rounded 
+up ). If a gun section has already been 
+halved, halve (rounding up)whatever remains. 
+9.99 A ship may voluntari ly withdraw but 
+once in the process of withdrawal , a ship may 
+NOT voluntarily dis engage from the 
+withdrawal effort . 
+10 .0 CHANCE PHASE 
+10.1 At the end of each turn . the British 
+player must roll two dice for each German ship 
+and consult the CHANCE TABLE . The first dice 
+roll always applies to the Bismarck or to both 
+German ships, if in task force . The second dice 
+roll always applies to the Prinz Eugen when not 
+in task force . Many times when the Prinz 
+Eugen is in task force with the Bismarck. there 
+may seem to be no need for the British player to 
+make a second dice roll. It should be made 
+anyway, so as not to reveal the Prinz Eugen 's 
+position in relation to the Bismarck . 
+10.2 There are three types of results that 
+appear on the Chance Table : GENERAL 
+SEARCH; HUFF-DUFF; or CONVOY LOCA­
+TION. 
+10.21 If the result is a set of three numbers , 
+the German ship must reveal its current 
+position to General Search if the three 
+conditions enumerated below are fulfilled : 
+10 .211 The ship is in a zone in or east of the 
+line of zones identified by a white circle and in, 
+or south of, zone row E. This area is defined as 
+the British patrol line . 
+10.212 The current visibility level is equal or 
+less than the number to be applied . 
+10.213 The ship is not currently in a fog zone 
+in a turn in which fog occurred . 
+10.214 Which of the three numbers applies 
+depends upon the ship 's location. If the ship is 
+in or within two zones east of a whit e cir cle 
+zone, the left-most number in column 'A ' is 
+used . If the ship is within two zones of the 
+coast of Great Britain . Eire, or th e Shetland 
+Islands , the right most number in Column 'C' is 
+used . If neither of these two cases apply, the 
+center number in column 'B' is used. 
+10.22 If the result is HUFF-DUFF, it is 
+assumed that the ship in questi on has issued a 
+radio message which th e British have traced 
+back to its source through its HUFF-DUFF radio 
+tracking equipment. The German player must 
+announce one zone grid -coordinat e. This grid­
+coordinate must either be in th e zone that the 
+ship currently occupies or in one of the six 
+zones adjacent to it. 
+10.23 When the result is a possible located 
+convoy, the German player gets victory points 
+for destroying the convoy if the ship or task 
+force in question meets the following two 
+requirements : 
+10.231 The ship or task force has been 
+neither successfully shad owed nor located by 
+search in the current turn. 
+10.232 The ship or task for ce is at the 
+location and mode requ ired to locate the 
+convoy . 
+10.24 There are two line s emana tin g from 
+Great Britain and labelled either ATLANTIC or 
+AFRICA CONVOY. If a ship is to be on rout e to 
+locate a convoy, it must be in a zone containing 
+one of these lines . If a ship is to be one zone 
+10 
+from route to locate a convoy, it must be in a 
+zone adjacent to one containing a convoy line . 
+It cannot be on the route . If a ship is to be within 
+two zones of a convoy route, it can be either on 
+route, one zone from route or two zones from 
+route . 
+10.25 If a German ship qualifies in locating a 
+convoy , and the German player wishes to 
+receive victory points for destroying it, he 
+states the name of the ship or ships involved 
+and their current location. The ship or ships 
+cannot move on the search board in the next 
+turn . If the German player does not wish to 
+attack the convoy , he says nothing and play 
+proceeds to the next turn . 
+10.26 Only one convoy can be destroyed each 
+day. 
+11.0 TIME 
+11.1 Night 
+11.11 Across the search board runs the 55° 
+line . The ·2000 · turn in any zone south of the 
+55 ° line is a night turn . The '2000 ' turn in any 
+zone north of the 55° line is a day turn. The 
+'2400 ' turn is always a night turn . 
+11.12 Ships involved in naval combat during 
+a night turn can only fire at opposing ships in 
+their 'A ' range. They must use the 'B' range 
+combat tables for all combat fire during night 
+turns . Air units cannot launch an attack at 
+night. 
+11 .13 When consulting the Chance Table for 
+a ship in a night zone, only the HUFF-DUFF 
+result is recognized . There can be no general 
+search or convoy attacks in a night turn . 
+1 .2 Time Record 
+11 .21 Each player records the passage of 
+each turn by moving his time marker to the 
+next turn. 
+11 .22 After all phases of a turn have been 
+completed , the turn is over and the time 
+marker is moved to the next turn . 
+11.23 In the Basic Game , time starts at the 
+'1200 May 22 ' turn and must end upon the 
+conclusion of the ' 1200 May 27' turn. 
+12.0 Victory Conditions 
+12 .1 The Basic Game ends when one of the 
+following five situations occur . 
+12 .11 The Bismarck is sunk . 
+12.12 The Bismarck enters any one of the 
+ports of Trondheim , Bergen, Brest or St. Naz­
+aire . 
+12 .13 The German player has accumulated 
+more points than it is possible for the British 
+player to score . 
+12.14 Play has reached the time limit . 
+12 .2 At the end of play, both players total up 
+the number of victory points gained as listed on 
+the Victory Point Schedule . The player with the 
+highest total is declared the winner. In the 
+event that both players have the same amount 
+of victory points, the game is a draw . 
+12 .3 British Victory Point Schedule: The 
+British player accumulates victory points for 
+thte following events as they occur . 
+12.31 Sinking the Bismarck-30 points 
+Sinking the Prinz Eugen-10 points 
+12 .32 Bismarck enters a friendly port with at 
+least one midships hit-6 points . 
+Prinz Eugen enters a friendly port with at 
+least one midships hit-2 points . 
+
+---PAGE 11---
+12.33 Bism arck enters any friendly port on a 
+May 22 turn. or has not left Bergen by the end 
+of the 2000 M ay 22 turn- 14 points 
+Bismar ck ente rs any fri endl y port on a May 
+23 turn- 12 poin ts 
+Bismarck enters any fr iendly port on a Ma y 
+24 turn -10 points 
+Bism arck enters any fr iendly port on a M ay 
+25 turn - 8 points 
+Bismarck enters any fr iendly port on a May 
+26 tu rn- 6 points 
+Bism arck ente rs any fr iendl y port on a M ay 
+27 turn-4 points 
+12.34 Bismarck is at sea at th e end of the 
+game with an evasion level of 21 or less- 6 
+points 
+Prinz Eugen is at sea at the end of th e game 
+with an evasion level of 21 or less-2 points 
+12.35 Each German air unit which is una ble 
+to return to base- 2 points 
+12.36 No convoy has been sunk-4 points 
+12.4 German Victory Point Schedule : The 
+German player accumulates victory points for 
+the following events as they occur . 
+12.41 Sinking the Victorious-24 point s 
+Sinking the Ark Royal-20 point s 
+BIBLIOGRAPHY 
+Barker, Ralph , Torpedo Bomber!, Ballant ine 
+Books, Inc ., 1957 . 
+Bekker, Cajus., The Luftwaffe War Dia ries, 
+Macdon ald & Co., 1964. 
+Grenfell, Russell , The Bismarck Epis ode, Faber 
+and Faber , Ltd ., 1948 . 
+Hezlet, Sir Arth ur, Electron ics and Sea Power, 
+Stein and Day, 1975. 
+Hough , Richard , The Hunti ng of Force Z, 
+Fontana Books, 1963. 
+Janes , F.T., Fightin g Ship s 1939, Arco, 1940 . 
+Kennedy, Ludov ic, Pursuit, the Sinking of the 
+Bismarck, Wm ., Colli ns, 1974 . 
+(the best single book on the Bism arck opera­
+tion) 
+Lenton / Macd onald ship data books. 
+Martienssen , Ant hony, Hitle r and his A dm i­
+rals , Secker and War burg, 1948 . 
+Rohwer , J. & Humm elchen, G., The Chronolo ­
+gy of the War at Sea 1939 -1945 .. Vol. I, Arco, 
+1974 . 
+Roskill , Capt. S.W., The War at Sea, Vol. 1, 
+H.M.S .O., 1954 . 
+Schmalenback , Paul, Profile Warship Bis­
+marck, Profile Pubs., 1972 . 
+Scholfield, B.B., Loss of the Bismar ck, U S.NI. , 
+1972 . 
+Winterbotham , F. W., The Ultr a Secret, Dell 
+Publishing, 1974 . 
+Both Nathan Okun and Andrew Sm ith made 
+tremendous scholarl y con tribution s. Nathan's 
+help was mainly in ordna nce and arm or 
+penetration . The Advanced game charts are 
+his brain chi ld. Mu ch of his research w as 
+original and was carr ied out at various 
+archives in the Wa shington, D.C. area . A ndrew 
+Smith fielded all the tough quest ions that I 
+could not handl e. Much of his effor t took him 
+through his rather large private library as w ell 
+as the English Public Record Off ice . 
+Sinking the King George V, Prince of 
+Wales (each)-16 points 
+Sinking the Hood-14 points 
+Sinking the Rodney-12 points 
+Sinking the Repulse , Renown 
+(each)-10 points 
+Sinking the Revenge, Ramillies 
+(each)-8 points 
+Each heavy cruiser sunk-6 points 
+Each light cruiser sunk-4 points 
+12.42 British player mobilizes a ship on 
+escort duty (see British order of appear­
+ance)-1 point. 
+12.43 Each Brit ish air unit which is unab le to 
+return to base-2 points 
+12.44 German ship destroys first convoy-6 
+points 
+German ship destroys second con­
+voy-6 points 
+German ship destroys third convoy-8 
+points 
+German ship destroys fourth con­
+voy-10 points 
+German ship destroys fifth convoy-12 
+points 
+11 
+12 .45 Bismarck is at sea with damage but 
+with an evasion level of 22 or greater at 
+the end of the game .-2 points 
+12.46 Bismarck is at sea with no midships 
+damage at the end of the game.-4 
+points 
+Prinz Eugen is at sea with no midships 
+damage at the end of the game,-2 
+points 
+12.5 Each player receives victory points for 
+causing damage to enemy ships still afloat at 
+the end of play . 
+Each midships hit to battleships or 
+aircraft carriers-2 points 
+Each midships hit to cruisers-1 point 
+12.6 A German ship can never enter a non­
+friendly or neutral port . 
+12. 7 If a German ship enters a friendly port, 
+the game is not over until any and all combat is 
+concluded . The Bismarck and/or Prinz Eugen 
+can be attacked by ship and/or air in a port 
+zone the turn either or both enter the port . 
+Once the Prinz Eugen has spent a turn in port, 
+it cannot be attacked by ship . It can be attacked 
+once by air. If it leaves port and returns back 
+to port. it can be air attacked again . 
+DESIGN CREDITS 
+'Bismarck is dedicated to my Father and 
+Mother' 
+Game Design: Jack Greene, Jr. 
+Special Design and Development : Mick Uhl 
+Components Design: Jack Greene, Jr. and 
+Mick Uhl 
+Game Development : Jack Greene, Jr., 
+Nathan Okun, Andrew Smith, Wes Coates and 
+Craig Ransom 
+Historical Research: Jack Greene, Jr., Nathan 
+Okun , Andrew Smith and Wes Coates 
+Playtesting: Wes Coates, Al Bisasky, Tony 
+James, Rian van Meeteren, Craig Ransom, 
+Arnold Blumberg , Seth Carus, Gary Sipes, 
+Webb Ewell , Charles Vasey, Claude Blood­
+good, Tas Ryne, Mark Saha, Harti Ammann, Jr. 
+and all others who served in the 'by mail' 
+playtest . 
+Graphics and Layout: M ick Uhl, Bob Haynes 
+and Jean Baer 
+Typesetting: Colonial Composition 
+Printing : Monarch Services 
+Special Thanks to Andrew Smith , Nathan 
+Okun, Wes Coates and Craig Ransom who 
+provided invaluable assistance to the design 
+and direction of this game. 
+Copyright 1979, The Avalon Hill Game 
+Company , Baltimore, MD 
+Printed in U.S.A. 

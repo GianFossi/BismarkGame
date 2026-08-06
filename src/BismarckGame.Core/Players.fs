@@ -110,6 +110,7 @@ let private commandController (state: GameState) (command: Command) : PlayerRetu
     | MoveShip(shipId, _)
     | SetShipMode(shipId, _)
     | RollChanceForShip shipId
+    | ResolveHuffDuff(shipId, _)
     | AttackConvoy(shipId, _)
     | WithdrawFromBattle shipId
     | Mobilize shipId ->
@@ -118,6 +119,7 @@ let private commandController (state: GameState) (command: Command) : PlayerRetu
         |> resultOfOption $"No ship {shipId} exists in this game"
 
     | MoveAirUnit(airUnitId, _)
+    | ReturnAirUnitToBase airUnitId
     | SetAirUnitMode(airUnitId, _)
     | LaunchAirAttack(airUnitId, _) ->
         tryFindAirUnitOwner state airUnitId
@@ -144,6 +146,23 @@ let private commandController (state: GameState) (command: Command) : PlayerRetu
         |> Option.map Some
         |> resultOfOption $"No firing ship {order.Firer} exists in this game"
 
+    | ResolveTorpedoDamage(_, target, _) ->
+        tryFindShipOwner state target
+        |> Option.map Some
+        |> resultOfOption $"No target ship {target} exists in this game"
+
+    | ResolveBritishTorpedoSalvo(_, target) ->
+        tryFindShipOwner state target
+        |> Option.map Some
+        |> resultOfOption $"No target ship {target} exists in this game"
+
+    | LaunchTorpedoSalvo(_, firer, _, _)
+    | ResolveDefensiveFire(_, firer, _)
+    | ReplenishTorpedoes firer ->
+        tryFindShipOwner state firer
+        |> Option.map Some
+        |> resultOfOption $"No ship {firer} exists in this game"
+
     | EndNavalCombat battleId ->
         match state.ActiveBattles |> List.tryFind (fun b -> b.Id = battleId) with
         | None -> fail $"No active battle {battleId}"
@@ -161,10 +180,21 @@ let private commandController (state: GameState) (command: Command) : PlayerRetu
     | MoveShipInBattle(shipId, _, _, _, _) ->
         tryFindShipOwner state shipId
         |> Option.map Some
+         |> resultOfOption $"No ship {shipId} exists in this game"
+
+    | AttemptBattleReinforcement(_, shipId) ->
+        tryFindShipOwner state shipId
+        |> Option.map Some
         |> resultOfOption $"No ship {shipId} exists in this game"
 
+    | AttemptTaskForceReinforcement(_, taskForceId) ->
+        tryFindTaskForceOwner state taskForceId
+        |> Option.map Some
+        |> resultOfOption $"No task force {taskForceId} exists in this game"
+
     | RollVisibilityChange
-    | AdvancePhase ->
+    | AdvancePhase
+    | AdvanceBattleRound _ ->
         ok None
 
 /// <summary>

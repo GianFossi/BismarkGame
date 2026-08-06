@@ -90,6 +90,18 @@ let private damagePointsFor (points: DamagePoints) (ship: ShipOutcome) : int =
         | Battleship | Battlecruiser | AircraftCarrier -> points.PerMidshipsHitOnBattleshipOrCarrier * ship.MidshipsHits
         | HeavyCruiser | LightCruiser | PocketBattleship -> points.PerMidshipsHitOnCruiser * ship.MidshipsHits
 
+let private sinkingPointsFor (ship: ShipOutcome) : int option =
+    match ship.Name, ship.Class with
+    | "Bismarck", _ -> Some 30
+    | "Prinz Eugen", _ -> Some 10
+    | "Victorious", _ -> Some 24
+    | "Ark Royal", _ -> Some 20
+    | "Renown", _ | "Repulse", _ -> Some 10
+    | "Revenge", _ | "Ramillies", _ -> Some 8
+    | _, HeavyCruiser -> Some 6
+    | _, LightCruiser -> Some 4
+    | _ -> None
+
 /// <summary>
 /// Evaluates final/running scores for both sides from a snapshot of ship
 /// outcomes. This only implements rule 12.5 (damage points on ships still
@@ -109,12 +121,16 @@ let evaluate (damagePoints: DamagePoints) (shipOutcomes: ShipOutcome list) : Vic
             [ for ship in shipOutcomes do
                 if ship.Nationality <> nat then   // score against the OTHER side's ships
                     if ship.IsSunk && ship.Name = "Bismarck" then
-                        yield "Sank Bismarck", 0   // TODO: exact point value not confirmed (rule 12.31 area)
+                        yield "Sank Bismarck", 30
                     elif ship.IsSunk && ship.Name = "Prinz Eugen" then
-                        yield "Sank Prinz Eugen", 0   // TODO: exact point value not confirmed
+                        yield "Sank Prinz Eugen", 10
                     else
                         let pts = damagePointsFor damagePoints ship
-                        if pts > 0 then yield $"Damage on {ship.Name}", pts ]
+                        if pts > 0 then yield $"Damage on {ship.Name}", pts
+                        if ship.IsSunk && ship.Nationality = British then
+                            match sinkingPointsFor ship with
+                            | Some sinking -> yield $"Sank {ship.Name}", sinking
+                            | None -> () ]
         { Nationality = nat
           Points = events |> List.sumBy snd
           Events = events }

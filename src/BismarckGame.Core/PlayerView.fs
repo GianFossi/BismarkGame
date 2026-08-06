@@ -51,6 +51,8 @@ type RevealedContact =
 type VisibleBattle =
     { BattleId: int
       OwnShips: BattleShipState list
+      /// <summary>Salvoes launched by the viewer in this round; enemy values are never exposed.</summary>
+      OwnTorpedoSalvosFired: (ShipId * int) list
       /// <summary>
       /// Same redaction as RevealedContact: enemy ships in a battle the
       /// viewer IS party to are still only shown by class, not full
@@ -134,7 +136,8 @@ let project (state: GameState) (viewer: Nationality) : PlayerView =
                 |> Map.toList
                 |> List.filter (fun (sid, _) -> not (ownShipIds.Contains sid))
                 |> List.map (fun (_, bs) -> bs.Position, bs.Class)
-            { BattleId = b.Id; OwnShips = ownBattleShips; EnemyShipZonesAndClasses = enemyBattleShips; Round = b.Round })
+            let ownTorpedoes = b.TorpedoSalvosFired |> Map.toList |> List.filter (fun (sid, _) -> ownShipIds.Contains sid)
+            { BattleId = b.Id; OwnShips = ownBattleShips; OwnTorpedoSalvosFired = ownTorpedoes; EnemyShipZonesAndClasses = enemyBattleShips; Round = b.Round })
 
     { Viewer = viewer
       Turn = state.Turn

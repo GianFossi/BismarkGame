@@ -133,6 +133,7 @@ let initializeGame (scenario: ScenarioDefinition) : GameState =
     { Turn = scenario.FirstTurn
       Phase = UnitAvailability
       SearchBoard = scenario.SearchBoard
+      FogZones = Set.empty
       ConvoyRouteZones = scenario.ConvoyRouteZones
       ConvoyRoutePath = scenario.ConvoyRoutePath
       ConvoyUnits = convoyUnits

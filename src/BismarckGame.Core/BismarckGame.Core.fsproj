@@ -47,6 +47,7 @@
     <Compile Include="Units.fs" />
     <Compile Include="Markers.fs" />
     <Compile Include="BattleBoard.fs" />
+    <Compile Include="ErrataRules.fs" />
     <Compile Include="VictoryConditions.fs" />
     <Compile Include="GameState.fs" />
     <Compile Include="Configuration.fs" />
@@ -59,6 +60,8 @@
     <Compile Include="Tables\ShadowTable.fs" />
     <Compile Include="Tables\ChanceTable.fs" />
     <Compile Include="Tables\BomberTables.fs" />
+    <Compile Include="Tables\TorpedoDamageTable.fs" />
+    <Compile Include="Tables\SubmarineAttackTable.fs" />
     <Compile Include="Tables\TimeAndVisibility.fs" />
 
     <Compile Include="Scenario.fs" />

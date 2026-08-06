@@ -49,6 +49,7 @@ let testShip (id: string) (name: string) (nat: Nationality) (cls: ShipClass) (zo
       Mode = Movement
       CurrentZone = Some zone
       Fuel = None
+      TorpedoesRemaining = 0
       TaskForce = None
       IsConvoyEscort = false
       ZonesMovedThisTurn = 0
@@ -86,6 +87,7 @@ let testState () : GameState =
     { Turn = { Number = 4; IsNightTurn = false; IsEmergencyMovementTurn = true; Visibility = VisibilityLevel 4 }
       Phase = ShipMovement
       SearchBoard = board
+      FogZones = Set.empty
       ConvoyRouteZones = Set.ofList [ coord 'C' 3 ]
       ConvoyRoutePath = [ coord 'A' 1; coord 'A' 2; coord 'A' 3; coord 'B' 3; coord 'C' 3 ]
       ConvoyUnits = [ { Id = 1; Zone = coord 'C' 3; RouteIndex = 4; Direction = East; IsSunk = false } ]

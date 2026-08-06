@@ -177,6 +177,7 @@ let private ship id name nat cls startZone =
       Mode = Movement
       CurrentZone = Some startZone
       Fuel = fuel
+      TorpedoesRemaining = stats |> Option.bind (fun s -> s.TorpedoFactors) |> Option.defaultValue 0
       TaskForce = None
       IsConvoyEscort = false
       ZonesMovedThisTurn = 0
@@ -260,7 +261,8 @@ let private britishOOB : OrderOfBattle =
           // Revenge enters secretly, turn 1600/May24 or later, at L3 (note 13).
           // Dorsetshire enters 1600/May25 at Z20 (note 14).
           ship "GBR-BB-Revenge" "Revenge" British Battleship (zone 'L' 3)
-          ship "GBR-CA-Dorsetshire" "Dorsetshire" British HeavyCruiser (zone 'Z' 20) ]
+          // Errata 17.3: Dorsetshire enters at Z10, not Z20.
+          ship "GBR-CA-Dorsetshire" "Dorsetshire" British HeavyCruiser (zone 'Z' 10) ]
         |> List.map (fun s ->
             let lockedInPortIds =
                 set [ "GBR-BB-KingGeorgeV"; "GBR-CV-Victorious"; "GBR-CL-Kenya"; "GBR-CL-Galatea"
@@ -322,4 +324,4 @@ let scenario : ScenarioDefinition =
       // — not modeled; Revenge is placed exactly on turn 17 here.
       PendingReinforcements =
         [ 17, ShipId "GBR-BB-Revenge", zone 'L' 3
-          23, ShipId "GBR-CA-Dorsetshire", zone 'Z' 20 ] }
+          23, ShipId "GBR-CA-Dorsetshire", zone 'Z' 10 ] }

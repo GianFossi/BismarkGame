@@ -24,6 +24,8 @@ type Phase =
     | ShipMovement          // 4.5
     | Search                // 4.6
     | AirAttack             // 4.7
+    /// <summary>Intermediate torpedo attack phase between air attack and naval combat.</summary>
+    | TorpedoAttack         // 22.2 / 23.3
     | NavalCombat           // 4.8
     | Chance                // 4.9
 
@@ -74,6 +76,8 @@ type GameState =
     { Turn: GameTurn
       Phase: Phase
       SearchBoard: SearchBoardMap
+      /// <summary>Zones currently affected by local fog (rule 7.31).</summary>
+      FogZones: Set<GridCoordinate>
       /// <summary>
       /// Scenario-defined convoy route zones used by Chance Table convoy
       /// outcomes (rows 10-12 on the Basic Game Tables Card).
@@ -135,6 +139,8 @@ type GameState =
 type Command =
     | MoveShip of ShipId * GridCoordinate
     | MoveAirUnit of AirUnitId * GridCoordinate
+    /// <summary>Returns an air unit to its home base and starts its mandatory one-turn refit (rule 6.41-6.42).</summary>
+    | ReturnAirUnitToBase of AirUnitId
     | SetShipMode of ShipId * ShipMode
     | SetAirUnitMode of AirUnitId * AirUnitMode
     | FormTaskForce of Nationality * ShipId list
@@ -143,6 +149,16 @@ type Command =
     | LaunchAirAttack of AirUnitId * targetShip: ShipId
     | InitiateNavalCombat of GridCoordinate * attacker: Nationality
     | FireInBattle of FireOrder
+    /// <summary>Resolves the damage roll after a successful torpedo hit (rules 19.7 and 23.54).</summary>
+    | ResolveTorpedoDamage of battleId: int * target: ShipId * dieRoll: int
+    /// <summary>British torpedo salvo: rolls two dice for the hit table, then one damage die (errata 23.53).</summary>
+    | ResolveBritishTorpedoSalvo of battleId: int * target: ShipId
+    /// <summary>Launches one or more torpedo salvoes and consumes them from the firing ship.</summary>
+    | LaunchTorpedoSalvo of battleId: int * firer: ShipId * target: ShipId * salvoes: int
+    /// <summary>Resolves one defensive-fire opportunity against a torpedo attacker.</summary>
+    | ResolveDefensiveFire of battleId: int * defender: ShipId * attacker: ShipId
+    /// <summary>Replenishes torpedo salvoes while refueling in a friendly port.</summary>
+    | ReplenishTorpedoes of ShipId
     /// <summary>
     /// Battle Board movement: moves `hexesMoved` hexes to `destination`,
     /// changing facing to `newFacing` after `directionChanges` turns.
@@ -167,6 +183,22 @@ type Command =
     /// </summary>
     | EndNavalCombat of battleId: int
     /// <summary>
+    /// Completes the current naval combat round: withdrawing ships make
+    /// their mandatory bonus move when possible, ships that are clear of
+    /// all eligible enemies leave the action, and the round number advances.
+    /// Rules 9.31 and 9.94-9.97.
+    /// </summary>
+    | AdvanceBattleRound of battleId: int
+    /// <summary>
+    /// Attempts to bring a qualified ship from the battle's Search Board
+    /// zone into combat. From round 3 onward, the first attempt succeeds on
+    /// a 1 and each later attempt receives the additional -1 modifier
+    /// required by rule 9.41.
+    /// </summary>
+    | AttemptBattleReinforcement of battleId: int * shipId: ShipId
+    /// <summary>Attempts one atomic reinforcement roll for every ship in a task force (rule 9.4x).</summary>
+    | AttemptTaskForceReinforcement of battleId: int * taskForceId: TaskForceId
+    /// <summary>
     /// Rule 4.2 / Visibility Phase: rolls 2d6 against the Visibility
     /// Change Table (Tables/TimeAndVisibility.fs) and applies the shift.
     /// Skipped on turn 1 per the Sequence of Play card ("Skip 2A on the
@@ -190,6 +222,8 @@ type Command =
     /// longer a caller-supplied input.
     /// </summary>
     | RollChanceForShip of ShipId
+    /// <summary>Resolves a Huff-Duff result using the German player's chosen current or adjacent zone (rule 10.22).</summary>
+    | ResolveHuffDuff of ShipId * GridCoordinate
     /// <summary>
     /// Resolve a convoy attack in the Naval Combat phase against a convoy
     /// contact in `zone`. This awards German VP per rule 12.44's convoy
