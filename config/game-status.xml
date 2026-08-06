@@ -539,6 +539,7 @@
       <CurrentZone>L20</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -548,6 +549,7 @@
       <CurrentZone>O22</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -557,6 +559,7 @@
       <CurrentZone>H18</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -566,6 +569,7 @@
       <CurrentZone>Z29</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -575,6 +579,7 @@
       <CurrentZone>D9</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -584,6 +589,7 @@
       <CurrentZone>L20</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -593,6 +599,7 @@
       <CurrentZone>O22</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -602,6 +609,7 @@
       <CurrentZone>H18</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -611,6 +619,7 @@
       <CurrentZone>L20</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -620,6 +629,7 @@
       <CurrentZone>O22</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -629,6 +639,7 @@
       <CurrentZone>H18</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -638,6 +649,7 @@
       <CurrentZone>H18</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -647,6 +659,7 @@
       <CurrentZone>Z29</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -656,6 +669,7 @@
       <CurrentZone>Z29</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -665,6 +679,7 @@
       <CurrentZone>Z29</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -674,6 +689,7 @@
       <CurrentZone>F20</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -683,6 +699,7 @@
       <CurrentZone>R26</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -692,6 +709,7 @@
       <CurrentZone>P23</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -701,6 +719,7 @@
       <CurrentZone>Q25</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -710,6 +729,7 @@
       <CurrentZone>C19</CurrentZone>
       <Mode>BomberReconnaissance</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -719,6 +739,7 @@
       <CurrentZone>R26</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
@@ -728,6 +749,7 @@
       <CurrentZone>C19</CurrentZone>
       <Mode>ReconMovement</Mode>
       <TurnsAirborne>0</TurnsAirborne>
+      <AirAttacksLaunchedThisTurn>0</AirAttacksLaunchedThisTurn>
       <IsAtBase>true</IsAtBase>
       <IsSunkLikeMissing>false</IsSunkLikeMissing>
     </AirStatusDto>
