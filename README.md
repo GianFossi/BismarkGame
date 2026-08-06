@@ -125,15 +125,6 @@ the full explanation.
       alignment. `categoryOf` doesn't expose it.
 
 ### Rules not yet implemented
-- [ ] Naval combat attack-eligibility (rules 9.221-9.224): aircraft
-      carriers can never initiate an attack; a ship/task force can't
-      attack a faster enemy unless the opponent accepts; a shadowing
-      ship may only attack the ship it's shadowing. `InitiateNavalCombat`
-      doesn't check any of these yet — it only checks that both sides
-      have ships in the zone.
-- [ ] Air attack frequency limits (rule 9.16): British bomber = 2
-      strikes/day-turn, German bomber = 1/day-turn, none at night.
-      `LaunchAirAttack` doesn't track attacks-used-this-turn.
 - [ ] Reinforcement combat entry (rule 9.4x) — ships arriving as
       reinforcements mid-battle, the 6-hexes-away placement rule, and the
       "roll for reinforcement" die mechanic starting round 3.
@@ -141,25 +132,12 @@ the full explanation.
       V/Prince of Wales's random gun-section-disable rule (9.83) — the
       Hit Record Pad data captures the *asterisked stats* but the
       per-round resolution logic for those asterisks isn't implemented.
-- [ ] Cruiser-specific Special Damage Table override (rule 9.84:
-      cruisers always use Table A regardless of range) — `NavalFireTables.fs`
-      doesn't check target class before picking the table.
-- [ ] Fog (rule 7.3x) — `ShadowTable`/visibility-change data tracks
-      `TriggersFog` but nothing consumes it; search/combat should be
-      blocked in a fogged zone and currently isn't.
-- [ ] Task force patrol search strength (rule 5.45 / 7.26: "never count
-      the search strengths of ships in a task force individually, use
-      only the task force counter's [patrol] strength") — `SearchZone`
-      sums individual ship search strengths even for task-forced ships.
-- [ ] High-speed shadow (rule 8.2) — shadowing a ship that just moved
-      through a searched zone, before its second move. Not modeled;
-      `DeclareShadow` only handles a stationary-then-move shadow attempt.
-- [ ] LR Recon / air units as shadowers (rule 8.13) — `DeclareShadow`
-      only resolves ship-shadows-ship.
-- [ ] `12.6`/`12.7` (a German ship can never enter a neutral/non-friendly
-      port; port combat continuing until resolved) aren't enforced —
-      `canEnterZone` blocks German ships from Irish Sea/British ports but
-      doesn't check neutral (Spanish) ports.
+- [ ] High-speed shadow (rule 8.2) is only partially modeled: shadow can
+      now be declared during Ship Movement after the target's first move,
+      but the specific "moved through a searched zone" condition is not
+      tracked yet.
+- [ ] Port-combat continuation from rule 12.7 is not modeled; ending a
+      battle is still caller-driven via `EndNavalCombat`.
 
 ### Known correctness caveats (working as intended, but simplified)
 - [ ] Huff-Duff reveals the exact zone instead of letting the German
@@ -177,6 +155,14 @@ the full explanation.
 - [ ] Convoys have no board position of their own (only a `ConvoyMarker`
       tying a marker to an escorting ship) — Chance Table convoy-location
       results are structural no-ops.
+- [ ] Naval attack-eligibility rule 9.223's "unless the defender accepts"
+      branch is handled as fail-closed (no explicit accept command/model).
+- [ ] Fog is treated as global `'X'` visibility for search/air/naval
+      combat blocking; per-zone fog creation/decay from `TriggersFog` is
+      still not represented as separate state.
+- [ ] Rule 12.6 is enforced for non-friendly ports represented in current
+      board data (`Port owner <> German`), but neutral-port ownership is
+      not a distinct type yet (only British/German in `Nationality`).
 
 ### Not started
 - [ ] Intermediate Game (submarines, destroyers, convoys-with-real-position,

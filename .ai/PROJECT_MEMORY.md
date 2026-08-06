@@ -241,3 +241,42 @@ are easy to lose over time:
   already has (from the hexagonia.com PDF) but hasn't yet turned into
   `Update.fs` logic — this is implementation backlog, not a missing
   source.
+
+## 5. 2026-08 implementation pass on previously-listed rule gaps
+
+A focused pass implemented the rule items that fit the current command/state
+shape without introducing a large model redesign:
+
+- `Update.fs` now enforces naval-combat initiation constraints from 9.221-
+  9.224 in a fail-closed way:
+  - carrier-only attackers cannot initiate;
+  - slower attackers cannot force combat without an explicit defender-
+    acceptance path in state/commands;
+  - if attacker ships are shadowing, initiation is blocked unless the
+    defender set matches the attacker shadow targets.
+- `LaunchAirAttack` now enforces 9.16:
+  - no air attacks at night;
+  - British unit max 2 attacks/day-turn;
+  - German unit max 1 attack/day-turn;
+  - per-unit counter `AirAttacksLaunchedThisTurn` added to `AirUnitCounter`,
+    incremented on attack and reset each new turn.
+- Fog blocking was wired in as a practical first step: when visibility is
+  `'X'` (internally level 9), search/air attack/naval combat commands fail.
+  This still does **not** model per-zone fog lifecycle from `TriggersFog`.
+- Task-force search handling now uses task-force patrol contribution (one
+  member-equivalent in patrol mode) instead of counting member ships as
+  independent patrol ships.
+- Shadowing now supports British LR Recon as a shadower and allows a
+  high-speed shadow attempt during Ship Movement after the target's first
+  move (still missing the explicit "moved through a searched zone"
+  condition because searched-zone traversal is not tracked yet).
+- `canEnterZone` now blocks German entry to any `Port owner <> German`
+  represented in the board data (non-friendly ports); explicit neutral-port
+  nationality is still not modeled as a separate type.
+- `NavalFireTables.resolve` now enforces 9.84: cruiser targets use Special
+  Damage Table A regardless of main-fire range.
+
+Tests added in `EngineTests.fs` and `TablesTests.fs` pin these behaviors.
+Open backlog after this pass remains reinforcement-combat entry (9.4x),
+Rodney/KGV/PoW asterisked gunnery exceptions (9.81-9.83), and full per-zone
+fog state.

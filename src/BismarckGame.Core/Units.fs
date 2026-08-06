@@ -128,6 +128,12 @@ type AirUnitCounter =
       /// EnduranceRating to force a return-to-base (rule 6.2x).
       /// </summary>
       TurnsAirborne: int
+      /// <summary>
+      /// Rule 9.16: attacks launched in the current turn. British bombers
+      /// may attack at most twice per day turn; German bombers at most
+      /// once per day turn; no air attacks at night.
+      /// </summary>
+      AirAttacksLaunchedThisTurn: int
       MaxSpeedZones: int
       HomeBase: HomeBase
       CurrentZone: GridCoordinate option
