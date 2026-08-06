@@ -107,6 +107,22 @@ let ``NavalFireTables A-range roll 12 broadside on a heavy-armored ship is softe
     | other -> Assert.Fail $"expected a softened HitMidships, got {other}"
 
 [<Fact>]
+let ``NavalFireTables uses Table A special damage for cruiser targets even at B range`` () =
+    // Rule 9.84: cruisers always use Special Damage Table A.
+    // B-range broadside 11 consults special damage; special roll 12 on
+    // Table A is SUNK for non-heavy-armored ships.
+    let order : FireOrder =
+        { Firer = BismarckGame.Core.Common.ShipId "X"
+          Target = BismarckGame.Core.Common.ShipId "GBR-CA-TestCruiser"
+          Section = BowGuns
+          SalvoesFired = 1
+          Range = RangeB
+          Aspect = Broadside }
+    let rolls = System.Collections.Generic.Queue<int>([ 11; 12 ])
+    let result = NavalFireTables.resolve Set.empty order (fun () -> rolls.Dequeue())
+    Assert.Equal(Sunk, result)
+
+[<Fact>]
 let ``ShadowTable resolves Hold Contact at die 1 for every named category`` () =
     Assert.Equal(ShadowTable.HoldContact, ShadowTable.resolve ShadowTable.CategoryX 1 4 false)
     Assert.Equal(ShadowTable.HoldContact, ShadowTable.resolve ShadowTable.CategoryY 1 4 false)

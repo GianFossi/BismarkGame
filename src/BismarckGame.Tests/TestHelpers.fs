@@ -68,6 +68,7 @@ let testAirUnit (id: string) (name: string) (nat: Nationality) (utype: AirUnitTy
       SearchStrength = { Day = 5; Night = 6 }
       EnduranceRating = 2
       TurnsAirborne = 0
+      AirAttacksLaunchedThisTurn = 0
       MaxSpeedZones = 1
       HomeBase = LandBase "TestBase"
       CurrentZone = Some zone

@@ -49,6 +49,7 @@ type AirStatusDto =
       CurrentZone: string
       Mode: string
       TurnsAirborne: int
+      AirAttacksLaunchedThisTurn: int
       IsAtBase: bool
       IsSunkLikeMissing: bool }
 
@@ -453,6 +454,7 @@ let captureGameStatus (state: GameState) : GameStatusDto =
                       CurrentZone = zoneToString a.CurrentZone
                       Mode = airModeToString a.Mode
                       TurnsAirborne = a.TurnsAirborne
+                      AirAttacksLaunchedThisTurn = a.AirAttacksLaunchedThisTurn
                       IsAtBase = a.IsAtBase
                       IsSunkLikeMissing = false }
                 dto))
@@ -634,6 +636,7 @@ let applyGameStatus (snapshot: GameStatusDto) (state: GameState) : GameState =
                           SearchStrength = { Day = 0; Night = 0 }
                           EnduranceRating = 0
                           TurnsAirborne = dto.TurnsAirborne
+                          AirAttacksLaunchedThisTurn = dto.AirAttacksLaunchedThisTurn
                           MaxSpeedZones = 0
                           HomeBase = LandBase "Restored"
                           CurrentZone = parseZone dto.CurrentZone
@@ -643,6 +646,7 @@ let applyGameStatus (snapshot: GameStatusDto) (state: GameState) : GameState =
                         CurrentZone = parseZone dto.CurrentZone
                         Mode = parseAirMode dto.Mode
                         TurnsAirborne = dto.TurnsAirborne
+                        AirAttacksLaunchedThisTurn = dto.AirAttacksLaunchedThisTurn
                         IsAtBase = dto.IsAtBase }
                 players.Add(nat, { p with AirUnits = p.AirUnits.Add(aid, updated) }))
             withShips

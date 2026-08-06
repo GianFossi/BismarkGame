@@ -102,6 +102,9 @@ let private specialDamageTable : Map<FireRange * int, SpecialEntry> =
 /// </summary>
 let heavyArmoredShipNames = set [ "GER-BB-Bismarck"; "GBR-BB-KingGeorgeV"; "GBR-BB-PrinceOfWales" ]
 
+let private isCruiserId (targetId: string) =
+    targetId.Contains("-CA-") || targetId.Contains("-CL-")
+
 /// <summary>
 /// Resolves one FireOrder against the printed tables. `rollTwoDice` should
 /// return the sum of two six-sided dice (2-12); it may be called a second
@@ -120,10 +123,11 @@ let resolve (heavyArmored: Set<string>) (order: FireOrder) (rollTwoDice: unit ->
     | Some(MSection s) -> HitSection s
     | Some(MMidships n) -> HitMidships(n, None)
     | Some MConsultSpecial ->
-        match specialDamageTable.TryFind(order.Range, rollTwoDice ()) with
+        let (ShipId targetId) = order.Target
+        let specialDamageRange = if isCruiserId targetId then RangeA else order.Range
+        match specialDamageTable.TryFind(specialDamageRange, rollTwoDice ()) with
         | None -> HitMidships(1, None)   // defensive default; should not happen for A/B ranges
         | Some entry ->
-            let (ShipId targetId) = order.Target
             let outcome =
                 if heavyArmored.Contains targetId then
                     entry.HeavyArmoredOverride |> Option.defaultValue entry.Normal
